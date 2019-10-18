@@ -105,7 +105,7 @@ void partition(int a[], int left, int right) {
   int i = left;
   int j = right;
   int pivot = a[(left+right)/2];
-  //printf("pivot: %d", pivot);
+  //printf("pivot: %d", pivot);s
   do {
     while(a[i] < pivot) {
       i++;
