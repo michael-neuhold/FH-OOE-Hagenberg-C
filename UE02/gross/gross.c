@@ -100,9 +100,44 @@ int second_largest(int a[], int n) {
 
 /* ================================================= */
 
-int ith_largest_1(int a[],int n,int i) {
-  
-  return 1;
+// divide and conquer (Quicksort)
+void partition(int a[], int left, int right) {
+  int i = left;
+  int j = right;
+  int pivot = a[(left+right)/2];
+  //printf("pivot: %d", pivot);
+  do {
+    while(a[i] < pivot) {
+      i++;
+    }
+    while(pivot < a[j]) {
+      j--;
+    }
+    if(i <= j) {
+      if(a[i] != a[j] ) {
+        int tmp = a[i];
+        a[i] = a[j];
+        a[j] = tmp;
+      }
+      i++;
+      j--;
+    }
+  } while(i<=j);
+
+  if(left < j) {
+    partition(a,left, j);
+  }
+  if(i < right) {
+    partition(a,i,right);
+  } 
+  return;
+}
+
+
+int ith_largest_2(int a[],int n,int i) {
+  partition(a,0,n-1);
+  PrintArr(a,MAX);
+  return 0;
 }
 
 /* ================================================= */
@@ -132,7 +167,9 @@ int main (int argc, char *argv[]) {
   // 3.
   Line();
   InitArr(a,MAX);
-  printf("ith-largest [i=4] => %d\n", ith_largest_2(a,MAX,4));
+  PrintArr(a,MAX);
+  ith_largest_2(a,MAX,3);
+  //printf("ith-largest [i=4] => %d\n", ith_largest_2(a,MAX,4));
 
   return 0;
 }

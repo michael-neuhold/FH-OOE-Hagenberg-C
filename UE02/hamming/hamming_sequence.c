@@ -22,13 +22,12 @@ int main(int argc, char *argv[]) {
       }
     }  
 
-    printf("\ntime: %f", (clock() - start) / CLOCKS_PER_SEC);
+    printf("\ntime: %f ms", ((clock() - start) / CLOCKS_PER_SEC) * 1000);
 
     printf("\n");
   } else {
     printf("ERROR\n");
   }
   
-
   return 0;
 }
