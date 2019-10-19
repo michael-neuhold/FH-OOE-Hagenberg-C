@@ -12,6 +12,13 @@ void PrintArr(int a[], int n) {
   return;
 }
 
+void Line() {
+  for(int i = 0; i < 50; i++)
+    printf("-");
+  printf("\n");
+  return;
+}
+
 /* ================================================= */
 void merge(int a[], int from, int mid, int to){
   int tmp[10];
@@ -101,11 +108,15 @@ int second_largest(int a[], int n) {
 /* ================================================= */
 
 // divide and conquer (Quicksort)
-void partition(int a[], int left, int right) {
+void partition(int a[], int left, int right, int ith) {
   int i = left;
   int j = right;
   int pivot = a[(left+right)/2];
-  //printf("pivot: %d", pivot);s
+  Line();
+  for(int i = left; i <= right; i++){
+    printf("%d ", a[i]);
+  } 
+  printf("\n");
   do {
     while(a[i] < pivot) {
       i++;
@@ -124,30 +135,34 @@ void partition(int a[], int left, int right) {
     }
   } while(i<=j);
 
-  if(left < j) {
-    partition(a,left, j);
-  }
-  if(i < right) {
-    partition(a,i,right);
+  
+  printf("ith: %d || left: %d || right: %d || pivot: %d || i: %d || j: %d \n ", ith, left, right, pivot, i , j);
+  for(int i = left; i <= right; i++){
+    printf("%d ", a[i]);
   } 
+  printf("\n\n");
+
+ 
+  if(left < j && (9 - ith) <= ((left+right)/2)) {
+    partition(a,left, j, ith);
+  }
+  if(i < right && (9 - ith) > ((left+right)/2)) {
+    partition(a,i,right, ith);
+  } 
+  //printf("%d \n",a[(left+right)/2]);
   return;
 }
 
 
 int ith_largest_2(int a[],int n,int i) {
-  partition(a,0,n-1);
+  partition(a,0,n-1,i);
   PrintArr(a,MAX);
   return 0;
 }
 
 /* ================================================= */
 
-void Line() {
-  for(int i = 0; i < 50; i++)
-    printf("-");
-  printf("\n");
-  return;
-}
+
 /* ================================================= */
 
 int main (int argc, char *argv[]) {

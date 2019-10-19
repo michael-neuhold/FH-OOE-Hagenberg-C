@@ -1,9 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define MAX 100
+#include "sort.h"
+#define MAX 10
+
+// print error msg
+void printErr(char msg[]) {
+  printf("<< Error (%s) >>\n", msg);
+  return;
+}
 
 // Separator
-void Line() {
+void line() {
   for(int i = 0; i < 50; i++)
     printf("-");
   printf("\n");
@@ -11,7 +18,7 @@ void Line() {
 }
 
 // simply print elements of array separated by spaces
-void PrintArr(int a[], int n) {
+void printArr(int a[], int n) {
   for(int i = 0; i < n; i++)
     printf("%d ", a[i]);
   printf("\n");
@@ -20,7 +27,7 @@ void PrintArr(int a[], int n) {
 
 // merge two subarrays
 void merge(int a[], int from, int mid, int to){
-  int tmp[10];
+  int tmp[MAX];
   int k = 0;
 
   int ai = from;  // start pos. first subarray
@@ -44,12 +51,15 @@ void merge(int a[], int from, int mid, int to){
     tmp[k++] = a[aj++];
   }
   
-  // copy tmp int0 original array
+  // copy tmp into original array
   int i,j;
   for(i=from,j=0;i<=to;i++,j++)
     a[i]=tmp[j];
+
+  return;
 }
 
+// mergesort
 void merge_sort_rec(int a[], int from, int to) {
   if (from < to) {
     int mid = (from + to) / 2;
@@ -60,6 +70,7 @@ void merge_sort_rec(int a[], int from, int to) {
   return;
 }
 
+// call recursive mergesort
 void merge_sort (int a[], int n) {
   merge_sort_rec(a,0,n-1);
   return;
@@ -67,33 +78,39 @@ void merge_sort (int a[], int n) {
 
 int main(int argc, char *argv[]) {
 
-  int n = 0;
+  int n;
   int a [MAX] = {0};
   
-  // to set n to the actual number of values in a
-  if(argc-1 <= 10){
-    n = argc-1;
-  } else {
-    n = 10;
-  }
+  if(argc > 1) {
+    // to set n to the actual number of values in a
+    if(argc-1 <= 10){
+      n = argc-1;
+    } else {
+      n = 10;
+    }
 
-  // code to read a maximum of MAX values from argv to a and
-  for(int i = 0; i < n; i++){
-    a[i] = atoi(argv[i+1]);
+    // code to read a maximum of MAX values from argv to a and
+    for(int i = 0; i < n; i++){
+      a[i] = atoi(argv[i+1]);
+    }
+    
+    // code to display the unsorted array a
+    line();
+    printf("original:\n");
+    printArr(a,n);
+
+    // call sorting algorithmus
+    merge_sort(a, n);
+
+    // code to display the sorted array a
+    line();
+    printf("sorted:\n");
+    printArr(a,n);
+
+    line();
+  } else {
+    printErr("there is nothing to sort!");
   }
   
-  // code to display the unsorted array a
-  Line();
-  printf("original:\n");
-  PrintArr(a,n);
-
-  merge_sort(a, n);
-
-  // code to display the sorted array a
-  Line();
-  printf("sorted:\n");
-  PrintArr(a,n);
-
-  Line();
   return EXIT_SUCCESS;
 }
