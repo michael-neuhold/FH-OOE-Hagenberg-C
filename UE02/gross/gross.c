@@ -20,6 +20,7 @@ void Line() {
 }
 
 /* ================================================= */
+
 void merge(int a[], int from, int mid, int to){
   int tmp[10];
   int k = 0;
@@ -113,10 +114,10 @@ void partition(int a[], int left, int right, int ith) {
   int j = right;
   int pivot = a[(left+right)/2];
   Line();
-  for(int i = left; i <= right; i++){
+/*   for(int i = left; i <= right; i++){
     printf("%d ", a[i]);
   } 
-  printf("\n");
+  printf("\n"); */
   do {
     while(a[i] < pivot) {
       i++;
@@ -134,25 +135,33 @@ void partition(int a[], int left, int right, int ith) {
       j--;
     }
   } while(i<=j);
-
   
-  printf("ith: %d || left: %d || right: %d || pivot: %d || i: %d || j: %d \n ", ith, left, right, pivot, i , j);
-  for(int i = left; i <= right; i++){
-    printf("%d ", a[i]);
-  } 
-  printf("\n\n");
-
+  
+    if(left < j && (9-(ith-1)) <= (i+j)/2) {
+      partition(a,left, j, ith);
+    }
+    if(i < right && (9-(ith-1)) >= (i+j)/2) {
+      partition(a,i,right, ith);
+    }
+  
+  
  
-  if(left < j && (9 - ith) <= ((left+right)/2)) {
-    partition(a,left, j, ith);
-  }
-  if(i < right && (9 - ith) > ((left+right)/2)) {
-    partition(a,i,right, ith);
+  /* printf("ith: %d || left: %d || right: %d || pivot: %d || i: %d || j: %d \n ", 10-ith, left, right, pivot, i , j);
+  for(int k = left; k <= right; k++){
+    printf("%d ", a[k]);
   } 
+  printf("\n\n"); */
+
+  /* printf("pivo index: %d\n", (left+right)/2); */
+  //printf("pivo index: %d\n", (j+i)/2);
+
+  if((9-(ith-1)) == (left+right)/2){
+    printf(">>>>>>>>>> (%d) ith-largest Element: %d\n",ith, a[(left+right)/2]);
+    return;
+  }
   //printf("%d \n",a[(left+right)/2]);
   return;
 }
-
 
 int ith_largest_2(int a[],int n,int i) {
   partition(a,0,n-1,i);
@@ -177,13 +186,13 @@ int main (int argc, char *argv[]) {
   // 2.
   Line();
   InitArr(a,MAX);
-  printf("ith-largest [i=3] => %d\n",ith_largest_1(a,MAX,3));
+  printf("ith-largest [i=3] => %d\n",ith_largest_1(a,MAX,2));
 
   // 3.
   Line();
   InitArr(a,MAX);
   PrintArr(a,MAX);
-  ith_largest_2(a,MAX,3);
+  ith_largest_2(a,MAX,2);
   //printf("ith-largest [i=4] => %d\n", ith_largest_2(a,MAX,4));
 
   return 0;
