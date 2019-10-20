@@ -32,7 +32,7 @@ void merge(int a[], int from, int mid, int to){
 
   int ai = from;  // start pos. first subarray
   int aj = mid+1; // start pos. second subarray
-
+  
   while(ai <= mid && aj <= to) {
     if(a[ai] <= a[aj]){
       tmp[k++] = a[ai++];
@@ -43,12 +43,14 @@ void merge(int a[], int from, int mid, int to){
 
   // copy rest of first subarray
   while(ai <= mid){
-    tmp[k++] = a[ai++];
+    tmp[k] = a[ai++];
+    k++;
   }
 
   // copy rest of second subarray
   while(aj <= to){
-    tmp[k++] = a[aj++];
+    tmp[k] = a[aj++];
+    k++;
   }
   
   // copy tmp into original array

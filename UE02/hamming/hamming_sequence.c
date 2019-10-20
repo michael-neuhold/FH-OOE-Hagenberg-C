@@ -24,7 +24,7 @@ int main(int argc, char *argv[]) {
     double start = clock();
     for(int i = 1; i <= atoi(argv[1]); i++){
       if(hamming(i)) { // checking numbers
-        printf("%d ", i);
+       // printf("%d ", i);
       }
     }  
     printf("\ntime: %f ms \n", ((clock() - start) / CLOCKS_PER_SEC) * 1000);
