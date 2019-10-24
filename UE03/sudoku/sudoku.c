@@ -4,6 +4,9 @@
 #include <time.h>
 
 #define MAX 81
+#define SUB_SQUARE_SIZE 9
+#define BIG_LINE_SIZE 27
+#define SUB_SQUARE_LINE_SIZE 3
 
 
 void printLine() {
@@ -26,35 +29,10 @@ void printSudoku(int squares[]){
   return;
 }
 
-bool check_row(int squares[], int i, int number) {
-  int col = (i + 1) % 9;
-  int start = i - col + 1;
-  for(int j = start; j < start + 9; j++) {
-    //printf(" ,%d", squares[j]);
-    if(number == squares[j])
-      return false;
-  }
-  return true;
-}
-
-bool check_col(int squares[], int i, int number) {
-  int row_nr = i / 9;
-  int start_at = i - 9 * row_nr;
-  int end_at = start_at + 9 * 8;
-  for(int j = start_at; j <= end_at; j = j + 9) {
-    //printf(",%d", squares[j]);
-    if(squares[j] == number){
-      return false;
-    }
-  }
-  return true;
-}
-
 bool check_line(int squares[], int i, int number) {
   int start = i - (i % 9);
   int end = start + 8;
   for(int j = start; j <= end; j++ ) {
-    printf("%d ", squares[j]);
     if(squares[j] == number) {
       return false;
     }
@@ -62,11 +40,10 @@ bool check_line(int squares[], int i, int number) {
   return true;
 }
 
-bool check_col2(int squares[], int i, int number) {
+bool check_col(int squares[], int i, int number) {
   int start = i - 9 * (i / 9);
   int end = start + 9 * 8;
   for(int j = start; j <= end; j += 9) {
-    printf("%d ", squares[j]);
     if(squares[j] == number) {
       return false;
     }
@@ -75,37 +52,31 @@ bool check_col2(int squares[], int i, int number) {
 }
 
 bool check_square(int squares[], int i, int number) {
-  //printf("checking 3x3 \n");
-  int row_nr = i / 9;
+  int line_nr = i / 9;
   int col_nr = i % 9;
+  int line_offset = line_nr % 3;
+  int col_offset = col_nr % 3;
 
-  int offset = col_nr % 3;
-  int first_index_col = i - offset;
+  int sub_square_top = i - 9 * line_offset;
+  int sub_square_start = sub_square_top - col_offset;
+  int sub_square_end = sub_square_start + 2 * 9 + 2;
 
-  int offset_row = row_nr % 3;
-  int first_index_square =  first_index_col - 9 * offset_row;
+  int j = sub_square_start;
 
-  bool correct = true;
-  int limit = first_index_square + 9 * 2 + 6;
-
-  //printf("square: \n");
-  int j = first_index_square;
-  while(correct && (j <= limit)) {
-    //printf(",%d", squares[j]); 
+  while(j <= sub_square_end){
     if(squares[j] == number){
-      correct = false;
-    }
-    if((j + 1) % 3 == 0){
-      j = j + 7;
+      return false;
+    } else if((j + 1) % 3 == 0) {
+      j += 7;
     } else {
       j++;
     }
   }
-  return correct;
+  return true;
 }
 
 bool check_elements(int squares[], int i, int number) {
-  return check_square(squares,i,number) && check_line(squares,i,number)  && check_col2(squares,i,number) /*&& squares[i] == 0*/;
+  return check_square(squares,i,number) && check_line(squares,i,number)  && check_col(squares,i,number);
 }
 
 int find_empty_element(int squares[]) {
@@ -135,14 +106,12 @@ bool sudoku_solve(int squares[]) {
   }
 
   for(int number = 1; number <= 9; number++) {
-    //printf("i: %d, squares[] = %d, number: %d\n", i, squares[i], number);
-    if(check_elements(squares,i,number) /*true*/) {
+    if(check_elements(squares,i,number)) {
       squares[i] = number;
       if(sudoku_solve(squares)){
         return true;
       } else {
         squares[i] = 0;
-        //printf("\nbacktracking\n");
       } 
     }
   }
@@ -166,20 +135,6 @@ int main() {
                   };
 
 int squares2[MAX] = { 
-                    0,0,0 , 0,0,0 , 0,0,0 ,
-                    0,8,0 , 0,0,0 , 0,0,0 ,
-                    0,0,0 , 0,0,0 , 0,0,0 ,
-
-                    0,0,0 , 0,0,0 , 0,0,0 ,
-                    0,0,0 , 0,0,0 , 0,0,0 , 
-                    0,0,0 , 0,0,0 , 0,0,0 ,
-
-                    0,0,0 , 0,0,0 , 0,0,0 ,
-                    0,0,0 , 0,0,0 , 0,0,0 ,
-                    0,0,0 , 0,0,0 , 0,0,0    
-                  };
-
-int squares3[MAX] = { 
                     0,1,0 , 0,0,8 , 4,9,6 ,
                     0,4,0 , 0,6,1 , 0,0,0 ,
                     0,9,0 , 0,0,0 , 5,7,0 ,
@@ -193,11 +148,28 @@ int squares3[MAX] = {
                     0,0,0 , 7,4,5 , 0,2,0    
                   };
 
+int squares3[MAX] = { 
+                    3,0,0 , 0,0,0 , 0,0,1 ,
+                    0,7,6 , 0,0,0 , 5,3,0 ,
+                    0,1,9 , 0,4,0 , 7,2,0 ,
+
+                    0,0,0 , 8,0,6 , 0,0,0 ,
+                    0,0,1 , 0,7,0 , 9,0,0 , 
+                    0,0,0 , 5,0,4 , 0,0,0 ,
+
+                    0,3,5 , 0,6,0 , 2,8,0 ,
+                    0,8,7 , 0,0,0 , 6,5,0 ,
+                    6,0,0 , 0,0,0 , 0,0,7    
+                  };
 
   printSudoku(squares3);
-  //clock_t start = clock();
+
+  clock_t start = clock();
   printf("--> solve sudoku: %d\n",sudoku_solve(squares3)); 
-  //printf("time: %d", ());
+  clock_t end = clock();
+  
+  printf("time: %f ms\n", ((double)((end - start)) / CLOCKS_PER_SEC) * 1000);
+
   printSudoku(squares3);
 
   return EXIT_SUCCESS;
