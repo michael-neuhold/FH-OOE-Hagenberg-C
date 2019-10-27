@@ -5,113 +5,31 @@
 #define MAX 30
 
 
-bool possibleRec (int const x, int const lengths [], int counts [], int n, int sum);
+bool possibleRec (int const x, int const lengths [], int const counts [], int n);
 
-bool valid(int x, int lengths[], int sol[], int n){
-  int sum = 0;
-  for(int i = 0; i < n; i++ ){
-    sum += lengths[i] * sol[i];
-  }
-  return sum == x;
-}
-
-bool possibleRec (int const x, int const lengths [], int counts [], int n, int sum) {
-  
-  //if(i < n) return false; 
-  //printf("<<< sum: %d\n", sum);
-  if(sum == x) {
-    printf("found solution");
-    return true; 
-  }
-  //if(n < 0) return false;
-  int i = counts[n];
-  while(i >= 0 && n >= 0) {
-    sum = sum + lengths[n] * i;
-    printf("n: %d, i: %d, length: %d, count: %d, sum: %d\n",n, i, lengths[n],counts[n], sum);
-    if (sum < x) {  
-      possibleRec(x,lengths,counts,n-1,sum);
-    } else {
-      possibleRec(x,lengths,counts,n-1,0);
+bool possibleRec (int const x, int const lengths [], int const counts [], int n){
+  if(x == 0) return true;
+  else if (n > 0) {
+    bool is_possible = false;
+    for(int i = 0; i <= counts[n-1]; i++) {
+      is_possible = is_possible || possibleRec(x - (lengths[n-1]*i),lengths,counts, n-1);
     }
-    i--;
-  }
-  return false;
+    return is_possible;
+  } else return false;
 }
 
-bool rec(int const x, int const lengths [], int counts [], int n, int sum) {
-  
-  if(n < 0) return false;
-  printf("n: %d\n", n);
-  printf("sum: %d\n", sum);
-  for(int i = counts[n]; i >= 0; i--) {
-    sum += lengths[n] * i;
-    if(sum == x) {
-      printf("found");
-      return true;
-    } else {
-      rec(x,lengths,counts,n-1,sum);
-    }
-  }
-}
-
-void test(int const x, int const lengths [], int counts [], int n, int sum) {
-  if(n >= 0){
-  
-    for(int i = counts[n]; i >= 0; i--) {
-      sum += lengths[n] * i;
-      if(sum == x) {
-        printf("found\n");
-      }
-      printf("i: %d\t, lengths: %d, n: %d, sum: %d\n",i, lengths[n],n, sum);
-      if (sum < x){
-        test(x,lengths,counts,n-1,sum);
-      } else {
-        sum -= lengths[n] * i;
-      }
-      
-  }
-  }
-  return;
-}
-
-bool test2(int const x, int const lengths [], int counts [], int n, int sum) {
-  if(n >= 0){
-    
-    for(int i = counts[n]; i >= 0; i--) {
-      sum += lengths[n] * i;
-      if(sum == x) {
-        printf("found\n");
-        return true;
-      }
-      printf("i: %d\t, lengths: %d, n: %d, sum: %d\n",i, lengths[n],n, sum);
-      if (sum < x){
-        return test2(x,lengths,counts,n-1,sum);
-      } else {
-        sum = 0;
+bool possibleBack (int const x, int const lengths [], int const counts [], int n){
+  if(x == 0) return true;
+  else if (n > 0) {
+    bool is_possible = false;
+    for(int i = 0; i <= counts[n-1]; i++) {
+      if(x >= 0){
+        is_possible = is_possible || possibleRec(x - (lengths[n-1]*i),lengths,counts, n-1);
       }
     }
-  } 
-  return false;
+    return is_possible;
+  } else return false;
 }
-
-/* bool possibleRec (int const x, int const lengths [], int counts [], int const n, int sum, int i) {
-  if(sum == x){
-    return true;
-  }
-  printf("sum..: %d", sum);
-  sum += lengths[i];
-  if(sum > counts[i]*lengths[i]){
-    sum = 0;
-    i++;
-    if(i < n){
-      return possibleRec(x,lengths,counts,n,sum,i);
-    } else {
-      return false;
-    }
-  } else {
-    return possibleRec(x,lengths,counts,n,sum,i);
-  }
-} */
 
 int main(int argc, char *argv[]){
 
@@ -125,8 +43,9 @@ int main(int argc, char *argv[]){
   if(argc == 2){
     printf("%d entered lengths\n",n);
     printf("search length: %d\n",atoi(argv[1]));
-    //printf("possible: %d\n", test2(atoi(argv[1]), lengths, counts, n-1, sum));
-   test(atoi(argv[1]), lengths, counts, n-1, sum);
+    //printf("possible: %d\n", possibleRec(atoi(argv[1]), lengths, counts, n));
+    printf("possible: %d\n", possibleBack(atoi(argv[1]), lengths, counts, n));
+   //test3(atoi(argv[1]), lengths, counts, n-1, sum);
   } else {
     printf("wrong number of arguments\n");
   }
