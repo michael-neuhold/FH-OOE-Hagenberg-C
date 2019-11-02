@@ -59,6 +59,20 @@ int main() {
                         3,0,4,	0,0,0,	0,8,0 
                       };
 
+  int squares5[MAX] = {
+                        2,4,0,  0,9,0,  0,5,3,
+                        5,8,0,  0,0,0,  0,2,9,
+                        0,0,6,  0,0,0,  8,0,0,
+
+                        0,0,0,  6,0,7,  0,0,0,
+                        6,0,0,  0,4,0,  0,0,1,
+                        0,0,0,  2,0,1,  0,0,0,
+
+                        0,0,5,  0,0,0,  1,0,0,
+                        3,1,0,  0,0,0,  0,4,6,
+                        4,6,0,  0,1,0,  0,3,7
+                      };
+
   // tests
   printf("1. Sudoku\n");
   sudoku_solve(squares1);
@@ -71,6 +85,9 @@ int main() {
   print_big_line();
   printf("4. Sudoku\n");
   sudoku_solve(squares4);
+  print_big_line();
+  printf("5. Sudoku\n");
+  sudoku_solve(squares5);
   print_big_line();
 
   return EXIT_SUCCESS;
