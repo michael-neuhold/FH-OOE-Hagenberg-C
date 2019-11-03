@@ -1,3 +1,0 @@
-/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE04/build/CMakeFiles/rebuild_cache.dir
-/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE04/build/CMakeFiles/edit_cache.dir
-/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE04/build/CMakeFiles/lis.dir
