@@ -16,15 +16,32 @@
 
 #include "../graph_selector.h"
 
-typedef struct graph_list {
-   int some_data;
-} graph_list;
+/* typedef struct graph_list {
+  
+} graph_list; */
 
-void PREFIX_LIST (some_function_on_graph) (graph_list *);
+typedef struct graph_node graph_list;
 
+typedef struct graph_node {
+  char *payload;
+  struct graph_edge_node *edges_list;
+  struct graph_node *next;
+} graph_node;
 
+typedef struct graph_node *graph_node_ptr;
 
+typedef struct graph_edge_node {
+  graph_node *target;
+  struct graph_edge_node *next;
+} graph_edge_node;
 
+typedef struct graph_edge_node *graph_edge_node_ptr;
 
+graph_list PREFIX_LIST (init_graph_list) ();
+void PREFIX_LIST (connect_graph_nodes) (graph_list * graph, graph_node *target);
+graph_node_ptr PREFIX_LIST (new_graph_node) (char *payload);
+graph_edge_node_ptr PREFIX_LIST (new_edge_node) (graph_node *target);
+void PREFIX_LIST (append_node) (graph_list **graph, char *payload);
+void PREFIX_LIST (delete_node) (graph_list **graph, char *payload);
 
 #endif   // GRAPH_LIST_H

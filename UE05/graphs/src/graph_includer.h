@@ -14,6 +14,12 @@
 #if !defined GRAPH_INCLUDER_H
 #define      GRAPH_INCLUDER_H
 
+/* basic standard includes */
+#include <stdlib.h>
+#include <stdbool.h>
+#include <string.h>
+#include <stdio.h>
+
 #include "./graph_selector.h"
 
 #if defined TEST_GRAPH_LIST
