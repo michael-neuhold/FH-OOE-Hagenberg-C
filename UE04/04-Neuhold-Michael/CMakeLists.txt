@@ -43,4 +43,4 @@ function(target name)
 	endif()
 endfunction()
 
-target(lis)
+target(team)
