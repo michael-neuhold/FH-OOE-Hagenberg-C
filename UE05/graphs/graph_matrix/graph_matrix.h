@@ -17,7 +17,7 @@
 #include "../graph_selector.h"
 
 typedef struct graph_matrix {
-   int some_data;
+    int some_data;
 } graph_matrix;
 
 void PREFIX_MATRIX (some_function_on_graph) (graph_matrix *);

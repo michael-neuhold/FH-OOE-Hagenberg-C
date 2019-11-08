@@ -11,24 +11,22 @@
 //            It is distributed under the Boost Software License, Version 1.0
 //            (see http://www.boost.org/LICENSE_1_0.txt).
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
 #if !defined GRAPH_INCLUDER_H
 #define      GRAPH_INCLUDER_H
-
-/* basic standard includes */
-#include <stdlib.h>
-#include <stdbool.h>
-#include <string.h>
-#include <stdio.h>
 
 #include "./graph_selector.h"
 
 #if defined TEST_GRAPH_LIST
-   #include "./graph_list/graph_list.h"
+#include "./graph_list/graph_list.h"
 
    typedef graph_list graph_t;
 
 #elif defined TEST_GRAPH_MATRIX
-   #include "./graph_matrix/graph_matrix.h"
+#include "./graph_matrix/graph_matrix.h"
 
    typedef graph_matrix graph_t;
 #endif

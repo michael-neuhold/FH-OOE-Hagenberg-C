@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/cc -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/untitled.dir/test.c.o CMakeFiles/untitled.dir/graph_list/graph_list.c.o CMakeFiles/untitled.dir/graph_matrix/graph_matrix.c.o CMakeFiles/untitled.dir/graph_list/edge_list.c.o  -o untitled 

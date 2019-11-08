@@ -16,5 +16,6 @@
 #include <stdio.h>
 
 void PREFIX_MATRIX (some_function_on_graph) (graph_matrix * p_graph) {
-   printf ("function 'void some_function_on_graph (graph_matrix *)' called\n");
+    printf ("function 'void some_function_on_graph (graph_matrix *)' called\n");
 }
+

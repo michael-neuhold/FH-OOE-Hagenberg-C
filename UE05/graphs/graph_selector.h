@@ -16,21 +16,21 @@
 
 // -----------------------------------------------------------------------------
 
-// #define TEST_GRAPH_LIST     // Either define TEST_GRAPH_LIST or TEST_GRAPH_MATRIX
-   #define TEST_GRAPH_MATRIX   // here in source or via the compiler option -D.
+#define TEST_GRAPH_LIST     // Either define TEST_GRAPH_LIST or TEST_GRAPH_MATRIX
+//#define TEST_GRAPH_MATRIX   // here in source or via the compiler option -D.
 
 // -----------------------------------------------------------------------------
 
 #if defined TEST_GRAPH_LIST
-   #define PREFIX_LIST(name)         name
+#define PREFIX_LIST(name)         name
    #define PREFIX_MATRIX(name) xxx_##name
 
 #elif defined TEST_GRAPH_MATRIX
-   #define PREFIX_LIST(name)   xxx_##name
-   #define PREFIX_MATRIX(name)       name
+#define PREFIX_LIST(name)   xxx_##name
+#define PREFIX_MATRIX(name)       name
 
 #else
-   #error "Define (just) one of 'TEST_GRAPH_LIST' or 'TEST_GRAPH_MATRIX'."
+#error "Define (just) one of 'TEST_GRAPH_LIST' or 'TEST_GRAPH_MATRIX'."
 #endif
 
 #endif   // GRAPH_SELECTOR_H
