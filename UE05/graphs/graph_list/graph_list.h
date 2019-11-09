@@ -1,34 +1,29 @@
-//       $Id: graph_list.h 2319 2019-11-03 09:32:33Z p20068 $
-//      $URL: https://svn01.fh-hagenberg.at/se/sw/swo3/trunk/Aufgaben/WS16/VZ/src/graphs/src/graph_list/graph_list.h $
-// $Revision: 2319 $
-//     $Date: 2019-11-03 10:32:33 +0100 (So., 03 Nov 2019) $
-//   $Author: p20068 $
-//   Creator: Peter Kulczycki (peter.kulczycki<AT>fh-hagenberg.at)
-//  Creation: November, 2019
-// Copyright: (c) 2019 Peter Kulczycki
-//   License: This document contains proprietary information belonging to
-//            University of Applied Sciences Upper Austria, Campus Hagenberg.
-//            It is distributed under the Boost Software License, Version 1.0
-//            (see http://www.boost.org/LICENSE_1_0.txt).
+//
+// Created by Michael Neuhold on 09.11.19.
+//
+
+#ifndef GRAPHS_GRAPH_LIST_H
+#define GRAPHS_GRAPH_LIST_H
+
 
 #if !defined GRAPH_LIST_H
 #define      GRAPH_LIST_H
 
 /* ---------------------------------------------------------*/
 
-#include "../graph_selector.h"
 #include <stdbool.h>
 #include "./types.h"
 
 /* ---------------------------------------------------------*/
 
-void PREFIX_LIST (init_graph_list) (graph_list *list);
-void PREFIX_LIST (add_graph_node) (graph_list *list, char *str);
-void PREFIX_LIST (print_graph_nodes) (graph_node_ptr list);
-void PREFIX_LIST (remove_graph_node) (graph_node_ptr *list, char *str);
-void PREFIX_LIST (add_edge) (graph_list list, char  *origin_str, char  *target_str);
-void PREFIX_LIST (remove_all_edges_of) (graph_list list, char *str);
-void PREFIX_LIST (remove_edge) (graph_list  list,char *origin_str, char *target_str);
+void init_graph_l (graph_list *list);
+void add_graph_node_l (graph_list *list, char *str);
+void print_graph_nodes_l (graph_node_ptr list);
+void remove_node_l (graph_node_ptr *list, char *str);
+void add_edge_l (graph_list list, char  *origin_str, char  *target_str);
+void remove_all_edges_of_l (graph_list list, char *str);
+void remove_edge_l (graph_list  list,char *origin_str, char *target_str);
+void topological_sort_l(graph_list list);
 
 /* ---------------------------------------------------------*/
 
@@ -40,3 +35,6 @@ bool edge_exists(graph_node_ptr origin, graph_node_ptr target);
 /* ---------------------------------------------------------*/
 
 #endif   // GRAPH_LIST_H
+
+
+#endif //GRAPHS_GRAPH_LIST_H

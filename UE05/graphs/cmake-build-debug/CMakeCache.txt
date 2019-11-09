@@ -133,7 +133,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=untitled
+CMAKE_PROJECT_NAME:STATIC=graphs
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/Library/Developer/CommandLineTools/usr/bin/ranlib
@@ -198,10 +198,10 @@ CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 ProcessorCount_cmd_sysctl:FILEPATH=/usr/sbin/sysctl
 
 //Value Computed by CMake
-untitled_BINARY_DIR:STATIC=/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/cmake-build-debug
+graphs_BINARY_DIR:STATIC=/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/cmake-build-debug
 
 //Value Computed by CMake
-untitled_SOURCE_DIR:STATIC=/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs
+graphs_SOURCE_DIR:STATIC=/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs
 
 
 ########################

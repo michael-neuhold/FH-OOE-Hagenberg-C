@@ -1,9 +1,9 @@
 //
-// Created by Michael Neuhold on 08.11.19.
+// Created by Michael Neuhold on 09.11.19.
 //
 
-#ifndef UNTITLED_EDGE_LIST_H
-#define UNTITLED_EDGE_LIST_H
+#ifndef GRAPHS_EDGE_LIST_H
+#define GRAPHS_EDGE_LIST_H
 
 /* ---------------------------------------------------------*/
 
@@ -18,4 +18,4 @@ void remove_edge_list(edge_node_ptr *edge_list);
 
 /* ---------------------------------------------------------*/
 
-#endif //UNTITLED_EDGE_LIST_H
+#endif //GRAPHS_EDGE_LIST_H

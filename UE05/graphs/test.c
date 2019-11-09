@@ -1,58 +1,118 @@
-//       $Id: test.c 2319 2019-11-03 09:32:33Z p20068 $
-//      $URL: https://svn01.fh-hagenberg.at/se/sw/swo3/trunk/Aufgaben/WS16/VZ/src/graphs/src/test.c $
-// $Revision: 2319 $
-//     $Date: 2019-11-03 10:32:33 +0100 (So., 03 Nov 2019) $
-//   $Author: p20068 $
-//   Creator: Peter Kulczycki (peter.kulczycki<AT>fh-hagenberg.at)
-//  Creation: November, 2019
-// Copyright: (c) 2019 Peter Kulczycki
-//   License: This document contains proprietary information belonging to
-//            University of Applied Sciences Upper Austria, Campus Hagenberg.
-//            It is distributed under the Boost Software License, Version 1.0
-//            (see http://www.boost.org/LICENSE_1_0.txt).
+#include <stdio.h>
 
-#include "./graph_includer.h"
-
+#include "./graph_list/graph_list.h"
+#include "test.h"
 #include <stdlib.h>
 #include <stdio.h>
+
+
+// What do you want to test?
+//#define DELETE_EDGE
+//#define DELETE_NODE
+//#define TOPSORT
+
+void print_line() {
+    for (int i = 0; i < 50; i++) {
+        printf("-");
+    }
+    printf("\n");
+}
+
 int main () {
 
-    graph_list l1;
+    graph g1;
+    graph g2;
+    graph g3;
 
-    PREFIX_LIST (init_graph_list)(&l1);
+    // init graph
+    graph_init(&g1);
+    graph_init(&g2);
+    graph_init(&g3);
 
-    PREFIX_LIST (add_graph_node)(&l1, "test1");
-    PREFIX_LIST (add_graph_node)(&l1, "test2");
-    PREFIX_LIST (add_graph_node)(&l1, "test3");
-    PREFIX_LIST (add_graph_node)(&l1, "test1");
-    PREFIX_LIST (add_graph_node)(&l1, "test4");
+    // add some nodes
+    graph_add_node(&g1, "Node 1");
+    graph_add_node(&g1, "Node 2");
+    graph_add_node(&g1, "Node 3");
+    graph_add_node(&g1, "Node 4");
+    graph_add_node(&g1, "Node 5");
 
-    PREFIX_LIST (print_graph_nodes)(l1);
+    graph_add_node(&g2, "Unterhose");
+    graph_add_node(&g2, "Pullover");
+    graph_add_node(&g2, "Mantel");
+    graph_add_node(&g2, "Hose");
+    graph_add_node(&g2, "Schuhe");
+    graph_add_node(&g2, "Socken");
+    graph_add_node(&g2, "Unterhemd");
 
-    PREFIX_LIST (add_edge)(l1, "test1", "test2");
-    PREFIX_LIST (add_edge)(l1, "test1", "test3");
-    PREFIX_LIST (add_edge)(l1, "test1", "test4");
+    // add some edges
+    graph_add_edge(g1, "Node 1", "Node 2");
+    graph_add_edge(g1, "Node 1", "Node 3");
+    graph_add_edge(g1, "Node 1", "Node 4");
+    graph_add_edge(g1, "Node 4", "Node 1");
+    graph_add_edge(g1, "Node 2", "Node 1");
+    graph_add_edge(g1, "Node 3", "Node 4");
 
-    PREFIX_LIST (add_edge)(l1, "test4", "test1");
-    PREFIX_LIST (add_edge)(l1, "test4", "test2");
+    graph_add_edge(g2, "Unterhose", "Hose");
+    graph_add_edge(g2, "Pullover", "Mantel");
+    graph_add_edge(g2, "Hose", "Mantel");
+    graph_add_edge(g2, "Hose", "Schuhe");
+    graph_add_edge(g2, "Socken", "Schuhe");
+    graph_add_edge(g2, "Unterhemd", "Pullover");
 
-    // test case edge does already exist
-    PREFIX_LIST (add_edge)(l1, "test1", "test2");
+    /* ---------------------------------------------------------*/
 
-    // test case target does not exist
-    PREFIX_LIST (add_edge)(l1, "test4", "test9");
+    print_line();
+    printf("graph g1: \n");
+    graph_print(g1);
 
-    PREFIX_LIST (print_graph_nodes)(l1);
+    print_line();
+    printf("graph g2: \n");
+    graph_print(g2);
 
-    // test to remove a whole edge list
-    //PREFIX_LIST (remove_all_edges_of)(l1,"test1");
+    /* ---------------------------------------------------------*/
+    #ifdef DELETE_EDGE
+    print_line();
+    printf("delete edge (Node 1 -> Node 3) from g1\n");
+    graph_remove_edge(g1,"Node 1", "Node 3");
 
-    // test to remove distinct edge
-    PREFIX_LIST (remove_edge) (l1,"test1", "test4");
+    printf("delete edge (Hose -> Mantel) from g2\n");
+    graph_remove_edge(g2,"Hose", "Mantel");
 
-    PREFIX_LIST (print_graph_nodes)(l1);
+    print_line();
+    printf("graph g1: \n");
+    graph_print(g1);
 
-    //PREFIX_LIST (remove_graph_node)(&l1, "test4");
-    //PREFIX_LIST (print_graph_nodes)(l1);
+    print_line();
+    printf("graph g2: \n");
+    graph_print(g2);
+    #endif
+    /* ---------------------------------------------------------*/
+    #ifdef DELETE_NODE
+    print_line();
+    printf("delete node (Node 1) from g1\n");
+    graph_remove_node(&g1, "Node 1");
+    printf("delete node (Schuhe) from g2\n");
+    graph_remove_node(&g2, "Schuhe");
+
+    print_line();
+    printf("graph g1: \n");
+    graph_print(g1);
+
+    print_line();
+    printf("graph g2: \n");
+    graph_print(g2);
+    #endif
+    /* ---------------------------------------------------------*/
+    #ifdef TOPSORT
+    print_line();
+    printf("graph g1 top-sorted: \n");
+    graph_topological_sort(g1);
+
+    print_line();
+    printf("graph g2 top-sorted: \n");
+    graph_topological_sort(g2);
+    #endif
+    /* ---------------------------------------------------------*/
+
     return EXIT_SUCCESS;
 }

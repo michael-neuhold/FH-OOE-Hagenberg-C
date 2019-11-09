@@ -111,17 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named untitled
+# Target rules for targets named graphs
 
 # Build rule for target.
-untitled: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 untitled
-.PHONY : untitled
+graphs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 graphs
+.PHONY : graphs
 
 # fast build rule for target.
-untitled/fast:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/build
-.PHONY : untitled/fast
+graphs/fast:
+	$(MAKE) -f CMakeFiles/graphs.dir/build.make CMakeFiles/graphs.dir/build
+.PHONY : graphs/fast
 
 graph_list/edge_list.o: graph_list/edge_list.c.o
 
@@ -129,7 +129,7 @@ graph_list/edge_list.o: graph_list/edge_list.c.o
 
 # target to build an object file
 graph_list/edge_list.c.o:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/graph_list/edge_list.c.o
+	$(MAKE) -f CMakeFiles/graphs.dir/build.make CMakeFiles/graphs.dir/graph_list/edge_list.c.o
 .PHONY : graph_list/edge_list.c.o
 
 graph_list/edge_list.i: graph_list/edge_list.c.i
@@ -138,7 +138,7 @@ graph_list/edge_list.i: graph_list/edge_list.c.i
 
 # target to preprocess a source file
 graph_list/edge_list.c.i:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/graph_list/edge_list.c.i
+	$(MAKE) -f CMakeFiles/graphs.dir/build.make CMakeFiles/graphs.dir/graph_list/edge_list.c.i
 .PHONY : graph_list/edge_list.c.i
 
 graph_list/edge_list.s: graph_list/edge_list.c.s
@@ -147,7 +147,7 @@ graph_list/edge_list.s: graph_list/edge_list.c.s
 
 # target to generate assembly for a file
 graph_list/edge_list.c.s:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/graph_list/edge_list.c.s
+	$(MAKE) -f CMakeFiles/graphs.dir/build.make CMakeFiles/graphs.dir/graph_list/edge_list.c.s
 .PHONY : graph_list/edge_list.c.s
 
 graph_list/graph_list.o: graph_list/graph_list.c.o
@@ -156,7 +156,7 @@ graph_list/graph_list.o: graph_list/graph_list.c.o
 
 # target to build an object file
 graph_list/graph_list.c.o:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/graph_list/graph_list.c.o
+	$(MAKE) -f CMakeFiles/graphs.dir/build.make CMakeFiles/graphs.dir/graph_list/graph_list.c.o
 .PHONY : graph_list/graph_list.c.o
 
 graph_list/graph_list.i: graph_list/graph_list.c.i
@@ -165,7 +165,7 @@ graph_list/graph_list.i: graph_list/graph_list.c.i
 
 # target to preprocess a source file
 graph_list/graph_list.c.i:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/graph_list/graph_list.c.i
+	$(MAKE) -f CMakeFiles/graphs.dir/build.make CMakeFiles/graphs.dir/graph_list/graph_list.c.i
 .PHONY : graph_list/graph_list.c.i
 
 graph_list/graph_list.s: graph_list/graph_list.c.s
@@ -174,35 +174,8 @@ graph_list/graph_list.s: graph_list/graph_list.c.s
 
 # target to generate assembly for a file
 graph_list/graph_list.c.s:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/graph_list/graph_list.c.s
+	$(MAKE) -f CMakeFiles/graphs.dir/build.make CMakeFiles/graphs.dir/graph_list/graph_list.c.s
 .PHONY : graph_list/graph_list.c.s
-
-graph_matrix/graph_matrix.o: graph_matrix/graph_matrix.c.o
-
-.PHONY : graph_matrix/graph_matrix.o
-
-# target to build an object file
-graph_matrix/graph_matrix.c.o:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/graph_matrix/graph_matrix.c.o
-.PHONY : graph_matrix/graph_matrix.c.o
-
-graph_matrix/graph_matrix.i: graph_matrix/graph_matrix.c.i
-
-.PHONY : graph_matrix/graph_matrix.i
-
-# target to preprocess a source file
-graph_matrix/graph_matrix.c.i:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/graph_matrix/graph_matrix.c.i
-.PHONY : graph_matrix/graph_matrix.c.i
-
-graph_matrix/graph_matrix.s: graph_matrix/graph_matrix.c.s
-
-.PHONY : graph_matrix/graph_matrix.s
-
-# target to generate assembly for a file
-graph_matrix/graph_matrix.c.s:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/graph_matrix/graph_matrix.c.s
-.PHONY : graph_matrix/graph_matrix.c.s
 
 test.o: test.c.o
 
@@ -210,7 +183,7 @@ test.o: test.c.o
 
 # target to build an object file
 test.c.o:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/test.c.o
+	$(MAKE) -f CMakeFiles/graphs.dir/build.make CMakeFiles/graphs.dir/test.c.o
 .PHONY : test.c.o
 
 test.i: test.c.i
@@ -219,7 +192,7 @@ test.i: test.c.i
 
 # target to preprocess a source file
 test.c.i:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/test.c.i
+	$(MAKE) -f CMakeFiles/graphs.dir/build.make CMakeFiles/graphs.dir/test.c.i
 .PHONY : test.c.i
 
 test.s: test.c.s
@@ -228,7 +201,7 @@ test.s: test.c.s
 
 # target to generate assembly for a file
 test.c.s:
-	$(MAKE) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/test.c.s
+	$(MAKE) -f CMakeFiles/graphs.dir/build.make CMakeFiles/graphs.dir/test.c.s
 .PHONY : test.c.s
 
 # Help Target
@@ -239,16 +212,13 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... untitled"
+	@echo "... graphs"
 	@echo "... graph_list/edge_list.o"
 	@echo "... graph_list/edge_list.i"
 	@echo "... graph_list/edge_list.s"
 	@echo "... graph_list/graph_list.o"
 	@echo "... graph_list/graph_list.i"
 	@echo "... graph_list/graph_list.s"
-	@echo "... graph_matrix/graph_matrix.o"
-	@echo "... graph_matrix/graph_matrix.i"
-	@echo "... graph_matrix/graph_matrix.s"
 	@echo "... test.o"
 	@echo "... test.i"
 	@echo "... test.s"

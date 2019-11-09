@@ -2,7 +2,7 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6"/>
 	<Project>
-		<Option title="untitled"/>
+		<Option title="graphs"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
 		<Option virtualFolders="CMake Files\;"/>
@@ -37,8 +37,8 @@
 					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="untitled">
-				<Option output="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/cmake-build-debug/untitled" prefix_auto="0" extension_auto="0"/>
+			<Target title="graphs">
+				<Option output="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/cmake-build-debug/graphs" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -51,14 +51,14 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/cmake-build-debug/Makefile&quot;  VERBOSE=1 untitled"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/cmake-build-debug/Makefile&quot;  VERBOSE=1 graphs"/>
 					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j4 -f &quot;/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="untitled/fast">
-				<Option output="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/cmake-build-debug/untitled" prefix_auto="0" extension_auto="0"/>
+			<Target title="graphs/fast">
+				<Option output="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/cmake-build-debug/graphs" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -71,42 +71,33 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/cmake-build-debug/Makefile&quot;  VERBOSE=1 untitled/fast"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/cmake-build-debug/Makefile&quot;  VERBOSE=1 graphs/fast"/>
 					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j4 -f &quot;/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/graph_includer.h">
-			<Option target="untitled"/>
-		</Unit>
 		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/graph_list/edge_list.c">
-			<Option target="untitled"/>
+			<Option target="graphs"/>
 		</Unit>
 		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/graph_list/edge_list.h">
-			<Option target="untitled"/>
+			<Option target="graphs"/>
 		</Unit>
 		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/graph_list/graph_list.c">
-			<Option target="untitled"/>
+			<Option target="graphs"/>
 		</Unit>
 		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/graph_list/graph_list.h">
-			<Option target="untitled"/>
+			<Option target="graphs"/>
 		</Unit>
 		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/graph_list/types.h">
-			<Option target="untitled"/>
-		</Unit>
-		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/graph_matrix/graph_matrix.c">
-			<Option target="untitled"/>
-		</Unit>
-		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/graph_matrix/graph_matrix.h">
-			<Option target="untitled"/>
-		</Unit>
-		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/graph_selector.h">
-			<Option target="untitled"/>
+			<Option target="graphs"/>
 		</Unit>
 		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/test.c">
-			<Option target="untitled"/>
+			<Option target="graphs"/>
+		</Unit>
+		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/test.h">
+			<Option target="graphs"/>
 		</Unit>
 		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>

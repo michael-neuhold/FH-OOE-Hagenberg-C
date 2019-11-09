@@ -1,9 +1,9 @@
 //
-// Created by Michael Neuhold on 08.11.19.
+// Created by Michael Neuhold on 09.11.19.
 //
 
-#ifndef UNTITLED_TYPES_H
-#define UNTITLED_TYPES_H
+#ifndef GRAPHS_TYPES_H
+#define GRAPHS_TYPES_H
 
 /* ---------------------------------------------------------*/
 
@@ -25,4 +25,4 @@ typedef edge_node *edge_node_ptr;
 
 /* ---------------------------------------------------------*/
 
-#endif //UNTITLED_TYPES_H
+#endif //GRAPHS_TYPES_H

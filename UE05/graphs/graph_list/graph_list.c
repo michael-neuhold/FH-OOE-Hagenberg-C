@@ -1,15 +1,7 @@
-//       $Id: graph_list.c 2319 2019-11-03 09:32:33Z p20068 $
-//      $URL: https://svn01.fh-hagenberg.at/se/sw/swo3/trunk/Aufgaben/WS16/VZ/src/graphs/src/graph_list/graph_list.c $
-// $Revision: 2319 $
-//     $Date: 2019-11-03 10:32:33 +0100 (So., 03 Nov 2019) $
-//   $Author: p20068 $
-//   Creator: Peter Kulczycki (peter.kulczycki<AT>fh-hagenberg.at)
-//  Creation: November, 2019
-// Copyright: (c) 2019 Peter Kulczycki
-//   License: This document contains proprietary information belonging to
-//            University of Applied Sciences Upper Austria, Campus Hagenberg.
-//            It is distributed under the Boost Software License, Version 1.0
-//            (see http://www.boost.org/LICENSE_1_0.txt).
+//
+// Created by Michael Neuhold on 09.11.19.
+//
+
 
 #include "./graph_list.h"
 #include "./edge_list.h"
@@ -18,6 +10,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include <limits.h>
 
 /* ---------------------------------------------------------*/
 
@@ -41,20 +34,20 @@ bool node_exists(graph_list list, char *str) {
 
 /* ---------------------------------------------------------*/
 
-void PREFIX_LIST (prepend) (graph_list *list, graph_node_ptr node) {
+void prepend (graph_list *list, graph_node_ptr node) {
     node -> next = *list;
     *list = node;
 }
 
 /* ---------------------------------------------------------*/
 
-void PREFIX_LIST (init_graph_list) (graph_list *list) {
+void init_graph_l (graph_list *list) {
     *list = NULL;
 }
 
 /* ---------------------------------------------------------*/
 
-void PREFIX_LIST (add_graph_node) (graph_list *list, char *str) {
+void add_graph_node_l (graph_list *list, char *str) {
     // check if node already exists
     if(node_exists(*list,str)) {
         printf("node exists already: %s\n", str);
@@ -66,7 +59,7 @@ void PREFIX_LIST (add_graph_node) (graph_list *list, char *str) {
 
 /* ---------------------------------------------------------*/
 
-void PREFIX_LIST (print_graph_nodes) (graph_node_ptr list) {
+void print_graph_nodes_l (graph_node_ptr list) {
     graph_node_ptr l = list;
     printf("\n---------------------\n");
     while(l != NULL) {
@@ -76,12 +69,29 @@ void PREFIX_LIST (print_graph_nodes) (graph_node_ptr list) {
         l = l -> next;
         printf("\n---------------------\n");
     }
-    printf("\n\nEND\n\n");
 }
 
 /* ---------------------------------------------------------*/
 
-void PREFIX_LIST (remove_graph_node) (graph_node_ptr *list, char *str) {
+void remove_edges_to_node(graph_node_ptr list, graph_node_ptr node) {
+    edge_node_ptr edges_list;
+    graph_node_ptr l = list;
+    while(l != NULL) {
+        edges_list = l -> edges;
+        while(edges_list != NULL) {
+            //printf("checking node: %s\n", edges_list -> target -> payload);
+            if(edges_list -> target == node) {
+                //printf("delete\n");
+                //printf("origin: %s, target: %s\n", l -> payload ,edges_list -> target -> payload);
+                remove_edge_l(list,l -> payload, edges_list -> target -> payload);
+            }
+            edges_list = edges_list -> next;
+        }
+        l = l -> next;
+    }
+}
+
+void remove_node_l (graph_node_ptr *list, char *str) {
     graph_node_ptr prev = NULL;
     graph_node_ptr l = *list;
     graph_node_ptr n = NULL;
@@ -90,11 +100,17 @@ void PREFIX_LIST (remove_graph_node) (graph_node_ptr *list, char *str) {
         l = l -> next;
     }
     if(l != NULL && prev != NULL) {
+        // remove all edges on this node
+        remove_edges_to_node(*list, l);
+
         remove_edge_list(&(l -> edges));    // remove edge list
         prev -> next = l -> next;
         l -> next = NULL;
         free(n);
     } else if(l != NULL) {
+        // remove all edges on this node
+        remove_edges_to_node(*list, l);
+
         remove_edge_list(&(l -> edges));    // remove edge list
         *list = (*list) -> next;
         free(l);
@@ -118,7 +134,7 @@ bool edge_exists(graph_node_ptr origin, graph_node_ptr target) {
     graph_node_ptr n;
     while(enp != NULL) {
         n = enp -> target;
-        printf("target: %s || edge list: %s\n", target -> payload, n -> payload);
+        //printf("target: %s || edge list: %s\n", target -> payload, n -> payload);
         if(strcmp(target -> payload, n -> payload) == 0) {
             printf("edge already exists!\n");
             return true;
@@ -130,7 +146,7 @@ bool edge_exists(graph_node_ptr origin, graph_node_ptr target) {
 
 /* ---------------------------------------------------------*/
 
-void PREFIX_LIST (add_edge) (graph_list list, char  *origin_str, char  *target_str) {
+void add_edge_l (graph_list list, char  *origin_str, char  *target_str) {
     graph_node_ptr origin = getNode(list, origin_str);
     graph_node_ptr target = getNode(list, target_str);
 
@@ -147,7 +163,7 @@ void PREFIX_LIST (add_edge) (graph_list list, char  *origin_str, char  *target_s
 
 /* ---------------------------------------------------------*/
 
-void PREFIX_LIST (remove_all_edges_of) (graph_list list, char *str) {
+void remove_all_edges_of_l (graph_list list, char *str) {
     graph_node_ptr node = getNode(list,str);
     if(node == NULL) {
         printf("node does not exist!\n");
@@ -158,7 +174,7 @@ void PREFIX_LIST (remove_all_edges_of) (graph_list list, char *str) {
 
 /* ---------------------------------------------------------*/
 
-void PREFIX_LIST (remove_edge) (graph_list  list, char *origin_str, char *target_str) {
+void remove_edge_l (graph_list  list, char *origin_str, char *target_str) {
     graph_node_ptr origin = getNode(list, origin_str);
     graph_node_ptr target = getNode(list, target_str);
 
@@ -186,3 +202,55 @@ void PREFIX_LIST (remove_edge) (graph_list  list, char *origin_str, char *target
 }
 
 /* ---------------------------------------------------------*/
+
+// top sort
+
+int get_as_target_count(graph_list list, char *str) {
+    int count = 0;
+    edge_node_ptr edges = NULL;
+    while(list != NULL) {
+        edges = list -> edges;
+        while(edges != NULL) {
+            if(strcmp(edges -> target -> payload,str) == 0) {
+                count++;
+            }
+            edges = edges -> next;
+        }
+        list = list -> next;
+    }
+    return count;
+}
+
+bool is_target(graph_list list, graph_node_ptr node) {
+    while(list != NULL) {
+        if(edge_exists(list, node)) return true;
+        list = list -> next;
+    }
+    return false;
+}
+
+void topological_sort_l(graph_list list) {
+    graph_list original_list = list;
+    graph_node_ptr curr_node = list;
+    graph_list sorted_nodes = NULL;
+
+    while(original_list != NULL) {
+        int min_cnt = INT_MAX;
+        graph_node_ptr min_node = NULL;
+        curr_node = original_list;
+        while (curr_node != NULL) {
+            // get count node as target
+            if(get_as_target_count(original_list,curr_node -> payload) < min_cnt) {
+                min_cnt = get_as_target_count(original_list,curr_node -> payload);
+                min_node = curr_node;
+            }
+            curr_node = curr_node -> next;
+        }
+        if(min_node != NULL) {
+            printf("| %s | ", min_node->payload);
+            // remove min_node
+            remove_node_l(&original_list, min_node->payload);
+        }
+    }
+    printf("\n");
+}
