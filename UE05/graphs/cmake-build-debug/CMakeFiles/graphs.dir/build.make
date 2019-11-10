@@ -96,11 +96,39 @@ CMakeFiles/graphs.dir/graph_list/edge_list.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/graphs.dir/graph_list/edge_list.c.s"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/graph_list/edge_list.c -o CMakeFiles/graphs.dir/graph_list/edge_list.c.s
 
+CMakeFiles/graphs.dir/io_lib.c.o: CMakeFiles/graphs.dir/flags.make
+CMakeFiles/graphs.dir/io_lib.c.o: ../io_lib.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/graphs.dir/io_lib.c.o"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/graphs.dir/io_lib.c.o   -c /Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/io_lib.c
+
+CMakeFiles/graphs.dir/io_lib.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/graphs.dir/io_lib.c.i"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/io_lib.c > CMakeFiles/graphs.dir/io_lib.c.i
+
+CMakeFiles/graphs.dir/io_lib.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/graphs.dir/io_lib.c.s"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/io_lib.c -o CMakeFiles/graphs.dir/io_lib.c.s
+
+CMakeFiles/graphs.dir/graph_matrix/graph_matrix.c.o: CMakeFiles/graphs.dir/flags.make
+CMakeFiles/graphs.dir/graph_matrix/graph_matrix.c.o: ../graph_matrix/graph_matrix.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/graphs.dir/graph_matrix/graph_matrix.c.o"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/graphs.dir/graph_matrix/graph_matrix.c.o   -c /Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/graph_matrix/graph_matrix.c
+
+CMakeFiles/graphs.dir/graph_matrix/graph_matrix.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/graphs.dir/graph_matrix/graph_matrix.c.i"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/graph_matrix/graph_matrix.c > CMakeFiles/graphs.dir/graph_matrix/graph_matrix.c.i
+
+CMakeFiles/graphs.dir/graph_matrix/graph_matrix.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/graphs.dir/graph_matrix/graph_matrix.c.s"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/graph_matrix/graph_matrix.c -o CMakeFiles/graphs.dir/graph_matrix/graph_matrix.c.s
+
 # Object files for target graphs
 graphs_OBJECTS = \
 "CMakeFiles/graphs.dir/test.c.o" \
 "CMakeFiles/graphs.dir/graph_list/graph_list.c.o" \
-"CMakeFiles/graphs.dir/graph_list/edge_list.c.o"
+"CMakeFiles/graphs.dir/graph_list/edge_list.c.o" \
+"CMakeFiles/graphs.dir/io_lib.c.o" \
+"CMakeFiles/graphs.dir/graph_matrix/graph_matrix.c.o"
 
 # External object files for target graphs
 graphs_EXTERNAL_OBJECTS =
@@ -108,9 +136,11 @@ graphs_EXTERNAL_OBJECTS =
 graphs: CMakeFiles/graphs.dir/test.c.o
 graphs: CMakeFiles/graphs.dir/graph_list/graph_list.c.o
 graphs: CMakeFiles/graphs.dir/graph_list/edge_list.c.o
+graphs: CMakeFiles/graphs.dir/io_lib.c.o
+graphs: CMakeFiles/graphs.dir/graph_matrix/graph_matrix.c.o
 graphs: CMakeFiles/graphs.dir/build.make
 graphs: CMakeFiles/graphs.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking C executable graphs"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking C executable graphs"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/graphs.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

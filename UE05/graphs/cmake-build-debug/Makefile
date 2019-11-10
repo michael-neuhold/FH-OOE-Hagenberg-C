@@ -177,6 +177,60 @@ graph_list/graph_list.c.s:
 	$(MAKE) -f CMakeFiles/graphs.dir/build.make CMakeFiles/graphs.dir/graph_list/graph_list.c.s
 .PHONY : graph_list/graph_list.c.s
 
+graph_matrix/graph_matrix.o: graph_matrix/graph_matrix.c.o
+
+.PHONY : graph_matrix/graph_matrix.o
+
+# target to build an object file
+graph_matrix/graph_matrix.c.o:
+	$(MAKE) -f CMakeFiles/graphs.dir/build.make CMakeFiles/graphs.dir/graph_matrix/graph_matrix.c.o
+.PHONY : graph_matrix/graph_matrix.c.o
+
+graph_matrix/graph_matrix.i: graph_matrix/graph_matrix.c.i
+
+.PHONY : graph_matrix/graph_matrix.i
+
+# target to preprocess a source file
+graph_matrix/graph_matrix.c.i:
+	$(MAKE) -f CMakeFiles/graphs.dir/build.make CMakeFiles/graphs.dir/graph_matrix/graph_matrix.c.i
+.PHONY : graph_matrix/graph_matrix.c.i
+
+graph_matrix/graph_matrix.s: graph_matrix/graph_matrix.c.s
+
+.PHONY : graph_matrix/graph_matrix.s
+
+# target to generate assembly for a file
+graph_matrix/graph_matrix.c.s:
+	$(MAKE) -f CMakeFiles/graphs.dir/build.make CMakeFiles/graphs.dir/graph_matrix/graph_matrix.c.s
+.PHONY : graph_matrix/graph_matrix.c.s
+
+io_lib.o: io_lib.c.o
+
+.PHONY : io_lib.o
+
+# target to build an object file
+io_lib.c.o:
+	$(MAKE) -f CMakeFiles/graphs.dir/build.make CMakeFiles/graphs.dir/io_lib.c.o
+.PHONY : io_lib.c.o
+
+io_lib.i: io_lib.c.i
+
+.PHONY : io_lib.i
+
+# target to preprocess a source file
+io_lib.c.i:
+	$(MAKE) -f CMakeFiles/graphs.dir/build.make CMakeFiles/graphs.dir/io_lib.c.i
+.PHONY : io_lib.c.i
+
+io_lib.s: io_lib.c.s
+
+.PHONY : io_lib.s
+
+# target to generate assembly for a file
+io_lib.c.s:
+	$(MAKE) -f CMakeFiles/graphs.dir/build.make CMakeFiles/graphs.dir/io_lib.c.s
+.PHONY : io_lib.c.s
+
 test.o: test.c.o
 
 .PHONY : test.o
@@ -219,6 +273,12 @@ help:
 	@echo "... graph_list/graph_list.o"
 	@echo "... graph_list/graph_list.i"
 	@echo "... graph_list/graph_list.s"
+	@echo "... graph_matrix/graph_matrix.o"
+	@echo "... graph_matrix/graph_matrix.i"
+	@echo "... graph_matrix/graph_matrix.s"
+	@echo "... io_lib.o"
+	@echo "... io_lib.i"
+	@echo "... io_lib.s"
 	@echo "... test.o"
 	@echo "... test.i"
 	@echo "... test.s"

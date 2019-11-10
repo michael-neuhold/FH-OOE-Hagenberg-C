@@ -1,22 +1,17 @@
 #include <stdio.h>
 
-#include "./graph_list/graph_list.h"
-#include "test.h"
 #include <stdlib.h>
 #include <stdio.h>
 
+#include "./graph_matrix/graph_matrix.h"
+//#include "./graph_list/graph_list.h"
+#include "./test.h"
+#include "./io_lib.h"
 
 // What do you want to test?
-//#define DELETE_EDGE
-//#define DELETE_NODE
+#define DELETE_EDGE
+#define DELETE_NODE
 //#define TOPSORT
-
-void print_line() {
-    for (int i = 0; i < 50; i++) {
-        printf("-");
-    }
-    printf("\n");
-}
 
 int main () {
 
@@ -52,12 +47,12 @@ int main () {
     graph_add_edge(g1, "Node 2", "Node 1");
     graph_add_edge(g1, "Node 3", "Node 4");
 
-    graph_add_edge(g2, "Unterhose", "Hose");
-    graph_add_edge(g2, "Pullover", "Mantel");
-    graph_add_edge(g2, "Hose", "Mantel");
-    graph_add_edge(g2, "Hose", "Schuhe");
-    graph_add_edge(g2, "Socken", "Schuhe");
-    graph_add_edge(g2, "Unterhemd", "Pullover");
+      graph_add_edge(g2, "Unterhose", "Hose");
+      graph_add_edge(g2, "Pullover", "Mantel");
+      graph_add_edge(g2, "Hose", "Mantel");
+      graph_add_edge(g2, "Hose", "Schuhe");
+      graph_add_edge(g2, "Socken", "Schuhe");
+      graph_add_edge(g2, "Unterhemd", "Pullover");
 
     /* ---------------------------------------------------------*/
 
@@ -68,39 +63,41 @@ int main () {
     print_line();
     printf("graph g2: \n");
     graph_print(g2);
-
+    
     /* ---------------------------------------------------------*/
     #ifdef DELETE_EDGE
     print_line();
     printf("delete edge (Node 1 -> Node 3) from g1\n");
     graph_remove_edge(g1,"Node 1", "Node 3");
 
-    printf("delete edge (Hose -> Mantel) from g2\n");
+    /*printf("delete edge (Hose -> Mantel) from g2\n");
     graph_remove_edge(g2,"Hose", "Mantel");
-
+*/
     print_line();
     printf("graph g1: \n");
     graph_print(g1);
 
-    print_line();
+   /* print_line();
     printf("graph g2: \n");
-    graph_print(g2);
+    graph_print(g2);*/
     #endif
     /* ---------------------------------------------------------*/
     #ifdef DELETE_NODE
     print_line();
     printf("delete node (Node 1) from g1\n");
     graph_remove_node(&g1, "Node 1");
+    /*
     printf("delete node (Schuhe) from g2\n");
     graph_remove_node(&g2, "Schuhe");
-
+    */
     print_line();
     printf("graph g1: \n");
     graph_print(g1);
-
+    /*
     print_line();
     printf("graph g2: \n");
     graph_print(g2);
+     */
     #endif
     /* ---------------------------------------------------------*/
     #ifdef TOPSORT

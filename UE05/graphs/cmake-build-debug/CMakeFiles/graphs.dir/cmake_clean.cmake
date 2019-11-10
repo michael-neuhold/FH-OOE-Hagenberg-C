@@ -2,6 +2,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/graphs.dir/test.c.o"
   "CMakeFiles/graphs.dir/graph_list/graph_list.c.o"
   "CMakeFiles/graphs.dir/graph_list/edge_list.c.o"
+  "CMakeFiles/graphs.dir/io_lib.c.o"
+  "CMakeFiles/graphs.dir/graph_matrix/graph_matrix.c.o"
   "graphs.pdb"
   "graphs"
 )

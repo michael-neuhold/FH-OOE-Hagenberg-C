@@ -5,7 +5,7 @@
 #ifndef GRAPHS_TEST_H
 #define GRAPHS_TEST_H
 
-#define GRAPH_LIST
+//#define GRAPH_LIST
 
 #ifdef GRAPH_LIST
 

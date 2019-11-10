@@ -10,8 +10,16 @@ CMakeFiles/graphs.dir/graph_list/graph_list.c.o: ../graph_list/./edge_list.h
 CMakeFiles/graphs.dir/graph_list/graph_list.c.o: ../graph_list/./graph_list.h
 CMakeFiles/graphs.dir/graph_list/graph_list.c.o: ../graph_list/graph_list.c
 
-CMakeFiles/graphs.dir/test.c.o: .././graph_list/./types.h
-CMakeFiles/graphs.dir/test.c.o: .././graph_list/graph_list.h
+CMakeFiles/graphs.dir/graph_matrix/graph_matrix.c.o: ../graph_matrix/././types.h
+CMakeFiles/graphs.dir/graph_matrix/graph_matrix.c.o: ../graph_matrix/./graph_matrix.h
+CMakeFiles/graphs.dir/graph_matrix/graph_matrix.c.o: ../graph_matrix/graph_matrix.c
+
+CMakeFiles/graphs.dir/io_lib.c.o: ../io_lib.c
+CMakeFiles/graphs.dir/io_lib.c.o: ../io_lib.h
+
+CMakeFiles/graphs.dir/test.c.o: .././graph_matrix/./types.h
+CMakeFiles/graphs.dir/test.c.o: .././graph_matrix/graph_matrix.h
+CMakeFiles/graphs.dir/test.c.o: .././io_lib.h
+CMakeFiles/graphs.dir/test.c.o: .././test.h
 CMakeFiles/graphs.dir/test.c.o: ../test.c
-CMakeFiles/graphs.dir/test.c.o: ../test.h
 

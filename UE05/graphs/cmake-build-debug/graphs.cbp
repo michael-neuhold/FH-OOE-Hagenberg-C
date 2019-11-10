@@ -93,6 +93,21 @@
 		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/graph_list/types.h">
 			<Option target="graphs"/>
 		</Unit>
+		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/graph_matrix/graph_matrix.c">
+			<Option target="graphs"/>
+		</Unit>
+		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/graph_matrix/graph_matrix.h">
+			<Option target="graphs"/>
+		</Unit>
+		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/graph_matrix/types.h">
+			<Option target="graphs"/>
+		</Unit>
+		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/io_lib.c">
+			<Option target="graphs"/>
+		</Unit>
+		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/io_lib.h">
+			<Option target="graphs"/>
+		</Unit>
 		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/test.c">
 			<Option target="graphs"/>
 		</Unit>
