@@ -34,15 +34,15 @@ bool node_exists(graph_list list, char *str) {
 
 /* ---------------------------------------------------------*/
 
-void prepend (graph_list *list, graph_node_ptr node) {
-    node -> next = *list;
-    *list = node;
+void init_graph_l (graph_list *list) {
+    *list = NULL;
 }
 
 /* ---------------------------------------------------------*/
 
-void init_graph_l (graph_list *list) {
-    *list = NULL;
+void prepend (graph_list *list, graph_node_ptr node) {
+    node -> next = *list;
+    *list = node;
 }
 
 /* ---------------------------------------------------------*/
@@ -100,9 +100,7 @@ void remove_node_l (graph_node_ptr *list, char *str) {
         l = l -> next;
     }
     if(l != NULL && prev != NULL) {
-        // remove all edges on this node
-        remove_edges_to_node(*list, l);
-
+        remove_edges_to_node(*list, l);     // remove all edges on this node
         remove_edge_list(&(l -> edges));    // remove edge list
         prev -> next = l -> next;
         l -> next = NULL;
@@ -200,6 +198,9 @@ void remove_edge_l (graph_list  list, char *origin_str, char *target_str) {
         printf("entered edge does not exist!\n");
     }
 }
+
+/* ---------------------------------------------------------*/
+// TODO: free list
 
 /* ---------------------------------------------------------*/
 

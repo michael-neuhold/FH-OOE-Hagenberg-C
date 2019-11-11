@@ -11,7 +11,6 @@ void init_graph_m (graph_matrix *matrix);
 void add_graph_node_m (graph_matrix *matrix, char *str);
 void print_graph_nodes_m(graph_matrix matrix);
 void add_edge_m (graph_matrix matrix, char  *origin_str, char  *target_str);
-void remove_all_edges_of_m (graph_matrix matrix, char *str);
 void remove_edge_m (graph_matrix  matrix, char *origin_str, char *target_str);
 void remove_node_m (graph_matrix *matrix, char *str);
 

@@ -10,6 +10,8 @@
 #ifdef GRAPH_LIST
 
 /* ---------------------------------------------------------*/
+
+#include "./graph_list/graph_list.h"
 typedef graph_list graph;
 #define graph_init init_graph_l
 #define graph_add_node add_graph_node_l
@@ -24,6 +26,7 @@ typedef graph_list graph;
 #else
 
 /* ---------------------------------------------------------*/
+#include "./graph_matrix/graph_matrix.h"
 typedef graph_matrix graph;
 #define graph_init init_graph_m
 #define graph_add_node add_graph_node_m

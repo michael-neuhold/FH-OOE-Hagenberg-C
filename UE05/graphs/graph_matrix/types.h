@@ -11,7 +11,7 @@
 
 typedef struct matrix {
     char **nodes;
-    bool *edges;
+    bool **edges;
     int elm;
 } matrix;
 

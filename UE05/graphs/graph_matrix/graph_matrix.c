@@ -8,46 +8,60 @@
 #include <stdio.h>
 #include "./graph_matrix.h"
 
-#define SIZE_BEGIN 7
-
 /* ---------------------------------------------------------*/
 
 void init_graph_m (graph_matrix *matrix) {
     matrix -> elm = 0;
-    matrix -> edges = (bool*)malloc(sizeof(bool) * (SIZE_BEGIN * SIZE_BEGIN));
-    matrix -> nodes = (char**)malloc(sizeof(char*) * SIZE_BEGIN);
+    matrix -> nodes = NULL;
+    matrix -> edges = NULL;
 }
 
 /* ---------------------------------------------------------*/
 
 void add_graph_node_m (graph_matrix *matrix, char *str) {
 
-    if(matrix -> elm < SIZE_BEGIN) {
-        // allocate memory for string
-        char *payload_str = malloc(sizeof(char) * (strlen(str) + 1));
-        strcpy(payload_str,str);
+    // allocate payload
+    char *payload = (char*)malloc(sizeof(char) * (strlen(str) + 1));
+    strcpy(payload,str);
 
-        matrix -> nodes[matrix -> elm] = payload_str;
-        for(int i = (matrix -> elm) * 5; i < (matrix -> elm) * 5 + 5; i++) {
-            matrix -> edges[i] = false;
-        }
+    if(matrix -> elm == 0) {
+        // allocate first element
+        matrix -> nodes = (char**)malloc(sizeof(char*));
+        matrix -> nodes[0] = payload;
 
-        (matrix -> elm)++;
+        matrix -> edges = (bool**)malloc(sizeof(bool*));
+        matrix -> edges[0] = (bool*)malloc(sizeof(bool));
+        matrix -> edges[0][0] = false;
+
     } else {
-        printf("not enough memory!\n");
-        printf("maybe reallocate!\n");
+        // allocate n element
+        matrix -> nodes = (char**)realloc(matrix -> nodes, sizeof(char*) * (matrix -> elm + 1));
+        matrix -> nodes[matrix -> elm] = payload;
+
+        matrix -> edges = (bool**)realloc(matrix -> edges, sizeof(bool*) * (matrix -> elm + 1));
+        for(int i = 0; i < matrix -> elm; i++) {
+            matrix -> edges[i] = (bool*)realloc(matrix -> edges[i], sizeof(bool) * (matrix -> elm + 1));
+            matrix -> edges[i][matrix -> elm] = false;
+        }
+        matrix -> edges[matrix -> elm] = (bool*)malloc(sizeof(bool) * (matrix -> elm + 1));
+        for(int i = 0; i <= matrix -> elm; i++) {
+            matrix -> edges[matrix -> elm][i] = false;
+        }
     }
+    matrix -> elm++;
 }
 
 /* ---------------------------------------------------------*/
 
 void print_graph_nodes_m (graph_matrix matrix) {
+    printf("---> print\n");
+    printf("\t\t");
+    for(int i = 0; i < matrix.elm; i++) { printf("%s\t", matrix.nodes[i]); }
+    printf("\n");
     for(int i = 0; i < matrix.elm; i++) {
-        printf("%s\t\t", matrix.nodes[i]);
-        int range_begin = i * matrix.elm;
-        int range_end = (i * matrix.elm) + matrix.elm;
-        for(int j = range_begin; j < range_end; j++) {
-            printf("%d ", matrix.edges[j]);
+        printf("%s\t", matrix.nodes[i]);
+        for(int j = 0; j < matrix.elm; j++) {
+            printf("%d\t\t", (matrix.edges[i])[j]);
         }
         printf("\n");
     }
@@ -69,58 +83,67 @@ int get_node_index (graph_matrix matrix, char *str) {
 /* ---------------------------------------------------------*/
 
 void add_edge_m (graph_matrix matrix, char  *origin_str, char  *target_str) {
-    int index_origin = get_node_index(matrix,origin_str);
-    int index_target = get_node_index(matrix,target_str);
-    if(index_origin == -1 || index_target == -1) {
-        printf("origin or target node does not exist");
+    int origin_index = get_node_index(matrix, origin_str);
+    int target_index = get_node_index(matrix, target_str);
+
+    printf("found indexes\n");
+
+    if(target_index == -1 || origin_index == -1) {
+        printf("origin or target node does not exist!\n");
         return;
     }
-    matrix.edges[matrix.elm * index_origin + index_target] = true;
-}
 
-/* ---------------------------------------------------------*/
-
-void remove_all_edges_of_m (graph_matrix matrix, char *str) {
-    int index_origin = get_node_index(matrix,str);
-    int range_begin = index_origin * matrix.elm;
-    int range_end = (index_origin * matrix.elm) + matrix.elm;
-    for(int i = range_begin; i < range_end; i++) {
-        matrix.edges[i] = false;
-    }
+    (matrix.edges[origin_index])[target_index] = true;
 }
 
 /* ---------------------------------------------------------*/
 
 void remove_edge_m (graph_matrix  matrix,char *origin_str, char *target_str) {
-    int index_origin = get_node_index(matrix,origin_str);
-    int index_target = get_node_index(matrix,target_str);
-    if(index_origin == -1 || index_target == -1) {
-        printf("origin or target node does not exist");
+    int origin_index = get_node_index(matrix, origin_str);
+    int target_index = get_node_index(matrix, target_str);
+
+    printf("found indexes\n");
+
+    if(target_index == -1 || origin_index == -1) {
+        printf("origin or target node does not exist!\n");
         return;
     }
-    matrix.edges[matrix.elm * index_origin + index_target] = false;
+
+    (matrix.edges[origin_index])[target_index] = false;
 }
 
 /* ---------------------------------------------------------*/
 
 void remove_node_m (graph_matrix *matrix, char *str) {
-    int index = get_node_index(*matrix,str);
+    int index = get_node_index(*matrix, str);
 
-    // remove all edges to given node
-    for(int i = 0; i < matrix -> elm; i++) {
-        matrix -> edges[(i * matrix -> elm) +index] = false;
+    free((matrix -> edges)[index]);
+    (matrix -> edges)[index] = NULL;
+
+    free((matrix -> nodes)[index]);
+    (matrix -> edges)[index] = NULL;
+
+    if(matrix -> elm == 1) {
+        matrix -> edges = NULL;
+        matrix -> nodes = NULL;
+    } else {
+        for(int i = index + 1; i < matrix -> elm; i++) {
+            (matrix -> edges)[i-1] = (matrix -> edges)[i];
+            (matrix -> nodes)[i-1] = (matrix -> nodes)[i];
+        }
+        matrix -> edges = (bool**)realloc(matrix -> edges, sizeof(bool*) * (matrix -> elm-1));
+        matrix -> nodes = (char**)realloc(matrix -> nodes, sizeof(char*) * (matrix -> elm-1));
+
+        for(int i = 0; i < matrix -> elm-1; i++) {
+            for(int j = index + 1; j < matrix -> elm; j++) {
+                (matrix -> edges[i])[j-1] = (matrix -> edges[i])[j];
+            }
+            (matrix -> edges)[i] = (bool*)realloc((matrix -> edges)[i], sizeof(bool) * matrix -> elm-1);
+        }
     }
 
-    // remove own edges
-    remove_all_edges_of_m(*matrix, str);
-
-    // shift bool values to correct position
-    for(int i = 0; i < matrix -> elm; i++) {
-
-    }
-    // reallocate matrix
-        // with size - 1
-        // copy all edges and nodes except with index 1
+    matrix -> elm--;
+    printf("end--\n");
 }
 
 /* ---------------------------------------------------------*/
