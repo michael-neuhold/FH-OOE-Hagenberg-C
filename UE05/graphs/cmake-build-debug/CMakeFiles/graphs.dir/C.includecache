@@ -6,23 +6,35 @@
 
 #IncludeRegexTransform: 
 
-/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/graph_matrix/././types.h
+/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/././graph_list/./types.h
+
+/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/././graph_list/graph_list.h
 stdbool.h
 -
-
-/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/graph_matrix/./graph_matrix.h
 ./types.h
-/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/graph_matrix/././types.h
+/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/././graph_list/./types.h
 
-/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/graph_matrix/graph_matrix.c
-stdbool.h
+/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/././graph_matrix/graph_matrix.h
+./types.h
+/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/././graph_matrix/./types.h
+
+/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/./io_lib.h
+stdio.h
+-
+
+/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/./test.h
+./graph_list/graph_list.h
+/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/././graph_list/graph_list.h
+./graph_matrix/graph_matrix.h
+/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/././graph_matrix/graph_matrix.h
+
+/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/test.c
+stdio.h
 -
 stdlib.h
 -
-string.h
--
-stdio.h
--
-./graph_matrix.h
-/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/graph_matrix/./graph_matrix.h
+./test.h
+/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/./test.h
+./io_lib.h
+/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE05/graphs/./io_lib.h
 
