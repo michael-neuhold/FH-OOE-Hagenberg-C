@@ -23,8 +23,8 @@ static void on_key(GLFWwindow* window,int key,int scancode,int action,int modifi
   int dx = 0;
   int dy = 0;
 
-  if(ge_is_game_over())
-    return;
+ /* if(ge_is_game_over())
+    return;*/
 
   switch(key) {
     case GLFW_KEY_DOWN: 
@@ -40,6 +40,7 @@ static void on_key(GLFWwindow* window,int key,int scancode,int action,int modifi
   if(action == GLFW_PRESS || action == GLFW_REPEAT) {
     if(ge_handle_move(dx,dy)) {
       // stop timer
+      //timer_reset();
     }
   }
 }

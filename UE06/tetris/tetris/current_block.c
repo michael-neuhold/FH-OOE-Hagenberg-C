@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include "current_block.h"
 #include "game_board.h"
+#include <stdio.h>
 
 static block current = { { GB_COLS / 2, GB_ROWS - 1 }, color_red };
 
@@ -37,8 +38,12 @@ void cb_render(void) {
 
 block cb_init_block(void) {
   current.pos.x = GB_COLS / 2;
-  current.pos.y = GB_ROWS - 1;
-  current.color = random_color();
+    current.pos.y = GB_ROWS - 1;
+    current.color = random_color();
+    printf("------>>>\n");
+  printf("color of block: %d\n", current.color);
+  printf("current xpos: %d, ypos: %d\n", current.pos.x, current.pos.y);
+    printf("------>>>\n");
   return current;
 }
 

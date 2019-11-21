@@ -7,6 +7,12 @@
 #define GB_ROWS 22
 #define GB_COLS 11
 
+// max size of sub squars
+#define MAX_SUBSQUARE_COUNT 4
+
+// number of tetrominos
+#define NUM_OF_TETROMINO
+
 #define UNUSED(var) ((void)var)
 
 typedef enum {
@@ -24,6 +30,14 @@ typedef struct {
 	int x, y;
 } position;
 
+typedef struct tetromino {
+    color color;
+    float center;
+    position positions[MAX_SUBSQUARE_COUNT];
+} tetromino;
+
+//tetromino tetrominos[NUM_OF_TETROMINO];
+
 extern void render_quad(const position pos, const color color);
 
 typedef struct {
@@ -32,5 +46,7 @@ typedef struct {
 } block;  
 
 extern void render_block(const block block);
+extern void render_tetrominos(const tetromino tetromino);
+extern void init_tetrominos();
 
 #endif

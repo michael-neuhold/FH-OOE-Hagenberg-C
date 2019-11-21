@@ -12,6 +12,31 @@ void render_quad(const position pos, const color color) {
 	} glEnd();
 }
 
+
+/*-------------------------------------------------------------*/
+
 void render_block(const block block) {
   render_quad(block.pos, block.color);
+}
+
+/*-------------------------------------------------------------*/
+/*
+void init_tetrominos() {
+    init_tetro_I();
+    init_tetro_L();
+    init_tetro_S();
+    init_tetro_Z();
+    init_tetro_O();
+
+    init_tetro_I();
+    init_tetro_I();
+}
+*/
+/*-------------------------------------------------------------*/
+
+/* render tetromino (4 separate blocks) */
+void render_tetrominos(const tetromino tetromino) {
+    for(int i = 0; i < MAX_SUBSQUARE_COUNT; i++) {
+        render_quad(tetromino.positions[i], tetromino.color);
+    }
 }

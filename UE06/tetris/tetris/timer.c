@@ -16,7 +16,7 @@ void timer_test() {
   assert(callback);
 
   if(glfwGetTime() >= interval) {
-    (*callback)();
+    callback();
     timer_reset();
   }
 }
