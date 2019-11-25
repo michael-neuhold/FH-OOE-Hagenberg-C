@@ -1,0 +1,10 @@
+^D:\UE06\SRC\BUILD\CMAKEFILES\DF16337519CFF8EE6CDFFA807EFD42D8\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/UE06/src -BD:/UE06/src/BUILD --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file D:/UE06/src/BUILD/SWO3.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

@@ -1,0 +1,5 @@
+﻿  Building Custom Rule D:/UE06/src/CMakeLists.txt
+  main.c
+  timer.c
+D:\UE06\src\tetris\main.c(29,20): warning C4431: missing type specifier - int assumed. Note: C no longer supports default-int
+  tetris.vcxproj -> D:\UE06\src\BUILD\bin\Debug\tetris.exe

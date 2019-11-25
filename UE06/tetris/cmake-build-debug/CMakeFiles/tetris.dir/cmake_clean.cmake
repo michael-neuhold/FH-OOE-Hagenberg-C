@@ -1,7 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/tetris.dir/tetris/current_block.c.o"
-  "CMakeFiles/tetris.dir/tetris/game_board.c.o"
-  "CMakeFiles/tetris.dir/tetris/game_engine.c.o"
+  "CMakeFiles/tetris.dir/tetris/gameboard.c.o"
   "CMakeFiles/tetris.dir/tetris/main.c.o"
   "CMakeFiles/tetris.dir/tetris/timer.c.o"
   "CMakeFiles/tetris.dir/tetris/types.c.o"

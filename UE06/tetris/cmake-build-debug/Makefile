@@ -123,86 +123,32 @@ tetris/fast:
 	$(MAKE) -f CMakeFiles/tetris.dir/build.make CMakeFiles/tetris.dir/build
 .PHONY : tetris/fast
 
-tetris/current_block.o: tetris/current_block.c.o
+tetris/gameboard.o: tetris/gameboard.c.o
 
-.PHONY : tetris/current_block.o
-
-# target to build an object file
-tetris/current_block.c.o:
-	$(MAKE) -f CMakeFiles/tetris.dir/build.make CMakeFiles/tetris.dir/tetris/current_block.c.o
-.PHONY : tetris/current_block.c.o
-
-tetris/current_block.i: tetris/current_block.c.i
-
-.PHONY : tetris/current_block.i
-
-# target to preprocess a source file
-tetris/current_block.c.i:
-	$(MAKE) -f CMakeFiles/tetris.dir/build.make CMakeFiles/tetris.dir/tetris/current_block.c.i
-.PHONY : tetris/current_block.c.i
-
-tetris/current_block.s: tetris/current_block.c.s
-
-.PHONY : tetris/current_block.s
-
-# target to generate assembly for a file
-tetris/current_block.c.s:
-	$(MAKE) -f CMakeFiles/tetris.dir/build.make CMakeFiles/tetris.dir/tetris/current_block.c.s
-.PHONY : tetris/current_block.c.s
-
-tetris/game_board.o: tetris/game_board.c.o
-
-.PHONY : tetris/game_board.o
+.PHONY : tetris/gameboard.o
 
 # target to build an object file
-tetris/game_board.c.o:
-	$(MAKE) -f CMakeFiles/tetris.dir/build.make CMakeFiles/tetris.dir/tetris/game_board.c.o
-.PHONY : tetris/game_board.c.o
+tetris/gameboard.c.o:
+	$(MAKE) -f CMakeFiles/tetris.dir/build.make CMakeFiles/tetris.dir/tetris/gameboard.c.o
+.PHONY : tetris/gameboard.c.o
 
-tetris/game_board.i: tetris/game_board.c.i
+tetris/gameboard.i: tetris/gameboard.c.i
 
-.PHONY : tetris/game_board.i
-
-# target to preprocess a source file
-tetris/game_board.c.i:
-	$(MAKE) -f CMakeFiles/tetris.dir/build.make CMakeFiles/tetris.dir/tetris/game_board.c.i
-.PHONY : tetris/game_board.c.i
-
-tetris/game_board.s: tetris/game_board.c.s
-
-.PHONY : tetris/game_board.s
-
-# target to generate assembly for a file
-tetris/game_board.c.s:
-	$(MAKE) -f CMakeFiles/tetris.dir/build.make CMakeFiles/tetris.dir/tetris/game_board.c.s
-.PHONY : tetris/game_board.c.s
-
-tetris/game_engine.o: tetris/game_engine.c.o
-
-.PHONY : tetris/game_engine.o
-
-# target to build an object file
-tetris/game_engine.c.o:
-	$(MAKE) -f CMakeFiles/tetris.dir/build.make CMakeFiles/tetris.dir/tetris/game_engine.c.o
-.PHONY : tetris/game_engine.c.o
-
-tetris/game_engine.i: tetris/game_engine.c.i
-
-.PHONY : tetris/game_engine.i
+.PHONY : tetris/gameboard.i
 
 # target to preprocess a source file
-tetris/game_engine.c.i:
-	$(MAKE) -f CMakeFiles/tetris.dir/build.make CMakeFiles/tetris.dir/tetris/game_engine.c.i
-.PHONY : tetris/game_engine.c.i
+tetris/gameboard.c.i:
+	$(MAKE) -f CMakeFiles/tetris.dir/build.make CMakeFiles/tetris.dir/tetris/gameboard.c.i
+.PHONY : tetris/gameboard.c.i
 
-tetris/game_engine.s: tetris/game_engine.c.s
+tetris/gameboard.s: tetris/gameboard.c.s
 
-.PHONY : tetris/game_engine.s
+.PHONY : tetris/gameboard.s
 
 # target to generate assembly for a file
-tetris/game_engine.c.s:
-	$(MAKE) -f CMakeFiles/tetris.dir/build.make CMakeFiles/tetris.dir/tetris/game_engine.c.s
-.PHONY : tetris/game_engine.c.s
+tetris/gameboard.c.s:
+	$(MAKE) -f CMakeFiles/tetris.dir/build.make CMakeFiles/tetris.dir/tetris/gameboard.c.s
+.PHONY : tetris/gameboard.c.s
 
 tetris/main.o: tetris/main.c.o
 
@@ -294,15 +240,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... tetris"
-	@echo "... tetris/current_block.o"
-	@echo "... tetris/current_block.i"
-	@echo "... tetris/current_block.s"
-	@echo "... tetris/game_board.o"
-	@echo "... tetris/game_board.i"
-	@echo "... tetris/game_board.s"
-	@echo "... tetris/game_engine.o"
-	@echo "... tetris/game_engine.i"
-	@echo "... tetris/game_engine.s"
+	@echo "... tetris/gameboard.o"
+	@echo "... tetris/gameboard.i"
+	@echo "... tetris/gameboard.s"
 	@echo "... tetris/main.o"
 	@echo "... tetris/main.i"
 	@echo "... tetris/main.s"

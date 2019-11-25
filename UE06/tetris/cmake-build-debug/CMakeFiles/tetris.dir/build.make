@@ -57,48 +57,22 @@ include CMakeFiles/tetris.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/tetris.dir/flags.make
 
-CMakeFiles/tetris.dir/tetris/current_block.c.o: CMakeFiles/tetris.dir/flags.make
-CMakeFiles/tetris.dir/tetris/current_block.c.o: ../tetris/current_block.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE06/tetris/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/tetris.dir/tetris/current_block.c.o"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/tetris.dir/tetris/current_block.c.o   -c /Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE06/tetris/tetris/current_block.c
+CMakeFiles/tetris.dir/tetris/gameboard.c.o: CMakeFiles/tetris.dir/flags.make
+CMakeFiles/tetris.dir/tetris/gameboard.c.o: ../tetris/gameboard.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE06/tetris/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/tetris.dir/tetris/gameboard.c.o"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/tetris.dir/tetris/gameboard.c.o   -c /Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE06/tetris/tetris/gameboard.c
 
-CMakeFiles/tetris.dir/tetris/current_block.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/tetris.dir/tetris/current_block.c.i"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE06/tetris/tetris/current_block.c > CMakeFiles/tetris.dir/tetris/current_block.c.i
+CMakeFiles/tetris.dir/tetris/gameboard.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/tetris.dir/tetris/gameboard.c.i"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE06/tetris/tetris/gameboard.c > CMakeFiles/tetris.dir/tetris/gameboard.c.i
 
-CMakeFiles/tetris.dir/tetris/current_block.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/tetris.dir/tetris/current_block.c.s"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE06/tetris/tetris/current_block.c -o CMakeFiles/tetris.dir/tetris/current_block.c.s
-
-CMakeFiles/tetris.dir/tetris/game_board.c.o: CMakeFiles/tetris.dir/flags.make
-CMakeFiles/tetris.dir/tetris/game_board.c.o: ../tetris/game_board.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE06/tetris/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/tetris.dir/tetris/game_board.c.o"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/tetris.dir/tetris/game_board.c.o   -c /Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE06/tetris/tetris/game_board.c
-
-CMakeFiles/tetris.dir/tetris/game_board.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/tetris.dir/tetris/game_board.c.i"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE06/tetris/tetris/game_board.c > CMakeFiles/tetris.dir/tetris/game_board.c.i
-
-CMakeFiles/tetris.dir/tetris/game_board.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/tetris.dir/tetris/game_board.c.s"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE06/tetris/tetris/game_board.c -o CMakeFiles/tetris.dir/tetris/game_board.c.s
-
-CMakeFiles/tetris.dir/tetris/game_engine.c.o: CMakeFiles/tetris.dir/flags.make
-CMakeFiles/tetris.dir/tetris/game_engine.c.o: ../tetris/game_engine.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE06/tetris/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/tetris.dir/tetris/game_engine.c.o"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/tetris.dir/tetris/game_engine.c.o   -c /Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE06/tetris/tetris/game_engine.c
-
-CMakeFiles/tetris.dir/tetris/game_engine.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/tetris.dir/tetris/game_engine.c.i"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE06/tetris/tetris/game_engine.c > CMakeFiles/tetris.dir/tetris/game_engine.c.i
-
-CMakeFiles/tetris.dir/tetris/game_engine.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/tetris.dir/tetris/game_engine.c.s"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE06/tetris/tetris/game_engine.c -o CMakeFiles/tetris.dir/tetris/game_engine.c.s
+CMakeFiles/tetris.dir/tetris/gameboard.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/tetris.dir/tetris/gameboard.c.s"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE06/tetris/tetris/gameboard.c -o CMakeFiles/tetris.dir/tetris/gameboard.c.s
 
 CMakeFiles/tetris.dir/tetris/main.c.o: CMakeFiles/tetris.dir/flags.make
 CMakeFiles/tetris.dir/tetris/main.c.o: ../tetris/main.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE06/tetris/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/tetris.dir/tetris/main.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE06/tetris/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/tetris.dir/tetris/main.c.o"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/tetris.dir/tetris/main.c.o   -c /Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE06/tetris/tetris/main.c
 
 CMakeFiles/tetris.dir/tetris/main.c.i: cmake_force
@@ -111,7 +85,7 @@ CMakeFiles/tetris.dir/tetris/main.c.s: cmake_force
 
 CMakeFiles/tetris.dir/tetris/timer.c.o: CMakeFiles/tetris.dir/flags.make
 CMakeFiles/tetris.dir/tetris/timer.c.o: ../tetris/timer.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE06/tetris/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/tetris.dir/tetris/timer.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE06/tetris/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/tetris.dir/tetris/timer.c.o"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/tetris.dir/tetris/timer.c.o   -c /Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE06/tetris/tetris/timer.c
 
 CMakeFiles/tetris.dir/tetris/timer.c.i: cmake_force
@@ -124,7 +98,7 @@ CMakeFiles/tetris.dir/tetris/timer.c.s: cmake_force
 
 CMakeFiles/tetris.dir/tetris/types.c.o: CMakeFiles/tetris.dir/flags.make
 CMakeFiles/tetris.dir/tetris/types.c.o: ../tetris/types.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE06/tetris/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/tetris.dir/tetris/types.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE06/tetris/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/tetris.dir/tetris/types.c.o"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/tetris.dir/tetris/types.c.o   -c /Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE06/tetris/tetris/types.c
 
 CMakeFiles/tetris.dir/tetris/types.c.i: cmake_force
@@ -137,9 +111,7 @@ CMakeFiles/tetris.dir/tetris/types.c.s: cmake_force
 
 # Object files for target tetris
 tetris_OBJECTS = \
-"CMakeFiles/tetris.dir/tetris/current_block.c.o" \
-"CMakeFiles/tetris.dir/tetris/game_board.c.o" \
-"CMakeFiles/tetris.dir/tetris/game_engine.c.o" \
+"CMakeFiles/tetris.dir/tetris/gameboard.c.o" \
 "CMakeFiles/tetris.dir/tetris/main.c.o" \
 "CMakeFiles/tetris.dir/tetris/timer.c.o" \
 "CMakeFiles/tetris.dir/tetris/types.c.o"
@@ -147,9 +119,7 @@ tetris_OBJECTS = \
 # External object files for target tetris
 tetris_EXTERNAL_OBJECTS =
 
-bin/tetris: CMakeFiles/tetris.dir/tetris/current_block.c.o
-bin/tetris: CMakeFiles/tetris.dir/tetris/game_board.c.o
-bin/tetris: CMakeFiles/tetris.dir/tetris/game_engine.c.o
+bin/tetris: CMakeFiles/tetris.dir/tetris/gameboard.c.o
 bin/tetris: CMakeFiles/tetris.dir/tetris/main.c.o
 bin/tetris: CMakeFiles/tetris.dir/tetris/timer.c.o
 bin/tetris: CMakeFiles/tetris.dir/tetris/types.c.o
@@ -159,7 +129,7 @@ bin/tetris: /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/System/Libr
 bin/tetris: /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/OpenGL.tbd
 bin/tetris: /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/OpenGL.tbd
 bin/tetris: CMakeFiles/tetris.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE06/tetris/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking C executable bin/tetris"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE06/tetris/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking C executable bin/tetris"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/tetris.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

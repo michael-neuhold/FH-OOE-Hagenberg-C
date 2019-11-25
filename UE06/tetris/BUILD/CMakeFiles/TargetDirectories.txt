@@ -1,0 +1,3 @@
+D:/UE06/src/BUILD/CMakeFiles/tetris.dir
+D:/UE06/src/BUILD/CMakeFiles/ALL_BUILD.dir
+D:/UE06/src/BUILD/CMakeFiles/ZERO_CHECK.dir
