@@ -95,6 +95,9 @@
 		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE07/src/wmb/main.cpp">
 			<Option target="adt"/>
 		</Unit>
+		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE07/src/wmb/main.h">
+			<Option target="adt"/>
+		</Unit>
 		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE07/src/wmb/tire.cpp">
 			<Option target="adt"/>
 		</Unit>
