@@ -70,17 +70,77 @@ CMakeFiles/adt.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/adt.dir/main.cpp.s"
 	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE07/src/adt/main.cpp -o CMakeFiles/adt.dir/main.cpp.s
 
+CMakeFiles/adt.dir/graph_t.cpp.o: CMakeFiles/adt.dir/flags.make
+CMakeFiles/adt.dir/graph_t.cpp.o: ../graph_t.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE07/src/adt/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/adt.dir/graph_t.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/adt.dir/graph_t.cpp.o -c /Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE07/src/adt/graph_t.cpp
+
+CMakeFiles/adt.dir/graph_t.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/adt.dir/graph_t.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE07/src/adt/graph_t.cpp > CMakeFiles/adt.dir/graph_t.cpp.i
+
+CMakeFiles/adt.dir/graph_t.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/adt.dir/graph_t.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE07/src/adt/graph_t.cpp -o CMakeFiles/adt.dir/graph_t.cpp.s
+
+CMakeFiles/adt.dir/vertex_t.cpp.o: CMakeFiles/adt.dir/flags.make
+CMakeFiles/adt.dir/vertex_t.cpp.o: ../vertex_t.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE07/src/adt/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/adt.dir/vertex_t.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/adt.dir/vertex_t.cpp.o -c /Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE07/src/adt/vertex_t.cpp
+
+CMakeFiles/adt.dir/vertex_t.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/adt.dir/vertex_t.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE07/src/adt/vertex_t.cpp > CMakeFiles/adt.dir/vertex_t.cpp.i
+
+CMakeFiles/adt.dir/vertex_t.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/adt.dir/vertex_t.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE07/src/adt/vertex_t.cpp -o CMakeFiles/adt.dir/vertex_t.cpp.s
+
+CMakeFiles/adt.dir/edge_t.cpp.o: CMakeFiles/adt.dir/flags.make
+CMakeFiles/adt.dir/edge_t.cpp.o: ../edge_t.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE07/src/adt/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/adt.dir/edge_t.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/adt.dir/edge_t.cpp.o -c /Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE07/src/adt/edge_t.cpp
+
+CMakeFiles/adt.dir/edge_t.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/adt.dir/edge_t.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE07/src/adt/edge_t.cpp > CMakeFiles/adt.dir/edge_t.cpp.i
+
+CMakeFiles/adt.dir/edge_t.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/adt.dir/edge_t.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE07/src/adt/edge_t.cpp -o CMakeFiles/adt.dir/edge_t.cpp.s
+
+CMakeFiles/adt.dir/edge_list_t.cpp.o: CMakeFiles/adt.dir/flags.make
+CMakeFiles/adt.dir/edge_list_t.cpp.o: ../edge_list_t.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE07/src/adt/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/adt.dir/edge_list_t.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/adt.dir/edge_list_t.cpp.o -c /Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE07/src/adt/edge_list_t.cpp
+
+CMakeFiles/adt.dir/edge_list_t.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/adt.dir/edge_list_t.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE07/src/adt/edge_list_t.cpp > CMakeFiles/adt.dir/edge_list_t.cpp.i
+
+CMakeFiles/adt.dir/edge_list_t.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/adt.dir/edge_list_t.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE07/src/adt/edge_list_t.cpp -o CMakeFiles/adt.dir/edge_list_t.cpp.s
+
 # Object files for target adt
 adt_OBJECTS = \
-"CMakeFiles/adt.dir/main.cpp.o"
+"CMakeFiles/adt.dir/main.cpp.o" \
+"CMakeFiles/adt.dir/graph_t.cpp.o" \
+"CMakeFiles/adt.dir/vertex_t.cpp.o" \
+"CMakeFiles/adt.dir/edge_t.cpp.o" \
+"CMakeFiles/adt.dir/edge_list_t.cpp.o"
 
 # External object files for target adt
 adt_EXTERNAL_OBJECTS =
 
 adt: CMakeFiles/adt.dir/main.cpp.o
+adt: CMakeFiles/adt.dir/graph_t.cpp.o
+adt: CMakeFiles/adt.dir/vertex_t.cpp.o
+adt: CMakeFiles/adt.dir/edge_t.cpp.o
+adt: CMakeFiles/adt.dir/edge_list_t.cpp.o
 adt: CMakeFiles/adt.dir/build.make
 adt: CMakeFiles/adt.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE07/src/adt/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable adt"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE07/src/adt/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable adt"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/adt.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

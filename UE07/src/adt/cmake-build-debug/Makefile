@@ -123,6 +123,87 @@ adt/fast:
 	$(MAKE) -f CMakeFiles/adt.dir/build.make CMakeFiles/adt.dir/build
 .PHONY : adt/fast
 
+edge_list_t.o: edge_list_t.cpp.o
+
+.PHONY : edge_list_t.o
+
+# target to build an object file
+edge_list_t.cpp.o:
+	$(MAKE) -f CMakeFiles/adt.dir/build.make CMakeFiles/adt.dir/edge_list_t.cpp.o
+.PHONY : edge_list_t.cpp.o
+
+edge_list_t.i: edge_list_t.cpp.i
+
+.PHONY : edge_list_t.i
+
+# target to preprocess a source file
+edge_list_t.cpp.i:
+	$(MAKE) -f CMakeFiles/adt.dir/build.make CMakeFiles/adt.dir/edge_list_t.cpp.i
+.PHONY : edge_list_t.cpp.i
+
+edge_list_t.s: edge_list_t.cpp.s
+
+.PHONY : edge_list_t.s
+
+# target to generate assembly for a file
+edge_list_t.cpp.s:
+	$(MAKE) -f CMakeFiles/adt.dir/build.make CMakeFiles/adt.dir/edge_list_t.cpp.s
+.PHONY : edge_list_t.cpp.s
+
+edge_t.o: edge_t.cpp.o
+
+.PHONY : edge_t.o
+
+# target to build an object file
+edge_t.cpp.o:
+	$(MAKE) -f CMakeFiles/adt.dir/build.make CMakeFiles/adt.dir/edge_t.cpp.o
+.PHONY : edge_t.cpp.o
+
+edge_t.i: edge_t.cpp.i
+
+.PHONY : edge_t.i
+
+# target to preprocess a source file
+edge_t.cpp.i:
+	$(MAKE) -f CMakeFiles/adt.dir/build.make CMakeFiles/adt.dir/edge_t.cpp.i
+.PHONY : edge_t.cpp.i
+
+edge_t.s: edge_t.cpp.s
+
+.PHONY : edge_t.s
+
+# target to generate assembly for a file
+edge_t.cpp.s:
+	$(MAKE) -f CMakeFiles/adt.dir/build.make CMakeFiles/adt.dir/edge_t.cpp.s
+.PHONY : edge_t.cpp.s
+
+graph_t.o: graph_t.cpp.o
+
+.PHONY : graph_t.o
+
+# target to build an object file
+graph_t.cpp.o:
+	$(MAKE) -f CMakeFiles/adt.dir/build.make CMakeFiles/adt.dir/graph_t.cpp.o
+.PHONY : graph_t.cpp.o
+
+graph_t.i: graph_t.cpp.i
+
+.PHONY : graph_t.i
+
+# target to preprocess a source file
+graph_t.cpp.i:
+	$(MAKE) -f CMakeFiles/adt.dir/build.make CMakeFiles/adt.dir/graph_t.cpp.i
+.PHONY : graph_t.cpp.i
+
+graph_t.s: graph_t.cpp.s
+
+.PHONY : graph_t.s
+
+# target to generate assembly for a file
+graph_t.cpp.s:
+	$(MAKE) -f CMakeFiles/adt.dir/build.make CMakeFiles/adt.dir/graph_t.cpp.s
+.PHONY : graph_t.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -150,6 +231,33 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/adt.dir/build.make CMakeFiles/adt.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+vertex_t.o: vertex_t.cpp.o
+
+.PHONY : vertex_t.o
+
+# target to build an object file
+vertex_t.cpp.o:
+	$(MAKE) -f CMakeFiles/adt.dir/build.make CMakeFiles/adt.dir/vertex_t.cpp.o
+.PHONY : vertex_t.cpp.o
+
+vertex_t.i: vertex_t.cpp.i
+
+.PHONY : vertex_t.i
+
+# target to preprocess a source file
+vertex_t.cpp.i:
+	$(MAKE) -f CMakeFiles/adt.dir/build.make CMakeFiles/adt.dir/vertex_t.cpp.i
+.PHONY : vertex_t.cpp.i
+
+vertex_t.s: vertex_t.cpp.s
+
+.PHONY : vertex_t.s
+
+# target to generate assembly for a file
+vertex_t.cpp.s:
+	$(MAKE) -f CMakeFiles/adt.dir/build.make CMakeFiles/adt.dir/vertex_t.cpp.s
+.PHONY : vertex_t.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -159,9 +267,21 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... adt"
+	@echo "... edge_list_t.o"
+	@echo "... edge_list_t.i"
+	@echo "... edge_list_t.s"
+	@echo "... edge_t.o"
+	@echo "... edge_t.i"
+	@echo "... edge_t.s"
+	@echo "... graph_t.o"
+	@echo "... graph_t.i"
+	@echo "... graph_t.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... vertex_t.o"
+	@echo "... vertex_t.i"
+	@echo "... vertex_t.s"
 .PHONY : help
 
 
