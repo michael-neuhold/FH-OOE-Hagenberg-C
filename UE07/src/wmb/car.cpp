@@ -9,10 +9,10 @@
 
 using namespace std;
 
-car::car(string type, color_t color, int serial_number,
-        date_t production_date, string production_place,
-        string gearbox, string type_of_drive, int top_speed,
-        int weight, const tire &car_tire, const engine &car_engine) : car_tire(car_tire), car_engine(car_engine) {
+car::car(const string type, string color,const int serial_number,
+        const date_t production_date,const string production_place,
+        const string gearbox,const string type_of_drive, int top_speed,
+        int weight, tire &car_tire, engine &car_engine) : car_tire(car_tire), car_engine(car_engine) {
     this -> type = type;
     this -> color = color;
     this -> serial_number = serial_number;
@@ -27,19 +27,19 @@ car::car(string type, color_t color, int serial_number,
 }
 
 std::ostream &operator<<(std::ostream &os,const car &finished_car) {
-    return os << "car: {"
-                 "type: " << finished_car.type <<
-                 ", color: " << finished_car.color <<
-                 ", serial number: " << finished_car.serial_number <<
-                 ", production_date: " << finished_car.production_date.day <<
+    return os << "car: {\n"
+                 "\ttype: " << finished_car.type <<
+                 "\n\tcolor: " << finished_car.color <<
+                 "\n\tserial number: " << finished_car.serial_number <<
+                 "\n\tproduction_date: " << finished_car.production_date.day <<
                  "." << finished_car.production_date.month <<
                  "." << finished_car.production_date.year <<
-                 ", production_place: " << finished_car.production_place <<
-                 ", gearbox: " << finished_car.gearbox <<
-                 ", type_of_drive: " << finished_car.type_of_drive <<
-                 ", top_speed: " << finished_car.top_speed <<
-                 ", weight: " << finished_car.weight <<
-                 ", car_tire: " << finished_car.car_tire <<
-                 ", car_engine: " << finished_car.car_engine <<
+                 "\n\tproduction_place: " << finished_car.production_place <<
+                 "\n\tgearbox: " << finished_car.gearbox <<
+                 "\n\ttype_of_drive: " << finished_car.type_of_drive <<
+                 "\n\ttop_speed: " << finished_car.top_speed <<
+                 "\n\tweight: " << finished_car.weight <<
+                 "\n\t" << finished_car.car_tire <<
+                 "\t" << finished_car.car_engine <<
                  " }" << std::endl;
 }

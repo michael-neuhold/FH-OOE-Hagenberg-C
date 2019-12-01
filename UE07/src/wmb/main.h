@@ -16,14 +16,13 @@ typedef struct {
     int year;
 } date_t;
 
-// fuel type enum
-enum fuel_t { diesel , benzin , electric };
-//const char *fuel_kinds[3] = { "Diesel" , "Benzin" , "Electric" };
-
 // color enum
-enum color_t { black , white , red , yellow , grey };
+// enum color_t { black , white , red , yellow , grey };
 
 // speed index enum
-enum speed_index_t { E , F , G , J , K , L , M , N , P , Q , R , S , T , U , H , V , W , Y };
+// enum speed_index_t { E , F , G , J , K , L , M , N , P , Q , R , S , T , U , H , V , W , Y };
+
+// fuel type enum
+// enum fuel_t { diesel , benzin , electric };
 
 #endif //ADT_MAIN_H

@@ -12,8 +12,10 @@ public:
     vertex_t();
     vertex_t(std::string payload);
     std::string get_payload();
+
 private:
     std::string payload;
+
 };
 
 

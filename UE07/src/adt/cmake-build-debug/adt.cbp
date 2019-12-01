@@ -80,12 +80,6 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE07/src/adt/edge_list_t.cpp">
-			<Option target="adt"/>
-		</Unit>
-		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE07/src/adt/edge_list_t.h">
-			<Option target="adt"/>
-		</Unit>
 		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE07/src/adt/edge_t.cpp">
 			<Option target="adt"/>
 		</Unit>
@@ -96,6 +90,12 @@
 			<Option target="adt"/>
 		</Unit>
 		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE07/src/adt/graph_t.h">
+			<Option target="adt"/>
+		</Unit>
+		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE07/src/adt/handle_t.cpp">
+			<Option target="adt"/>
+		</Unit>
+		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE07/src/adt/handle_t.h">
 			<Option target="adt"/>
 		</Unit>
 		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE07/src/adt/main.cpp">

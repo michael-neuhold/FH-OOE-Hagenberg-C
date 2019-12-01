@@ -2,8 +2,12 @@
 // Created by Michael Neuhold on 29.11.19.
 //
 
+#include <cstring>
 #include "graph_t.h"
 #include "vertex_t.h"
+#include "handle_t.h"
+
+/*---------------------------------------------------------------------------------*/
 
 graph_t::graph_t(std::string graph_name) {
     // graph name
@@ -12,56 +16,54 @@ graph_t::graph_t(std::string graph_name) {
     this -> vertex_list = new vertex_t*[this -> vertex_count];
 }
 
-void graph_t::add_vertex(vertex_t *vertex) {
-    // increment vertex count
+/*---------------------------------------------------------------------------------*/
+
+handle_t graph_t::add_vertex(vertex_t &vertex) {
+
+    // check if vertex exists already
+    if(this -> vertex_exists(vertex)) {
+        std::cout << vertex.get_payload() <<" Vertex is alredy memeber of thius graph!!\n";
+        handle_t invalid(-1);
+        return invalid;
+    }
+
     this -> vertex_count++;
-    // create nbew tmp vertex array
-    vertex_t **new_vertex_array = new vertex_t*[this -> vertex_count];
-    for(int i = 0; i < this -> vertex_count - 1; i++) {
-        new_vertex_array[i] = this -> vertex_list[i];
-    }
-    // free old array
-    free(this -> vertex_list);
-    // old array = new array
-    this -> vertex_list = new_vertex_array;
-    // insert new vertex
-    this -> vertex_list[this -> vertex_count - 1] = vertex;
 
-    /*------------------------------------------------------*/
-    // --> i have to set a initial state (0)
-    int *matrix_row_ptr = new int[this -> vertex_count]; // new vertex value
-    for(int i = 0; i < this -> vertex_count - 1; i++) {
-        for(int j = 0; j < this -> vertex_count - 1; j++) {
-            matrix_row_ptr[j] = 0;//this -> matrix[i][j];
+    if(this -> vertex_count - 1 == 0) {
+        this -> vertex_list = new vertex_t*[1];
+        this -> vertex_list[this -> vertex_count - 1] = &vertex;
+
+        this -> matrix = new int*[1];
+        this -> matrix[0] = new int[1];
+        this -> matrix[0][0] = 0;
+    } else {
+        this -> vertex_list = (vertex_t**)realloc(this -> vertex_list, sizeof(vertex_t*) * this -> vertex_count);
+        this -> vertex_list[this -> vertex_count - 1] = &vertex;
+
+        this -> matrix = (int**)realloc(this -> matrix, sizeof(int*) * this -> vertex_count);
+        for(int i = 0; i < this -> vertex_count - 1; i++) {
+            this -> matrix[i] = (int*)realloc(this -> matrix[i], sizeof(int) * this -> vertex_count);
+            this -> matrix[i][vertex_count - 1] = 0;
         }
-        matrix_row_ptr[this -> vertex_count - 1] = 0;
-       // delete [] this -> matrix;
-        this -> matrix[i] = matrix_row_ptr;
+        this -> matrix[vertex_count - 1] = new int[vertex_count];
+        for(int i = 0; i < vertex_count; i++) {
+            this -> matrix[vertex_count - 1][i] = 0;
+        }
     }
 
-    int **matrix_ptr = new int*[this -> vertex_count];
-    for(int i = 0; i < this -> vertex_count - 1; i++) {
-        matrix_ptr[i] = this->matrix[i];
-    }
-    matrix_ptr[this -> vertex_count - 1] = new int[this -> vertex_count];
-    for(int i = 0; i < this -> vertex_count; i++) {
-        matrix_ptr[this -> vertex_count - 1][i] = 0;
-    }
-
-    delete [] this -> matrix;
-    this -> matrix = matrix_ptr;
-
-    // matrix um einen x-value (origin) erweitern
-
-    // matrix alle y-werte (targets um einen wert erweitern)
-
+    handle_t handler(vertex_count - 1);
+    return handler;
 }
+
+/*---------------------------------------------------------------------------------*/
 
 void graph_t::print() {
     for(int i = 0; i < this -> vertex_count;i++){
         std::cout << this -> vertex_list[i]->get_payload() << std::endl;
     }
 }
+
+/*---------------------------------------------------------------------------------*/
 
 int graph_t::get_vertex_index(vertex_t *v1) {
     for(int i = 0; i < this -> vertex_count; i++){
@@ -72,21 +74,45 @@ int graph_t::get_vertex_index(vertex_t *v1) {
     return -1;
 }
 
-void graph_t::add_edge(vertex_t *v1, vertex_t *v2, int weight) {
-    int origin_index = this -> get_vertex_index(v1);
-    int target_index = this -> get_vertex_index(v2);
-    if(origin_index == -1 || target_index == -1){
-        std::cout << "ERROR - origin or target is no memeber of graph!\n";
-        return;
-    }
-    this -> matrix[origin_index][target_index] = weight;
+/*---------------------------------------------------------------------------------*/
+
+void graph_t::add_edge(handle_t const from, handle_t const to, int const weight) {
+    this -> matrix[from.getIdentifier()][to.getIdentifier()] = weight;
 }
 
+/*---------------------------------------------------------------------------------*/
+
 void graph_t::print_matrix() {
+    std::cout << " ";
+    for(int i = 0; i < this -> vertex_count; i++){
+        std::cout << " " << this -> vertex_list[i] -> get_payload();
+    }
+    std::cout << std::endl;
     for(int i = 0; i < this -> vertex_count; i++) {
+        std::cout << this -> vertex_list[i] -> get_payload() << " ";
         for(int j = 0; j < this -> vertex_count; j++) {
             std::cout << matrix[i][j] << " ";
         }
         std::cout << "\n";
     }
+}
+
+/*---------------------------------------------------------------------------------*/
+
+bool graph_t::vertex_exists(vertex_t &vertex) {
+    int i = 0;
+    while(i < this -> vertex_count) {
+        if(vertex_list[i] -> get_payload() == vertex.get_payload()){
+            return true;
+        }
+        i++;
+    }
+    return false;
+}
+
+/*---------------------------------------------------------------------------------*/
+
+int graph_t::shortest_path (handle_t const from, handle_t const to) const {
+    std::cout << "shortest path\n";
+    return 1;
 }
