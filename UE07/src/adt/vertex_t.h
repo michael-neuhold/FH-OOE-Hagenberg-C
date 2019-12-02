@@ -9,14 +9,14 @@
 
 class vertex_t {
 public:
-    vertex_t();
+    vertex_t() = delete;
     vertex_t(std::string payload);
+    ~vertex_t() = default;
     std::string get_payload();
 
 private:
     std::string payload;
 
 };
-
 
 #endif //ADT_VERTEX_T_H

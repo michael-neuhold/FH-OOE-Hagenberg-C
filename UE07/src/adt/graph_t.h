@@ -11,20 +11,21 @@
 class graph_t {
 
 public:
+
+    graph_t() = delete;
     graph_t(std::string graph_name);
-    void print();
-    void print_matrix();
-    handle_t add_vertex(vertex_t &vertex);
+    ~graph_t();
+    handle_t add_vertex(vertex_t vertex);
     void add_edge(handle_t const from, handle_t const to, int weight);
-    bool vertex_exists(vertex_t &vertex);
     int shortest_path (handle_t const from, handle_t const to) const;
+    std::ostream & print (std::ostream & out) const;
 
 private:
     std::string graph_name{"test1"};
     int vertex_count{0};
     vertex_t **vertex_list;
     int **matrix;
-    int get_vertex_index(vertex_t *v1);
+    void dijkstra(int from, int *vertex_visited, int *shortest_path, int not_visited_count, int current_path) const;
 
 };
 

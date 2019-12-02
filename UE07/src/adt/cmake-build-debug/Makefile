@@ -123,33 +123,6 @@ adt/fast:
 	$(MAKE) -f CMakeFiles/adt.dir/build.make CMakeFiles/adt.dir/build
 .PHONY : adt/fast
 
-edge_t.o: edge_t.cpp.o
-
-.PHONY : edge_t.o
-
-# target to build an object file
-edge_t.cpp.o:
-	$(MAKE) -f CMakeFiles/adt.dir/build.make CMakeFiles/adt.dir/edge_t.cpp.o
-.PHONY : edge_t.cpp.o
-
-edge_t.i: edge_t.cpp.i
-
-.PHONY : edge_t.i
-
-# target to preprocess a source file
-edge_t.cpp.i:
-	$(MAKE) -f CMakeFiles/adt.dir/build.make CMakeFiles/adt.dir/edge_t.cpp.i
-.PHONY : edge_t.cpp.i
-
-edge_t.s: edge_t.cpp.s
-
-.PHONY : edge_t.s
-
-# target to generate assembly for a file
-edge_t.cpp.s:
-	$(MAKE) -f CMakeFiles/adt.dir/build.make CMakeFiles/adt.dir/edge_t.cpp.s
-.PHONY : edge_t.cpp.s
-
 graph_t.o: graph_t.cpp.o
 
 .PHONY : graph_t.o
@@ -267,9 +240,6 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... adt"
-	@echo "... edge_t.o"
-	@echo "... edge_t.i"
-	@echo "... edge_t.s"
 	@echo "... graph_t.o"
 	@echo "... graph_t.i"
 	@echo "... graph_t.s"

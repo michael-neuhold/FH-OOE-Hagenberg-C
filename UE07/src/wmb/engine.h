@@ -14,11 +14,6 @@ public:
     engine(const int engine_number,const string fuel_type, int power, double n_consumption,const date_t production_date);
     ~engine() = default;
 private:
-    // Motornummer
-    // Treibstoffart
-    // Leistung
-    // Normverbrauch
-    // Produktionsdatum
     int engine_number;
     int power;
     double n_consumption;

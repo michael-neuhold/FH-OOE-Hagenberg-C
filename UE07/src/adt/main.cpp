@@ -15,7 +15,6 @@ void Header(const string &header_text) {
     Separator();
     cout << header_text << endl;
     Separator();
-
 }
 
 int main() {
@@ -23,6 +22,8 @@ int main() {
 
     // create new graph
     graph_t g1("Graph 1");
+    graph_t g2("Graph 2");
+
     // create new vertex
     vertex_t v1("A");
     vertex_t v2("B");
@@ -30,30 +31,49 @@ int main() {
     vertex_t v4("D");
     vertex_t v5("E");
 
-    // add vertex to graph
-    handle_t h1 = g1.add_vertex(v1);
-    handle_t h2 = g1.add_vertex(v2);
-    handle_t h3 = g1.add_vertex(v3);
-    handle_t h4 = g1.add_vertex(v4);
-    handle_t h5 = g1.add_vertex(v5);
-    handle_t h6 = g1.add_vertex(v5);
+    vertex_t v6("X");
+    vertex_t v7("Y");
+    vertex_t v8("Z");
 
-    // print matrix
-    g1.print_matrix();
+    // add vertex to graph
+    handle_t A = g1.add_vertex(v1);
+    handle_t B = g1.add_vertex(v2);
+    handle_t C = g1.add_vertex(v3);
+    handle_t D = g1.add_vertex(v4);
+    handle_t E = g1.add_vertex(v5);
+
+    handle_t X = g2.add_vertex(v6);
+    handle_t Y = g2.add_vertex(v7);
+    handle_t Z = g2.add_vertex(v8);
+
+    // print graph
+    g1.print(std::cout);
+    Separator();
+    g2.print(std::cout);
     Separator();
 
     // add edges to graph
-    g1.add_edge(h1,h2,6);
-    g1.add_edge(h1,h4,1);
-    g1.add_edge(h4,h2,2);
-    g1.add_edge(h4,h5,1);
-    g1.add_edge(h5,h3,5);
-    g1.add_edge(h2,h3,5);
-    g1.add_edge(h2,h5,4);
+    g1.add_edge(A,B,6); // A -> B
+    g1.add_edge(A,D,1); // A -> D
+    g1.add_edge(D,B,2); // D -> B
+    g1.add_edge(D,E,1); // D -> E
+    g1.add_edge(E,C,5); // E -> C
+    g1.add_edge(E,B,2); // B -> C
+    g1.add_edge(B,C,5); // E -> B
 
-    // print matrix
-    g1.print_matrix();
+    g2.add_edge(X,Y,4);
+    g2.add_edge(Y,Z,3);
+
+    // print graph
+    g1.print(std::cout);
+    Separator();
+    g2.print(std::cout);
     Separator();
 
-    return 0;
+    // shortest path
+    cout << "g1 shortest path from A to C: " << g1.shortest_path(A,C) << endl;
+    cout << "g1 shortest path from A to B: " << g1.shortest_path(A,B) << endl;
+
+    Separator();
+
 }
