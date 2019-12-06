@@ -123,6 +123,33 @@ chess/fast:
 	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/build
 .PHONY : chess/fast
 
+chessboard.o: chessboard.cpp.o
+
+.PHONY : chessboard.o
+
+# target to build an object file
+chessboard.cpp.o:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/chessboard.cpp.o
+.PHONY : chessboard.cpp.o
+
+chessboard.i: chessboard.cpp.i
+
+.PHONY : chessboard.i
+
+# target to preprocess a source file
+chessboard.cpp.i:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/chessboard.cpp.i
+.PHONY : chessboard.cpp.i
+
+chessboard.s: chessboard.cpp.s
+
+.PHONY : chessboard.s
+
+# target to generate assembly for a file
+chessboard.cpp.s:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/chessboard.cpp.s
+.PHONY : chessboard.cpp.s
+
 chessman.o: chessman.cpp.o
 
 .PHONY : chessman.o
@@ -149,6 +176,60 @@ chessman.s: chessman.cpp.s
 chessman.cpp.s:
 	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/chessman.cpp.s
 .PHONY : chessman.cpp.s
+
+io.o: io.cpp.o
+
+.PHONY : io.o
+
+# target to build an object file
+io.cpp.o:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/io.cpp.o
+.PHONY : io.cpp.o
+
+io.i: io.cpp.i
+
+.PHONY : io.i
+
+# target to preprocess a source file
+io.cpp.i:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/io.cpp.i
+.PHONY : io.cpp.i
+
+io.s: io.cpp.s
+
+.PHONY : io.s
+
+# target to generate assembly for a file
+io.cpp.s:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/io.cpp.s
+.PHONY : io.cpp.s
+
+king.o: king.cpp.o
+
+.PHONY : king.o
+
+# target to build an object file
+king.cpp.o:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/king.cpp.o
+.PHONY : king.cpp.o
+
+king.i: king.cpp.i
+
+.PHONY : king.i
+
+# target to preprocess a source file
+king.cpp.i:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/king.cpp.i
+.PHONY : king.cpp.i
+
+king.s: king.cpp.s
+
+.PHONY : king.s
+
+# target to generate assembly for a file
+king.cpp.s:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/king.cpp.s
+.PHONY : king.cpp.s
 
 main.o: main.cpp.o
 
@@ -186,9 +267,18 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... chess"
+	@echo "... chessboard.o"
+	@echo "... chessboard.i"
+	@echo "... chessboard.s"
 	@echo "... chessman.o"
 	@echo "... chessman.i"
 	@echo "... chessman.s"
+	@echo "... io.o"
+	@echo "... io.i"
+	@echo "... io.s"
+	@echo "... king.o"
+	@echo "... king.i"
+	@echo "... king.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
