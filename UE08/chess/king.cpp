@@ -4,8 +4,12 @@
 
 #include "king.h"
 
+// unicode kings
+#define WHITE_KING "\u2654"
+#define BLACK_KING "\u265A"
+
 king::king(color color) :   m_color{color},
-                            m_figure{(color == color::black? 'k':'K')} {
+                            m_figure{(color == color::black ? BLACK_KING : WHITE_KING)} {
 }
 
 king::~king() {
@@ -16,7 +20,7 @@ color king::get_color() const {
     return this -> m_color;
 }
 
-char king::get_figure() const {
+std::string king::get_figure() const {
     return this -> m_figure;
 }
 

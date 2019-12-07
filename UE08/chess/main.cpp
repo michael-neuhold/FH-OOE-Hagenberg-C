@@ -4,6 +4,15 @@
 #include "./types.h"
 #include "./io.h"
 
+/**
+ *
+ * TODO:
+ *  - alle verschiedenen character anlegen und am Spielfeld platzieren
+ *  - einfache die board funktionen von der Angabe einbauen
+ *
+ *
+ */
+
 
 using std::cout;
 
@@ -19,7 +28,9 @@ int main() {
 
     // set initial game state
     cb.start_game();
+    cb.player_config("Michael","Julian");
     cout << cb;
+
 
     separator();
 

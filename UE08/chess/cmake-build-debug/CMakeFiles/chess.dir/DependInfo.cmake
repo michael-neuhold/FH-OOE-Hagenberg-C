@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE08/chess/io.cpp" "/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE08/chess/cmake-build-debug/CMakeFiles/chess.dir/io.cpp.o"
   "/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE08/chess/king.cpp" "/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE08/chess/cmake-build-debug/CMakeFiles/chess.dir/king.cpp.o"
   "/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE08/chess/main.cpp" "/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE08/chess/cmake-build-debug/CMakeFiles/chess.dir/main.cpp.o"
+  "/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE08/chess/player.cpp" "/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE08/chess/cmake-build-debug/CMakeFiles/chess.dir/player.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
 

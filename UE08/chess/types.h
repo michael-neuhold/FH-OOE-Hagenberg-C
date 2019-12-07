@@ -5,7 +5,7 @@
 #pragma once
 
 
-#include "chessman.h"
+//#include "chessman.h"
 
 struct pos {
     int x;

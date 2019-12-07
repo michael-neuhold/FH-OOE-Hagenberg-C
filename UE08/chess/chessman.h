@@ -4,13 +4,15 @@
 
 #pragma once
 
+#include <iostream>
 #include "types.h"
+
 
 class chessman {
 
 public:
     virtual color get_color() const = 0;
-    virtual char get_figure() const = 0;
+    virtual std::string get_figure() const = 0;
     virtual bool is_essential() const = 0;
     virtual bool possible_move(pos origin, pos target) const = 0;
     virtual pos get_position() = 0;

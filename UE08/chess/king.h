@@ -15,7 +15,7 @@ public:
     ~king();
 
     color get_color() const;
-    char get_figure() const;
+    std::string get_figure() const;
     bool is_essential() const;
     bool possible_move(pos origin, pos target) const;
     pos get_position();
@@ -25,7 +25,7 @@ public:
 
 private:
     color m_color;
-    char m_figure;
+    std::string m_figure;
     bool m_essential{true};
     pos m_position = { .x = -1, .y = -1};
     bool m_is_valid{false};

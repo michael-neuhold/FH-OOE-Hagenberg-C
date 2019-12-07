@@ -44,6 +44,13 @@ static bool is_black_field(int i, int j) {
 
 std::ostream& operator<<(std::ostream& os, const chessboard& cb) {
 
+    os << "players:" << std::endl;
+    for(player player : cb.m_players) {
+        os << "name: " << player.get_name() << ", color: " << (player.get_color() == color::black? "black" : "white" );
+        os << std::endl;
+    }
+
+
     // print top labeling
     os << THREE_SPACING;
     os << PIPE_SYMBOL;
@@ -139,8 +146,18 @@ void chessboard::init_white_characters() {
 /*----------------------------------------------------------------------------*/
 
 void chessboard::start_game() {
+    // init gameboard characters
     init_black_characters();
     init_white_characters();
+}
+
+/*----------------------------------------------------------------------------*/
+
+void chessboard::player_config(std::string player_a, std::string player_b) {
+    player a(player_a, color::black);
+    player b(player_b, color::white);
+    m_players[0] = a;
+    m_players[1] = b;
 }
 
 /*----------------------------------------------------------------------------*/
