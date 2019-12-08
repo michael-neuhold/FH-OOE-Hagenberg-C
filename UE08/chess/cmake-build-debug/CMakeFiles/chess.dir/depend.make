@@ -63,3 +63,6 @@ CMakeFiles/chess.dir/rook.cpp.o: ../rook.cpp
 CMakeFiles/chess.dir/rook.cpp.o: ../rook.h
 CMakeFiles/chess.dir/rook.cpp.o: ../types.h
 
+CMakeFiles/chess.dir/types.cpp.o: .././types.h
+CMakeFiles/chess.dir/types.cpp.o: ../types.cpp
+

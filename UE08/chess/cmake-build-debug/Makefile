@@ -420,6 +420,33 @@ rook.cpp.s:
 	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/rook.cpp.s
 .PHONY : rook.cpp.s
 
+types.o: types.cpp.o
+
+.PHONY : types.o
+
+# target to build an object file
+types.cpp.o:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/types.cpp.o
+.PHONY : types.cpp.o
+
+types.i: types.cpp.i
+
+.PHONY : types.i
+
+# target to preprocess a source file
+types.cpp.i:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/types.cpp.i
+.PHONY : types.cpp.i
+
+types.s: types.cpp.s
+
+.PHONY : types.s
+
+# target to generate assembly for a file
+types.cpp.s:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/types.cpp.s
+.PHONY : types.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -462,6 +489,9 @@ help:
 	@echo "... rook.o"
 	@echo "... rook.i"
 	@echo "... rook.s"
+	@echo "... types.o"
+	@echo "... types.i"
+	@echo "... types.s"
 .PHONY : help
 
 

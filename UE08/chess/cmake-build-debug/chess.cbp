@@ -143,6 +143,9 @@
 		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE08/chess/rook.h">
 			<Option target="chess"/>
 		</Unit>
+		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE08/chess/types.cpp">
+			<Option target="chess"/>
+		</Unit>
 		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE08/chess/types.h">
 			<Option target="chess"/>
 		</Unit>

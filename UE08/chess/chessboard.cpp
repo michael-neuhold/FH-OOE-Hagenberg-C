@@ -70,21 +70,22 @@ std::ostream& operator<<(std::ostream& os, const chessboard& cb) {
         << (cb.m_current_player.get_color() == color::black ? "black" : "white") << ")" << std::endl;
 
     // print top labeling
+
+    // print additional column index if i > 26
+    //if(cb.m_chessboard_size > ALPHABET_LENGTH) {
+    os << std::endl << THREE_SPACING << PIPE_SYMBOL;
+    for(int i = 0; i < cb.m_chessboard_size; i++) {
+        os << "[" << i / ALPHABET_LENGTH + 1 << "]";
+    }
+    os << PIPE_SYMBOL << std::endl;
+    //}
+
     os << THREE_SPACING;
     os << PIPE_SYMBOL;
     for(int i = 0; i < cb.m_chessboard_size; i++) {
         os << SINGLE_SPACE << char(SMALL_A + (i % ALPHABET_LENGTH)) << SINGLE_SPACE;
     }
     os << PIPE_SYMBOL;
-
-    // print additional column index if i > 26
-    if(cb.m_chessboard_size > ALPHABET_LENGTH) {
-        os << std::endl << THREE_SPACING << PIPE_SYMBOL;
-        for(int i = 0; i < cb.m_chessboard_size; i++) {
-            os << "[" << i / ALPHABET_LENGTH + 1 << "]";
-        }
-        os << PIPE_SYMBOL;
-    }
 
     os << std::endl;
 
@@ -132,13 +133,13 @@ std::ostream& operator<<(std::ostream& os, const chessboard& cb) {
         os << SINGLE_SPACE << char(SMALL_A + (i % ALPHABET_LENGTH)) << SINGLE_SPACE;
     }
     os << PIPE_SYMBOL;
-    if(cb.m_chessboard_size > ALPHABET_LENGTH) {
+    //if(cb.m_chessboard_size > ALPHABET_LENGTH) {
         os << std::endl << THREE_SPACING << PIPE_SYMBOL;
         for(int i = 0; i < cb.m_chessboard_size; i++) {
             os << "[" << i / ALPHABET_LENGTH + 1 << "]";
         }
         os << PIPE_SYMBOL;
-    }
+    //}
 
     return os;
 }
@@ -196,16 +197,17 @@ void chessboard::player_config(std::string player_a, std::string player_b) {
 
 /*----------------------------------------------------------------------------*/
 
-void chessboard::activate_character(pos position) {
+void chessboard::activate_character(user_pos position) {
+    pos internal_pos = convert_to_internal_pos(position);
     // check if own character stands on this position
-    if(m_chessboard[position.x][position.y] == nullptr) {
+    if(m_chessboard[internal_pos.x][internal_pos.y] == nullptr) {
         std::cout << "Empty Field" << std::endl;
         return;
     }
 
-    if(m_current_player.get_color() == m_chessboard[position.x][position.y] -> get_color()) {
+    if(m_current_player.get_color() == m_chessboard[internal_pos.x][internal_pos.y] -> get_color()) {
         // activate character
-        m_activated_character = m_chessboard[position.x][position.y];
+        m_activated_character = m_chessboard[internal_pos.x][internal_pos.y];
         // calculate possible moves
 
     } else {
@@ -215,20 +217,26 @@ void chessboard::activate_character(pos position) {
 
 /*----------------------------------------------------------------------------*/
 
-void chessboard::character_at_position(pos position) {
+void chessboard::character_at_position(user_pos position) {
     std::cout << "position[" << position.x << "][" << position.y << "]: ";
-    if(m_chessboard[position.x][position.y] != nullptr) {
-        std::cout << m_chessboard[position.x][position.y] -> get_figure() << " -> ";
-        std::cout << "(" << (m_chessboard[position.x][position.y] -> get_color() == color::black ? "black " : "white ")
-                  << m_chessboard[position.x][position.y] -> get_name() << ")" << std::endl;
+    pos internal_pos = convert_to_internal_pos(position);
+    std::cout << "x = " << internal_pos.x << " y = " << internal_pos.y << std::endl;
+    if(m_chessboard[internal_pos.x][internal_pos.y] != nullptr) {
+        std::cout << m_chessboard[internal_pos.x][internal_pos.y] -> get_figure() << " -> ";
+        std::cout << "(" << (m_chessboard[internal_pos.x][internal_pos.y] -> get_color() == color::black ? "black " : "white ")
+                  << m_chessboard[internal_pos.x][internal_pos.y] -> get_name() << ")" << std::endl;
     } else {
         std::cout << "field is empty" << std::endl;
     }
 }
 
+/*----------------------------------------------------------------------------*/
+
 void chessboard::get_chessboard_size() {
     std::cout << "chessboard size: " << m_chessboard_size << std::endl;
 }
+
+/*----------------------------------------------------------------------------*/
 
 void chessboard::get_current_player() {
     std::cout   << "current player: "
@@ -236,6 +244,11 @@ void chessboard::get_current_player() {
                 << " (" << (m_current_player.get_color() == color::black ? "black" : "white") << ")" << std::endl;
 }
 
-void chessboard::is_empty_field(pos position) {
-    std::cout << "is empty: " << (m_chessboard[position.x][position.y] == nullptr ? "TRUE" : "FALSE") << std::endl;
+/*----------------------------------------------------------------------------*/
+
+void chessboard::is_empty_field(user_pos position) {
+    pos internal_pos = convert_to_internal_pos(position);
+    std::cout << "is empty: " << (m_chessboard[internal_pos.x][internal_pos.y] == nullptr ? "TRUE" : "FALSE") << std::endl;
 }
+
+/*----------------------------------------------------------------------------*/
