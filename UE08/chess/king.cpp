@@ -50,3 +50,7 @@ bool king::get_is_valid() {
 void king::set_is_valid(bool is_valid) {
     m_is_valid = is_valid;
 }
+
+std::string king::get_name() {
+    return m_name;
+}

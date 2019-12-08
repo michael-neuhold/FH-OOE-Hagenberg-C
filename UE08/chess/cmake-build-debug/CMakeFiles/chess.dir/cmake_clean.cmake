@@ -5,6 +5,11 @@ file(REMOVE_RECURSE
   "CMakeFiles/chess.dir/king.cpp.o"
   "CMakeFiles/chess.dir/io.cpp.o"
   "CMakeFiles/chess.dir/player.cpp.o"
+  "CMakeFiles/chess.dir/queen.cpp.o"
+  "CMakeFiles/chess.dir/bishop.cpp.o"
+  "CMakeFiles/chess.dir/pawn.cpp.o"
+  "CMakeFiles/chess.dir/knight.cpp.o"
+  "CMakeFiles/chess.dir/rook.cpp.o"
   "chess.pdb"
   "chess"
 )

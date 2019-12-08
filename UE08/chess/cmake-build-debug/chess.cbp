@@ -80,6 +80,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE08/chess/bishop.cpp">
+			<Option target="chess"/>
+		</Unit>
+		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE08/chess/bishop.h">
+			<Option target="chess"/>
+		</Unit>
 		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE08/chess/chessboard.cpp">
 			<Option target="chess"/>
 		</Unit>
@@ -104,13 +110,37 @@
 		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE08/chess/king.h">
 			<Option target="chess"/>
 		</Unit>
+		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE08/chess/knight.cpp">
+			<Option target="chess"/>
+		</Unit>
+		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE08/chess/knight.h">
+			<Option target="chess"/>
+		</Unit>
 		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE08/chess/main.cpp">
+			<Option target="chess"/>
+		</Unit>
+		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE08/chess/pawn.cpp">
+			<Option target="chess"/>
+		</Unit>
+		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE08/chess/pawn.h">
 			<Option target="chess"/>
 		</Unit>
 		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE08/chess/player.cpp">
 			<Option target="chess"/>
 		</Unit>
 		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE08/chess/player.h">
+			<Option target="chess"/>
+		</Unit>
+		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE08/chess/queen.cpp">
+			<Option target="chess"/>
+		</Unit>
+		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE08/chess/queen.h">
+			<Option target="chess"/>
+		</Unit>
+		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE08/chess/rook.cpp">
+			<Option target="chess"/>
+		</Unit>
+		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE08/chess/rook.h">
 			<Option target="chess"/>
 		</Unit>
 		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE08/chess/types.h">

@@ -19,6 +19,7 @@ public:
     virtual void set_position(pos position) = 0;
     virtual bool get_is_valid() = 0;
     virtual void set_is_valid(bool is_valid) = 0;
+    virtual std::string get_name() = 0;
 private:
 
 };

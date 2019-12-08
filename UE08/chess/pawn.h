@@ -1,18 +1,18 @@
 //
-// Created by Michael Neuhold on 05.12.19.
+// Created by Michael Neuhold on 07.12.19.
 //
 
 #pragma once
 
-#include <iostream>
+
 #include "chessman.h"
 
-class king : public chessman {
+class pawn : public chessman {
 
 public:
 
-    king(color color);
-    ~king();
+    pawn(color color);
+    ~pawn();
 
     color get_color() const;
     std::string get_figure() const;
@@ -22,6 +22,7 @@ public:
     void set_position(pos position);
     bool get_is_valid();
     void set_is_valid(bool is_valid);
+
     virtual std::string get_name();
 
 private:
@@ -30,7 +31,7 @@ private:
     bool m_essential{true};
     pos m_position = { .x = -1, .y = -1};
     bool m_is_valid{false};
-    std::string m_name{"king"};
+    std::string m_name{"pawn"};
 };
 
 

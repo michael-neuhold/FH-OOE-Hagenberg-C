@@ -5,6 +5,7 @@
 #pragma once
 
 #include <iostream>
+#include "./types.h"
 #include "./chessman.h"
 #include "./player.h"
 
@@ -24,15 +25,32 @@ public:
     // set characters on board (start game)
     void start_game();
 
+    // activate character
+    void activate_character(pos position);
+
+    // print character at position X
+    void character_at_position(pos position);
+
+    // get chessboard size
+    void get_chessboard_size();
+
+    // print current player
+    void get_current_player();
+
+    // chessboard field is empty
+    void is_empty_field(pos position);
+
 private:
-    void init_black_characters();
-    void init_white_characters();
+    void init_characters(int first_row, int second_row, color color);
 
     player m_players[2] = {
                             {"Player A", color::black},
                             {"Player B", color::white}
                           };
 
+    player m_current_player{"Player A", color::black};
     int m_chessboard_size;
     chessman ***m_chessboard{nullptr};
+    chessman *m_activated_character{nullptr};
+    pos *possible_moves{nullptr};
 };

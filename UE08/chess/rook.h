@@ -1,18 +1,16 @@
 //
-// Created by Michael Neuhold on 05.12.19.
+// Created by Michael Neuhold on 07.12.19.
 //
 
 #pragma once
 
-#include <iostream>
+
 #include "chessman.h"
 
-class king : public chessman {
-
+class rook : public chessman {
 public:
-
-    king(color color);
-    ~king();
+    rook(color color);
+    ~rook();
 
     color get_color() const;
     std::string get_figure() const;
@@ -30,7 +28,7 @@ private:
     bool m_essential{true};
     pos m_position = { .x = -1, .y = -1};
     bool m_is_valid{false};
-    std::string m_name{"king"};
+    std::string m_name{"rook"};
 };
 
 

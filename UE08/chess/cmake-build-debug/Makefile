@@ -123,6 +123,33 @@ chess/fast:
 	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/build
 .PHONY : chess/fast
 
+bishop.o: bishop.cpp.o
+
+.PHONY : bishop.o
+
+# target to build an object file
+bishop.cpp.o:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/bishop.cpp.o
+.PHONY : bishop.cpp.o
+
+bishop.i: bishop.cpp.i
+
+.PHONY : bishop.i
+
+# target to preprocess a source file
+bishop.cpp.i:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/bishop.cpp.i
+.PHONY : bishop.cpp.i
+
+bishop.s: bishop.cpp.s
+
+.PHONY : bishop.s
+
+# target to generate assembly for a file
+bishop.cpp.s:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/bishop.cpp.s
+.PHONY : bishop.cpp.s
+
 chessboard.o: chessboard.cpp.o
 
 .PHONY : chessboard.o
@@ -231,6 +258,33 @@ king.cpp.s:
 	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/king.cpp.s
 .PHONY : king.cpp.s
 
+knight.o: knight.cpp.o
+
+.PHONY : knight.o
+
+# target to build an object file
+knight.cpp.o:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/knight.cpp.o
+.PHONY : knight.cpp.o
+
+knight.i: knight.cpp.i
+
+.PHONY : knight.i
+
+# target to preprocess a source file
+knight.cpp.i:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/knight.cpp.i
+.PHONY : knight.cpp.i
+
+knight.s: knight.cpp.s
+
+.PHONY : knight.s
+
+# target to generate assembly for a file
+knight.cpp.s:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/knight.cpp.s
+.PHONY : knight.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -257,6 +311,33 @@ main.s: main.cpp.s
 main.cpp.s:
 	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/main.cpp.s
 .PHONY : main.cpp.s
+
+pawn.o: pawn.cpp.o
+
+.PHONY : pawn.o
+
+# target to build an object file
+pawn.cpp.o:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/pawn.cpp.o
+.PHONY : pawn.cpp.o
+
+pawn.i: pawn.cpp.i
+
+.PHONY : pawn.i
+
+# target to preprocess a source file
+pawn.cpp.i:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/pawn.cpp.i
+.PHONY : pawn.cpp.i
+
+pawn.s: pawn.cpp.s
+
+.PHONY : pawn.s
+
+# target to generate assembly for a file
+pawn.cpp.s:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/pawn.cpp.s
+.PHONY : pawn.cpp.s
 
 player.o: player.cpp.o
 
@@ -285,6 +366,60 @@ player.cpp.s:
 	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/player.cpp.s
 .PHONY : player.cpp.s
 
+queen.o: queen.cpp.o
+
+.PHONY : queen.o
+
+# target to build an object file
+queen.cpp.o:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/queen.cpp.o
+.PHONY : queen.cpp.o
+
+queen.i: queen.cpp.i
+
+.PHONY : queen.i
+
+# target to preprocess a source file
+queen.cpp.i:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/queen.cpp.i
+.PHONY : queen.cpp.i
+
+queen.s: queen.cpp.s
+
+.PHONY : queen.s
+
+# target to generate assembly for a file
+queen.cpp.s:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/queen.cpp.s
+.PHONY : queen.cpp.s
+
+rook.o: rook.cpp.o
+
+.PHONY : rook.o
+
+# target to build an object file
+rook.cpp.o:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/rook.cpp.o
+.PHONY : rook.cpp.o
+
+rook.i: rook.cpp.i
+
+.PHONY : rook.i
+
+# target to preprocess a source file
+rook.cpp.i:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/rook.cpp.i
+.PHONY : rook.cpp.i
+
+rook.s: rook.cpp.s
+
+.PHONY : rook.s
+
+# target to generate assembly for a file
+rook.cpp.s:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/rook.cpp.s
+.PHONY : rook.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -294,6 +429,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... chess"
+	@echo "... bishop.o"
+	@echo "... bishop.i"
+	@echo "... bishop.s"
 	@echo "... chessboard.o"
 	@echo "... chessboard.i"
 	@echo "... chessboard.s"
@@ -306,12 +444,24 @@ help:
 	@echo "... king.o"
 	@echo "... king.i"
 	@echo "... king.s"
+	@echo "... knight.o"
+	@echo "... knight.i"
+	@echo "... knight.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... pawn.o"
+	@echo "... pawn.i"
+	@echo "... pawn.s"
 	@echo "... player.o"
 	@echo "... player.i"
 	@echo "... player.s"
+	@echo "... queen.o"
+	@echo "... queen.i"
+	@echo "... queen.s"
+	@echo "... rook.o"
+	@echo "... rook.i"
+	@echo "... rook.s"
 .PHONY : help
 
 
