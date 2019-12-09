@@ -8,6 +8,25 @@
 #define SMALL_A 97
 
 struct pos {
+
+    // constructor for user input
+    pos(int pos_x, int pos_y, char pos_yc) {
+        x = pos_x - 1;
+        y = (pos_y - 1) * ALPHABET_LENGTH + (int(pos_yc) - SMALL_A);
+    }
+
+    // constructor for internal calculations
+    pos(int pos_x, int pos_y) {
+        x = pos_x;
+        y = pos_y;
+    }
+
+    // default constructor
+    pos() {
+        x = -1;
+        y = -1;
+    }
+
     int x;
     int y;
 };

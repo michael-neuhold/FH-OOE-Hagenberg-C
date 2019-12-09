@@ -26,7 +26,7 @@ private:
     color m_color;
     std::string m_figure;
     bool m_essential{true};
-    pos m_position = { .x = -1, .y = -1};
+    pos m_position;
     bool m_is_valid{false};
     std::string m_name{"knight"};
 };

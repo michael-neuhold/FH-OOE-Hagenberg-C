@@ -26,10 +26,10 @@ public:
     void start_game();
 
     // activate character
-    void activate_character(user_pos position);
+    void activate_character(pos position);
 
     // print character at position X
-    void character_at_position(user_pos position);
+    void character_at_position(pos position);
 
     // get chessboard size
     void get_chessboard_size();
@@ -38,7 +38,7 @@ public:
     void get_current_player();
 
     // chessboard field is empty
-    void is_empty_field(user_pos position);
+    void is_empty_field(pos position);
 
 private:
     void init_characters(int first_row, int second_row, color color);
@@ -52,5 +52,6 @@ private:
     int m_chessboard_size;
     chessman ***m_chessboard{nullptr};
     chessman *m_activated_character{nullptr};
+    pos activated_position;
     pos *possible_moves{nullptr};
 };

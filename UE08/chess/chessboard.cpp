@@ -197,17 +197,17 @@ void chessboard::player_config(std::string player_a, std::string player_b) {
 
 /*----------------------------------------------------------------------------*/
 
-void chessboard::activate_character(user_pos position) {
-    pos internal_pos = convert_to_internal_pos(position);
+void chessboard::activate_character(pos position) {
+   // pos position = convert_to_position(position);
     // check if own character stands on this position
-    if(m_chessboard[internal_pos.x][internal_pos.y] == nullptr) {
+    if(m_chessboard[position.x][position.y] == nullptr) {
         std::cout << "Empty Field" << std::endl;
         return;
     }
 
-    if(m_current_player.get_color() == m_chessboard[internal_pos.x][internal_pos.y] -> get_color()) {
+    if(m_current_player.get_color() == m_chessboard[position.x][position.y] -> get_color()) {
         // activate character
-        m_activated_character = m_chessboard[internal_pos.x][internal_pos.y];
+        m_activated_character = m_chessboard[position.x][position.y];
         // calculate possible moves
 
     } else {
@@ -217,14 +217,14 @@ void chessboard::activate_character(user_pos position) {
 
 /*----------------------------------------------------------------------------*/
 
-void chessboard::character_at_position(user_pos position) {
-    std::cout << "position[" << position.x << "][" << position.y << "]: ";
-    pos internal_pos = convert_to_internal_pos(position);
-    std::cout << "x = " << internal_pos.x << " y = " << internal_pos.y << std::endl;
-    if(m_chessboard[internal_pos.x][internal_pos.y] != nullptr) {
-        std::cout << m_chessboard[internal_pos.x][internal_pos.y] -> get_figure() << " -> ";
-        std::cout << "(" << (m_chessboard[internal_pos.x][internal_pos.y] -> get_color() == color::black ? "black " : "white ")
-                  << m_chessboard[internal_pos.x][internal_pos.y] -> get_name() << ")" << std::endl;
+void chessboard::character_at_position(pos position) {
+    //std::cout << "position[" << position.x << "][" << position.y << "]: ";
+    //pos position = convert_to_position(position);
+    std::cout << "x = " << position.x << " y = " << position.y << std::endl;
+    if(m_chessboard[position.x][position.y] != nullptr) {
+        std::cout << m_chessboard[position.x][position.y] -> get_figure() << " -> ";
+        std::cout << "(" << (m_chessboard[position.x][position.y] -> get_color() == color::black ? "black " : "white ")
+                  << m_chessboard[position.x][position.y] -> get_name() << ")" << std::endl;
     } else {
         std::cout << "field is empty" << std::endl;
     }
@@ -246,9 +246,9 @@ void chessboard::get_current_player() {
 
 /*----------------------------------------------------------------------------*/
 
-void chessboard::is_empty_field(user_pos position) {
-    pos internal_pos = convert_to_internal_pos(position);
-    std::cout << "is empty: " << (m_chessboard[internal_pos.x][internal_pos.y] == nullptr ? "TRUE" : "FALSE") << std::endl;
+void chessboard::is_empty_field(pos position) {
+    //pos position = convert_to_position(position);
+    std::cout << "is empty: " << (m_chessboard[position.x][position.y] == nullptr ? "TRUE" : "FALSE") << std::endl;
 }
 
 /*----------------------------------------------------------------------------*/

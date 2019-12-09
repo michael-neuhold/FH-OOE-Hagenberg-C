@@ -28,12 +28,14 @@ int main() {
 
     // set initial game state
     cb.start_game();
-    cb.activate_character({ .x = 1 , .y = 1 , .yc = 'a' });
+    pos position1(1,1,'a');
+    cb.activate_character(position1);
     cb.player_config("Michael","Julian");
     cout << cb;
 
     separator();
-    cb.character_at_position({ .x = 8 , .y = 1 , .yc = 'a' });
+    pos position2(8,1,'a');
+    cb.character_at_position(position2);
 
     separator();
     cb.get_chessboard_size();
@@ -42,8 +44,10 @@ int main() {
     cb.get_current_player();
 
     separator();
-    cb.is_empty_field({.x = 7, .y = 0, .yc = 'b'});
-    cb.is_empty_field({.x = 5, .y = 0, .yc = 'c'});
+    pos position3(7,0,'b');
+    pos position4(5,0,'c');
+    cb.is_empty_field(position3);
+    cb.is_empty_field(position4);
 
 
     // Testcases for index translation
