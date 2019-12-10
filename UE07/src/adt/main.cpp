@@ -65,7 +65,6 @@ int main() {
     g2.add_edge(Y,Z,3);
 
     // print graph
-    g1.print(std::cout);
     Separator();
     g2.print(std::cout);
     Separator();

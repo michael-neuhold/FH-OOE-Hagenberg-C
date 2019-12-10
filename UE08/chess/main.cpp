@@ -21,7 +21,7 @@ int main() {
     print_header("my chess implementation");
 
     // create new chessboard (default size = 8x8)
-    chessboard cb;
+    chessboard cb(20);
     cout << cb;
 
     separator();

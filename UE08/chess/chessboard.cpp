@@ -58,7 +58,39 @@ static bool check_activation(int i,int j, pos *possible_moves) {
     return false;
 }
 
+static std::ostream & print_players(std::ostream& out) {
+    // print players
+    return out;
+}
+
+static std::ostream & print_current_player(std::ostream& out) {
+    // print current players
+    return out;
+}
+
+static std::ostream & print_horizontal_numbers(std::ostream& out) {
+    // print horizontal numbers
+    return out;
+}
+
+static std::ostream & print_vertical_numbers_left(std::ostream& out) {
+    // print vertical numbers left
+    return out;
+}
+
+static std::ostream & print_vertical_numbers_right(std::ostream& out) {
+    // print vertical numbers right
+    return out;
+}
+
+static std::ostream & print_horizontal_line(std::ostream& out) {
+    // print_horizontal_line
+    return out;
+}
+
 std::ostream& operator<<(std::ostream& os, const chessboard& cb) {
+
+    //print_helper(os);
 
     os << "players:" << std::endl;
     for(player player : cb.m_players) {
@@ -70,15 +102,11 @@ std::ostream& operator<<(std::ostream& os, const chessboard& cb) {
         << (cb.m_current_player.get_color() == color::black ? "black" : "white") << ")" << std::endl;
 
     // print top labeling
-
-    // print additional column index if i > 26
-    //if(cb.m_chessboard_size > ALPHABET_LENGTH) {
     os << std::endl << THREE_SPACING << PIPE_SYMBOL;
     for(int i = 0; i < cb.m_chessboard_size; i++) {
         os << "[" << i / ALPHABET_LENGTH + 1 << "]";
     }
     os << PIPE_SYMBOL << std::endl;
-    //}
 
     os << THREE_SPACING;
     os << PIPE_SYMBOL;
@@ -99,7 +127,7 @@ std::ostream& operator<<(std::ostream& os, const chessboard& cb) {
 
     // print board
     for(int i = cb.m_chessboard_size - 1 ; i >= 0; i--) {
-        os << (cb.m_chessboard_size - i < 10 ? SINGLE_SPACE : "" ) << i + 1  << SINGLE_SPACE << PIPE_SYMBOL;
+        os << (i + 1 < 10 ? " " : "" ) << i + 1 << SINGLE_SPACE << PIPE_SYMBOL; // drüberschauen
         for(int j = 0; j < cb.m_chessboard_size; j++) {
             os << (is_black_field(i,j) ? "" : REVERSED); // if white field -> invert terminal colors
             if(cb.m_chessboard[i][j] != nullptr) {
@@ -115,7 +143,7 @@ std::ostream& operator<<(std::ostream& os, const chessboard& cb) {
             }
             os << RESET;   // if white field -> return to original colors
         }
-        os << PIPE_SYMBOL << SINGLE_SPACE << (cb.m_chessboard_size - i < 10? SINGLE_SPACE:"" ) << i + 1;
+        os << PIPE_SYMBOL << SINGLE_SPACE << (i + 1< 10? SINGLE_SPACE : "" ) << i + 1;  // drüberschauen
         os << std::endl;
     }
 
@@ -133,13 +161,12 @@ std::ostream& operator<<(std::ostream& os, const chessboard& cb) {
         os << SINGLE_SPACE << char(SMALL_A + (i % ALPHABET_LENGTH)) << SINGLE_SPACE;
     }
     os << PIPE_SYMBOL;
-    //if(cb.m_chessboard_size > ALPHABET_LENGTH) {
-        os << std::endl << THREE_SPACING << PIPE_SYMBOL;
-        for(int i = 0; i < cb.m_chessboard_size; i++) {
-            os << "[" << i / ALPHABET_LENGTH + 1 << "]";
-        }
-        os << PIPE_SYMBOL;
-    //}
+
+    os << std::endl << THREE_SPACING << PIPE_SYMBOL;
+    for(int i = 0; i < cb.m_chessboard_size; i++) {
+        os << "[" << i / ALPHABET_LENGTH + 1 << "]";
+    }
+    os << PIPE_SYMBOL;
 
     return os;
 }
