@@ -4,15 +4,6 @@
 #include "./types.h"
 #include "./io.h"
 
-/**
- *
- * TODO:
- *  - alle verschiedenen character anlegen und am Spielfeld platzieren
- *  - einfache die board funktionen von der Angabe einbauen
- *
- *
- */
-
 
 using std::cout;
 
@@ -21,7 +12,7 @@ int main() {
     print_header("my chess implementation");
 
     // create new chessboard (default size = 8x8)
-    chessboard cb(20);
+    chessboard cb(8);
     cout << cb;
 
     separator();

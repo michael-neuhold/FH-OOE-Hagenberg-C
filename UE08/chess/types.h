@@ -27,6 +27,8 @@ struct pos {
         y = -1;
     }
 
+    // TODO: implement constructor with parser for user input
+
     int x;
     int y;
 };
@@ -38,7 +40,3 @@ struct user_pos {
 };
 
 enum class color { black , white };
-
-user_pos convert_to_user_pos(pos position);
-
-pos convert_to_internal_pos(user_pos user_position);

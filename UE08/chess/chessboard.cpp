@@ -30,6 +30,7 @@
 #define ALPHABET_LENGTH 26
 #define SUB_LINE_LENGTH 3
 #define SMALL_A 97
+#define EMPTY_FIELD nullptr
 
 /*----------------------------------------------------------------------------*/
 
@@ -58,115 +59,127 @@ static bool check_activation(int i,int j, pos *possible_moves) {
     return false;
 }
 
-static std::ostream & print_players(std::ostream& out) {
-    // print players
+/*----------------------------------------------------------------------------*/
+// print chessboard to terminal
+/*----------------------------------------------------------------------------*/
+
+static std::ostream & print_players(std::ostream& out, const player players[]) {
+    out << "players:" << std::endl;
+    for(int i = 0; i < 2; i++) {
+        out << "name: " << players[i].get_name() << ", color: " << (players[i].get_color() == color::black? "black" : "white" );
+        out << std::endl;
+    }
     return out;
 }
 
-static std::ostream & print_current_player(std::ostream& out) {
-    // print current players
+/*--------------------------*/
+
+static std::ostream & print_current_player(std::ostream& out,const  player &player) {
+    out  << "current player: " << player.get_name() << " ("
+        << (player.get_color() == color::black ? "black" : "white") << ")" << std::endl;
     return out;
 }
 
-static std::ostream & print_horizontal_numbers(std::ostream& out) {
-    // print horizontal numbers
+/*--------------------------*/
+
+static std::ostream & print_horizontal_numbers(std::ostream& out, int size) {
+    out << std::endl << THREE_SPACING << PIPE_SYMBOL;
+    for(int i = 0; i < size; i++) {
+        out << "[" << i / ALPHABET_LENGTH + 1 << "]";
+    }
+    out << PIPE_SYMBOL << std::endl;
     return out;
 }
 
-static std::ostream & print_vertical_numbers_left(std::ostream& out) {
-    // print vertical numbers left
+/*--------------------------*/
+
+static std::ostream & print_horizontal_chars(std::ostream& out, int size, bool end_line) {
+    out << THREE_SPACING;
+    out << PIPE_SYMBOL;
+    for(int i = 0; i < size; i++) {
+        out << SINGLE_SPACE << char(SMALL_A + (i % ALPHABET_LENGTH)) << SINGLE_SPACE;
+    }
+    out << PIPE_SYMBOL;
+    if(end_line) out << std::endl;
     return out;
 }
 
-static std::ostream & print_vertical_numbers_right(std::ostream& out) {
-    // print vertical numbers right
+/*--------------------------*/
+
+static std::ostream & print_vertical_numbers_left(std::ostream& out, int index) {
+    out << (index + 1 < 10 ? " " : "" ) << index + 1 << SINGLE_SPACE << PIPE_SYMBOL;
     return out;
 }
 
-static std::ostream & print_horizontal_line(std::ostream& out) {
-    // print_horizontal_line
+/*--------------------------*/
+
+static std::ostream & print_vertical_numbers_right(std::ostream& out, int index) {
+    out << PIPE_SYMBOL << SINGLE_SPACE << (index + 1 < 10 ? SINGLE_SPACE : "" ) << index + 1;
     return out;
 }
+
+/*--------------------------*/
+
+static std::ostream & print_horizontal_line(std::ostream& out, int size) {
+    for(int i = 0; i < SUB_LINE_LENGTH; i++) out << BAR_SYMBOL;
+    out << CROSS_SYMBOL;
+    for(int i = 0; i < size * 3; i++) out << BAR_SYMBOL;
+    out << CROSS_SYMBOL;
+    for(int i = 0; i < SUB_LINE_LENGTH; i++) out << BAR_SYMBOL;
+    out << std::endl;
+    return out;
+}
+
+/*--------------------------*/
 
 std::ostream& operator<<(std::ostream& os, const chessboard& cb) {
 
-    //print_helper(os);
+    // print chess players
+    print_players(os,cb.m_players);
 
-    os << "players:" << std::endl;
-    for(player player : cb.m_players) {
-        os << "name: " << player.get_name() << ", color: " << (player.get_color() == color::black? "black" : "white" );
-        os << std::endl;
-    }
-
-    os  << "current player: " << cb.m_current_player.get_name() << " ("
-        << (cb.m_current_player.get_color() == color::black ? "black" : "white") << ")" << std::endl;
+    // print current player
+    print_current_player(os,cb.m_current_player);
 
     // print top labeling
-    os << std::endl << THREE_SPACING << PIPE_SYMBOL;
-    for(int i = 0; i < cb.m_chessboard_size; i++) {
-        os << "[" << i / ALPHABET_LENGTH + 1 << "]";
-    }
-    os << PIPE_SYMBOL << std::endl;
-
-    os << THREE_SPACING;
-    os << PIPE_SYMBOL;
-    for(int i = 0; i < cb.m_chessboard_size; i++) {
-        os << SINGLE_SPACE << char(SMALL_A + (i % ALPHABET_LENGTH)) << SINGLE_SPACE;
-    }
-    os << PIPE_SYMBOL;
-
-    os << std::endl;
+    print_horizontal_numbers(os,cb.m_chessboard_size);
+    print_horizontal_chars(os,cb.m_chessboard_size, true);
 
     // print top line
-    for(int i = 0; i < SUB_LINE_LENGTH; i++) os << BAR_SYMBOL;
-    os << CROSS_SYMBOL;
-    for(int i = 0; i < cb.m_chessboard_size * 3; i++) os << BAR_SYMBOL;
-    os << CROSS_SYMBOL;
-    for(int i = 0; i < SUB_LINE_LENGTH; i++) os << BAR_SYMBOL;
-    os << std::endl;
+    print_horizontal_line(os, cb.m_chessboard_size);
 
     // print board
     for(int i = cb.m_chessboard_size - 1 ; i >= 0; i--) {
-        os << (i + 1 < 10 ? " " : "" ) << i + 1 << SINGLE_SPACE << PIPE_SYMBOL; // drüberschauen
+        print_vertical_numbers_left(os,i);
         for(int j = 0; j < cb.m_chessboard_size; j++) {
             os << (is_black_field(i,j) ? "" : REVERSED); // if white field -> invert terminal colors
-            if(cb.m_chessboard[i][j] != nullptr) {
+            if(cb.m_chessboard[i][j] != EMPTY_FIELD) {
                 // set color to green if current character is activated
                 if(cb.m_activated_character != nullptr) {
                     os << (cb.m_chessboard[i][j] == cb.m_activated_character ? BOLDGREEN : ""); //
                 }
-                // draw placed character
+                // TODO: insert function call --> can this character be beaten by the current selected character
+                    // TODO: if so, mark this field with color red
+                    // TODO: current_character.can_beat(target pos (i,j), chessboard)
                 os << SINGLE_SPACE << cb.m_chessboard[i][j] -> get_figure() << SINGLE_SPACE;
             } else {
                 // draw empty sub square
+                // TODO: insert function call --> can the current selected character move to this position?
+                    // TODO: if so, mark this field with color yellow
+                    // TODO: current_character.can_move(target pos (i,j), chessboard)
                 os << THREE_SPACING;
             }
             os << RESET;   // if white field -> return to original colors
         }
-        os << PIPE_SYMBOL << SINGLE_SPACE << (i + 1< 10? SINGLE_SPACE : "" ) << i + 1;  // drüberschauen
+        print_vertical_numbers_right(os,i);
         os << std::endl;
     }
 
     // print bottom line
-    for(int i = 0; i < SUB_LINE_LENGTH; i++) os << BAR_SYMBOL;
-    os << CROSS_SYMBOL;
-    for(int i = 0; i < cb.m_chessboard_size * 3; i++) os << BAR_SYMBOL;
-    os << CROSS_SYMBOL;
-    for(int i = 0; i < SUB_LINE_LENGTH; i++) os << BAR_SYMBOL;
-    os << std::endl;
+    print_horizontal_line(os, cb.m_chessboard_size);
 
     // print bottom labeling
-    os << THREE_SPACING << PIPE_SYMBOL;
-    for(int i = 0; i < cb.m_chessboard_size; i++) {
-        os << SINGLE_SPACE << char(SMALL_A + (i % ALPHABET_LENGTH)) << SINGLE_SPACE;
-    }
-    os << PIPE_SYMBOL;
-
-    os << std::endl << THREE_SPACING << PIPE_SYMBOL;
-    for(int i = 0; i < cb.m_chessboard_size; i++) {
-        os << "[" << i / ALPHABET_LENGTH + 1 << "]";
-    }
-    os << PIPE_SYMBOL;
+    print_horizontal_chars(os,cb.m_chessboard_size,false);
+    print_horizontal_numbers(os,cb.m_chessboard_size);
 
     return os;
 }
@@ -225,7 +238,6 @@ void chessboard::player_config(std::string player_a, std::string player_b) {
 /*----------------------------------------------------------------------------*/
 
 void chessboard::activate_character(pos position) {
-   // pos position = convert_to_position(position);
     // check if own character stands on this position
     if(m_chessboard[position.x][position.y] == nullptr) {
         std::cout << "Empty Field" << std::endl;
@@ -233,10 +245,7 @@ void chessboard::activate_character(pos position) {
     }
 
     if(m_current_player.get_color() == m_chessboard[position.x][position.y] -> get_color()) {
-        // activate character
         m_activated_character = m_chessboard[position.x][position.y];
-        // calculate possible moves
-
     } else {
         std::cout << "thats not your character";
     }
@@ -245,8 +254,6 @@ void chessboard::activate_character(pos position) {
 /*----------------------------------------------------------------------------*/
 
 void chessboard::character_at_position(pos position) {
-    //std::cout << "position[" << position.x << "][" << position.y << "]: ";
-    //pos position = convert_to_position(position);
     std::cout << "x = " << position.x << " y = " << position.y << std::endl;
     if(m_chessboard[position.x][position.y] != nullptr) {
         std::cout << m_chessboard[position.x][position.y] -> get_figure() << " -> ";
@@ -274,7 +281,6 @@ void chessboard::get_current_player() {
 /*----------------------------------------------------------------------------*/
 
 void chessboard::is_empty_field(pos position) {
-    //pos position = convert_to_position(position);
     std::cout << "is empty: " << (m_chessboard[position.x][position.y] == nullptr ? "TRUE" : "FALSE") << std::endl;
 }
 
