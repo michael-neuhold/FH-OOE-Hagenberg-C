@@ -166,7 +166,14 @@ std::ostream& operator<<(std::ostream& os, const chessboard& cb) {
                 // TODO: insert function call --> can the current selected character move to this position?
                     // TODO: if so, mark this field with color yellow
                     // TODO: current_character.can_move(target pos (i,j), chessboard)
-                os << THREE_SPACING;
+                    pos current_position(i,j);
+                    bool is_valid = cb.m_activated_character -> possible_move(cb.activated_position,current_position);
+                    if(is_valid) {
+                        os << BOLDYELLOW;
+                        os << " * ";
+                    } else {
+                        os << THREE_SPACING;
+                    }
             }
             os << RESET;   // if white field -> return to original colors
         }
@@ -246,6 +253,8 @@ void chessboard::activate_character(pos position) {
 
     if(m_current_player.get_color() == m_chessboard[position.x][position.y] -> get_color()) {
         m_activated_character = m_chessboard[position.x][position.y];
+        //pos current_position(position.x,position.y);
+        activated_position = position;
     } else {
         std::cout << "thats not your character";
     }

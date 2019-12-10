@@ -13,13 +13,13 @@ int main() {
 
     // create new chessboard (default size = 8x8)
     chessboard cb(8);
-    cout << cb;
+   // cout << cb;
 
     separator();
 
     // set initial game state
     cb.start_game();
-    pos position1(1,1,'a');
+    pos position1(2,1,'a');
     cb.activate_character(position1);
     cb.player_config("Michael","Julian");
     cout << cb;

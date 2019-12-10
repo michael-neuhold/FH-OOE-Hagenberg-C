@@ -30,10 +30,14 @@ bool pawn::is_essential() const {
 }
 
 bool pawn::possible_move(pos origin, pos target) const {
+    // size übergeben
+   for(int i = origin.x + 1; i < origin.x + 3; i++) {
+       if(i == target.x && origin.y == target.y) {
+           return true;
+       }
+   }
+   return false;
 
-    // to do magic
-
-    return true;
 }
 
 pos pawn::get_position() {
