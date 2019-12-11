@@ -53,4 +53,5 @@ private:
     chessman ***m_chessboard{nullptr};
     chessman *m_activated_character{nullptr};
     pos activated_position;
+    check_board **m_check_board{nullptr};
 };

@@ -9,20 +9,26 @@ using std::cout;
 
 int main() {
 
-    print_header("my chess implementation");
+    /*----------------------------------------------------------------------------*/
 
-    // create new chessboard (default size = 8x8)
+    // INIT create new chessboard (default size = 8x8)
     chessboard cb(8);
-   // cout << cb;
+
+    /*----------------------------------------------------------------------------*/
 
     separator();
 
     // set initial game state
     cb.start_game();
-    pos position1(2,1,'a');
+
+    // pos position1(2,1,'a');
+    // constructor of pos struct parses string to get coordinates
+    pos position1("2,[1,a]");
     cb.activate_character(position1);
     cb.player_config("Michael","Julian");
     cout << cb;
+
+    /*----------------------------------------------------------------------------*/
 
     separator();
     pos position2(8,1,'a');
@@ -35,8 +41,8 @@ int main() {
     cb.get_current_player();
 
     separator();
-    pos position3(7,0,'b');
-    pos position4(5,0,'c');
+    pos position3(7,1,'b');
+    pos position4(5,1,'c');
     cb.is_empty_field(position3);
     cb.is_empty_field(position4);
 

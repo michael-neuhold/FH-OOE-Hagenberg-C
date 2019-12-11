@@ -29,7 +29,7 @@ bool rook::is_essential() const {
     return this -> m_essential;
 }
 
-bool rook::possible_move(pos origin, pos target) const {
+bool rook::possible_move(pos origin, pos target, check_board **cb, int size) const {
 
     // to do magic
 

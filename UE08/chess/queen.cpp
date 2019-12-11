@@ -4,7 +4,7 @@
 
 #include "queen.h"
 
-// unicode kings
+// unicode queen
 #define WHITE_QUEEN "\u2655"
 #define BLACK_QUEEN "\u265B"
 
@@ -28,7 +28,7 @@ bool queen::is_essential() const {
     return this -> m_essential;
 }
 
-bool queen::possible_move(pos origin, pos target) const {
+bool queen::possible_move(pos origin, pos target, check_board **cb, int size) const {
 
     // to do magic
 

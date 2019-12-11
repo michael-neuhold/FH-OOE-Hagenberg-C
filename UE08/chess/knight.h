@@ -15,7 +15,7 @@ public:
     color get_color() const;
     std::string get_figure() const;
     bool is_essential() const;
-    bool possible_move(pos origin, pos target) const;
+    bool possible_move(pos origin, pos target, check_board **cb, int size) const;
     pos get_position();
     void set_position(pos position);
     bool get_is_valid();

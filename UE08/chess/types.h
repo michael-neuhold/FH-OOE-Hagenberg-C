@@ -4,6 +4,8 @@
 
 #pragma once
 
+#include <iostream>
+#include <sstream>
 #define ALPHABET_LENGTH 26
 #define SMALL_A 97
 
@@ -21,22 +23,39 @@ struct pos {
         y = pos_y;
     }
 
+    pos(std::string coordinates) {
+        std::istringstream iss(coordinates);
+        char yc;
+        char sep;
+        //-- parse coordinates from string
+        iss >> x;
+        iss >> sep;
+        iss >> sep;
+        iss >> y;
+        iss >> sep;
+        iss >> yc;
+        iss >> sep;
+        //--s
+        x--;
+        y = (y - 1) * ALPHABET_LENGTH + (int(yc) - SMALL_A);
+    }
+
     // default constructor
     pos() {
         x = -1;
         y = -1;
     }
 
-    // TODO: implement constructor with parser for user input
-
     int x;
     int y;
-};
-
-struct user_pos {
-    int x;
-    int y;
-    char yc;
 };
 
 enum class color { black , white };
+
+struct check_board {
+    bool is_set{false};
+    std::string character_name;
+    color color;
+    bool moveable{false};
+    bool killable{false};
+};

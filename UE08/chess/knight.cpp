@@ -28,7 +28,7 @@ bool knight::is_essential() const {
     return this -> m_essential;
 }
 
-bool knight::possible_move(pos origin, pos target) const {
+bool knight::possible_move(pos origin, pos target, check_board **cb, int size) const {
 
     // to do magic
 

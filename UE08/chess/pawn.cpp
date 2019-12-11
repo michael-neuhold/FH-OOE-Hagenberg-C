@@ -29,14 +29,25 @@ bool pawn::is_essential() const {
     return this -> m_essential;
 }
 
-bool pawn::possible_move(pos origin, pos target) const {
-    // size übergeben
-   for(int i = origin.x + 1; i < origin.x + 3; i++) {
-       if(i == target.x && origin.y == target.y) {
-           return true;
-       }
-   }
-   return false;
+bool pawn::possible_move(pos origin, pos target, check_board **cb, int size) const {
+    // pawn kills other character one field cross
+
+    // pawn first move can be two field
+
+    // pawn n-th move can be one field
+    /*
+    for(int i = 0; i < size; i++) {
+        for(int j = 0; j < size; j++) {
+            if(cb[i][j].is_set) {
+                std::cout << cb[i][j].character_name;
+            } else {
+                std::cout << "****";
+            }
+        }
+        std::cout << std::endl;
+    }
+     */
+    return true;
 
 }
 

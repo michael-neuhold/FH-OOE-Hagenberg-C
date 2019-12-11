@@ -36,8 +36,10 @@
 
 chessboard::chessboard(const int size) : m_chessboard_size{size}{
     m_chessboard = new chessman**[m_chessboard_size];
+    m_check_board = new check_board*[m_chessboard_size]; // check board
     for(int i = 0; i < m_chessboard_size; i++) {
         m_chessboard[i] = new chessman*[m_chessboard_size];
+        m_check_board[i] = new check_board[m_chessboard_size]; // check board
         for(int j = 0; j < m_chessboard_size; j++) {
             (m_chessboard[i])[j] = nullptr;
         }
@@ -48,15 +50,6 @@ chessboard::chessboard(const int size) : m_chessboard_size{size}{
 
 static bool is_black_field(int i, int j) {
    return (i + j) % 2 == 0;
-}
-
-static bool check_activation(int i,int j, pos *possible_moves) {
-    for(int k = 0; k < 2; k++) {
-        if(i == possible_moves[k].x && j == possible_moves[k].y) {
-            return true;
-        }
-    }
-    return false;
 }
 
 /*----------------------------------------------------------------------------*/
@@ -132,6 +125,13 @@ static std::ostream & print_horizontal_line(std::ostream& out, int size) {
 
 /*--------------------------*/
 
+static std::ostream & print_tmp_array(std::ostream& out, int check_board) {
+    out << "test";
+    return out;
+}
+
+/*--------------------------*/
+
 std::ostream& operator<<(std::ostream& os, const chessboard& cb) {
 
     // print chess players
@@ -149,6 +149,7 @@ std::ostream& operator<<(std::ostream& os, const chessboard& cb) {
 
     // print board
     for(int i = cb.m_chessboard_size - 1 ; i >= 0; i--) {
+
         print_vertical_numbers_left(os,i);
         for(int j = 0; j < cb.m_chessboard_size; j++) {
             os << (is_black_field(i,j) ? "" : REVERSED); // if white field -> invert terminal colors
@@ -167,7 +168,7 @@ std::ostream& operator<<(std::ostream& os, const chessboard& cb) {
                     // TODO: if so, mark this field with color yellow
                     // TODO: current_character.can_move(target pos (i,j), chessboard)
                     pos current_position(i,j);
-                    bool is_valid = cb.m_activated_character -> possible_move(cb.activated_position,current_position);
+                    bool is_valid = cb.m_activated_character -> possible_move(cb.activated_position,current_position,cb.m_check_board,cb.m_chessboard_size);
                     if(is_valid) {
                         os << BOLDYELLOW;
                         os << " * ";
@@ -253,8 +254,19 @@ void chessboard::activate_character(pos position) {
 
     if(m_current_player.get_color() == m_chessboard[position.x][position.y] -> get_color()) {
         m_activated_character = m_chessboard[position.x][position.y];
-        //pos current_position(position.x,position.y);
         activated_position = position;
+
+        // update check board with current values
+        for(int i = 0; i < m_chessboard_size; i++) {
+            for(int j = 0; j < m_chessboard_size; j++) {
+                if(m_chessboard[i][j] != nullptr) {
+                    m_check_board[i][j].character_name = m_chessboard[i][j] -> get_name();
+                    m_check_board[i][j].color = m_chessboard[i][j] -> get_color();
+                    m_check_board[i][j].is_set = true;
+                }
+            }
+        }
+
     } else {
         std::cout << "thats not your character";
     }
