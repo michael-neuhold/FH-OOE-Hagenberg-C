@@ -16,6 +16,7 @@
 #define REVERSED "\u001b[7m"
 #define BOLDGREEN   "\033[1m\033[32m"
 #define BOLDYELLOW  "\033[1m\033[33m"
+#define RED "\033[0;31m"
 
 // unicode characters
 #define PIPE_SYMBOL "\u2503"
@@ -155,26 +156,22 @@ std::ostream& operator<<(std::ostream& os, const chessboard& cb) {
             os << (is_black_field(i,j) ? "" : REVERSED); // if white field -> invert terminal colors
             if(cb.m_chessboard[i][j] != EMPTY_FIELD) {
                 // set color to green if current character is activated
+
+                if(cb.m_check_board[i][j].killable) {
+                    os << RED;
+                }
+
                 if(cb.m_activated_character != nullptr) {
                     os << (cb.m_chessboard[i][j] == cb.m_activated_character ? BOLDGREEN : ""); //
                 }
-                // TODO: insert function call --> can this character be beaten by the current selected character
-                    // TODO: if so, mark this field with color red
-                    // TODO: current_character.can_beat(target pos (i,j), chessboard)
                 os << SINGLE_SPACE << cb.m_chessboard[i][j] -> get_figure() << SINGLE_SPACE;
             } else {
-                // draw empty sub square
-                // TODO: insert function call --> can the current selected character move to this position?
-                    // TODO: if so, mark this field with color yellow
-                    // TODO: current_character.can_move(target pos (i,j), chessboard)
-                    pos current_position(i,j);
-                    bool is_valid = cb.m_activated_character -> possible_move(cb.activated_position,current_position,cb.m_check_board,cb.m_chessboard_size);
-                    if(is_valid) {
-                        os << BOLDYELLOW;
-                        os << " * ";
-                    } else {
-                        os << THREE_SPACING;
-                    }
+               if(cb.m_check_board[i][j].moveable) {
+                    os << BOLDYELLOW;
+                    os << " * ";
+                } else {
+                    os << THREE_SPACING;
+                }
             }
             os << RESET;   // if white field -> return to original colors
         }
@@ -219,9 +216,20 @@ void chessboard::init_characters(int first_row, int second_row, color color) {
     m_chessboard[first_row][6 + calculate_offset(m_chessboard_size)] = new knight(color);
     m_chessboard[first_row][7 + calculate_offset(m_chessboard_size)] = new rook(color);
 
+    /*
     // second row
     for(int j = 0; j < m_chessboard_size; j++) {
         m_chessboard[second_row][j] =  new pawn(color);
+    }
+     */
+
+    /**
+     *
+     * Testing:
+     *
+     */
+    if(color == color::white){
+        m_chessboard[4][6] = new rook(color::white);
     }
 }
 
@@ -254,7 +262,8 @@ void chessboard::activate_character(pos position) {
 
     if(m_current_player.get_color() == m_chessboard[position.x][position.y] -> get_color()) {
         m_activated_character = m_chessboard[position.x][position.y];
-        activated_position = position;
+        activated_position.x = position.x;
+        activated_position.y = position.y;
 
         // update check board with current values
         for(int i = 0; i < m_chessboard_size; i++) {
@@ -265,6 +274,16 @@ void chessboard::activate_character(pos position) {
                     m_check_board[i][j].is_set = true;
                 }
             }
+        }
+
+        // check all valid moves
+        m_activated_character -> calc_all_possible_moves(position, m_check_board, m_chessboard_size);
+
+        for(int i = 0; i < m_chessboard_size; i++) {
+            for (int j = 0; j < m_chessboard_size; j++) {
+                std::cout << m_check_board[i][j].moveable;
+            }
+            std::cout << std::endl;
         }
 
     } else {

@@ -32,15 +32,12 @@ bool knight::possible_move(pos origin, pos target, check_board **cb, int size) c
 
     // to do magic
 
+
     return true;
 }
 
-pos knight::get_position() {
-    return m_position;
-}
+void knight::calc_all_possible_moves(pos origin, check_board **cb, int size) {
 
-void knight::set_position(pos position) {
-    m_position = position;
 }
 
 bool knight::get_is_valid() {

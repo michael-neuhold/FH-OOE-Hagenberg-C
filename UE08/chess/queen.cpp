@@ -35,12 +35,41 @@ bool queen::possible_move(pos origin, pos target, check_board **cb, int size) co
     return true;
 }
 
-pos queen::get_position() {
-    return m_position;
-}
+void queen::calc_all_possible_moves(pos origin, check_board **cb, int size) {
+    int tmp_x;
+    int tmp_y;
 
-void queen::set_position(pos position) {
-    m_position = position;
+    bool collision;
+
+    color target_color = (cb[origin.x][origin.y].color == color::white ? color::black : color::white);
+
+    for(int i = 0; i < 8; i++) {
+        collision = false;
+        tmp_x = origin.x;
+        tmp_y = origin.y;
+
+        while(tmp_x < size && tmp_x >= 0 && tmp_y < size && tmp_y >= 0 && !collision) {
+            switch (i) {
+                case 0: tmp_x++; tmp_y--; break;
+                case 1: tmp_x--; tmp_y++; break;
+                case 2: tmp_x--; tmp_y--; break;
+                case 3: tmp_x++; tmp_y++; break;
+                case 4: tmp_x++; break;
+                case 5: tmp_x--; break;
+                case 6: tmp_y--; break;
+                case 7: tmp_y++; break;
+            }
+
+            if(tmp_x < size && tmp_x >= 0 && tmp_y < size && tmp_y >= 0) {
+                if (!cb[tmp_x][tmp_y].is_set) {
+                    cb[tmp_x][tmp_y].moveable = true;
+                } else if (cb[tmp_x][tmp_y].color == target_color) {
+                    cb[tmp_x][tmp_y].killable = true;
+                    collision = true;
+                }
+            }
+        }
+    }
 }
 
 bool queen::get_is_valid() {

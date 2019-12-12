@@ -23,6 +23,7 @@ struct pos {
         y = pos_y;
     }
 
+    // 5,[2,a]
     pos(std::string coordinates) {
         std::istringstream iss(coordinates);
         char yc;
@@ -58,4 +59,9 @@ struct check_board {
     color color;
     bool moveable{false};
     bool killable{false};
+};
+
+struct possible_moves {
+    pos *move;
+    pos *kill;
 };

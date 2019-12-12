@@ -30,33 +30,27 @@ bool pawn::is_essential() const {
 }
 
 bool pawn::possible_move(pos origin, pos target, check_board **cb, int size) const {
-    // pawn kills other character one field cross
 
-    // pawn first move can be two field
+    // check if first move of pawn than 2 steps possible // otherwise 1 step possible
+    int possible_moves = m_first_move_done ? 1 : 2;
 
-    // pawn n-th move can be one field
-    /*
-    for(int i = 0; i < size; i++) {
-        for(int j = 0; j < size; j++) {
-            if(cb[i][j].is_set) {
-                std::cout << cb[i][j].character_name;
-            } else {
-                std::cout << "****";
-            }
+    // return if target
+    if(cb[target.x][target.y].is_set) return false;
+
+    int offset;
+    while(possible_moves > 0) {
+        offset = (cb[origin.x][origin.y].color == color::white ? possible_moves * (-1) : possible_moves );
+        if(origin.x + offset == target.x && origin.y == target.y) {
+            cb[target.x][target.y].moveable = true;
+            return true;
         }
-        std::cout << std::endl;
+        possible_moves--;
     }
-     */
-    return true;
-
+    return false;
 }
 
-pos pawn::get_position() {
-    return m_position;
-}
+void pawn::calc_all_possible_moves(pos origin, check_board **cb, int size) {
 
-void pawn::set_position(pos position) {
-    m_position = position;
 }
 
 bool pawn::get_is_valid() {

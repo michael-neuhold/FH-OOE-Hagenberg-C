@@ -48,7 +48,7 @@ private:
                             {"Player B", color::white}
                           };
 
-    player m_current_player{"Player A", color::black};
+    player m_current_player{"Player B", color::white};
     int m_chessboard_size;
     chessman ***m_chessboard{nullptr};
     chessman *m_activated_character{nullptr};
