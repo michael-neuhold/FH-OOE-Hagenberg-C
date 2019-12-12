@@ -23,7 +23,7 @@ int main() {
 
     // pos position1(2,1,'a');
     // constructor of pos struct parses string to get coordinates
-    pos position1("5,[1,g]");
+    pos position1("7,[1,e]");
     cb.activate_character(position1);
     cb.player_config("Michael","Julian");
     cout << cb;

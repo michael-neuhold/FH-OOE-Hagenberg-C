@@ -229,7 +229,7 @@ void chessboard::init_characters(int first_row, int second_row, color color) {
      *
      */
     if(color == color::white){
-        m_chessboard[4][6] = new rook(color::white);
+        m_chessboard[6][4] = new knight(color::white);
     }
 }
 
