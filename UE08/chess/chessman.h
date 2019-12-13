@@ -20,6 +20,7 @@ public:
     virtual void set_is_valid(bool is_valid) = 0;
     virtual std::string get_name() = 0;
     virtual void calc_all_possible_moves(pos origin, check_board **cb, int size) = 0;
+    virtual void set_first_move_done(bool moved) = 0;
 private:
 
 };

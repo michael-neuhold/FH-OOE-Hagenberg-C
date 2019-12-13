@@ -8,25 +8,37 @@
 #define WHITE_QUEEN "\u2655"
 #define BLACK_QUEEN "\u265B"
 
+/*----------------------------------------------------------------------------*/
+
 queen::queen(color color) :   m_color{color},
                               m_figure{(color == color::black ? BLACK_QUEEN : WHITE_QUEEN)} {
 }
+
+/*----------------------------------------------------------------------------*/
 
 queen::~queen() {
     // nothing to do here
 }
 
+/*----------------------------------------------------------------------------*/
+
 color queen::get_color() const {
     return this -> m_color;
 }
+
+/*----------------------------------------------------------------------------*/
 
 std::string queen::get_figure() const {
     return this -> m_figure;
 }
 
+/*----------------------------------------------------------------------------*/
+
 bool queen::is_essential() const {
     return this -> m_essential;
 }
+
+/*----------------------------------------------------------------------------*/
 
 bool queen::possible_move(pos origin, pos target, check_board **cb, int size) const {
 
@@ -36,6 +48,8 @@ bool queen::possible_move(pos origin, pos target, check_board **cb, int size) co
 
     return true;
 }
+
+/*----------------------------------------------------------------------------*/
 
 void queen::calc_all_possible_moves(pos origin, check_board **cb, int size) {
     int tmp_x;
@@ -65,6 +79,8 @@ void queen::calc_all_possible_moves(pos origin, check_board **cb, int size) {
             if(tmp_x < size && tmp_x >= 0 && tmp_y < size && tmp_y >= 0) {
                 if (!cb[tmp_x][tmp_y].is_set) {
                     cb[tmp_x][tmp_y].moveable = true;
+                } else if (cb[tmp_x][tmp_y].color == cb[origin.x][origin.y].color) {
+                    collision = true;
                 } else if (cb[tmp_x][tmp_y].color == target_color) {
                     cb[tmp_x][tmp_y].killable = true;
                     collision = true;
@@ -74,14 +90,26 @@ void queen::calc_all_possible_moves(pos origin, check_board **cb, int size) {
     }
 }
 
+/*----------------------------------------------------------------------------*/
+
 bool queen::get_is_valid() {
     return m_is_valid;
 }
+
+/*----------------------------------------------------------------------------*/
 
 void queen::set_is_valid(bool is_valid) {
     m_is_valid = is_valid;
 }
 
+/*----------------------------------------------------------------------------*/
+
 std::string queen::get_name() {
     return m_name;
+}
+
+/*----------------------------------------------------------------------------*/
+
+void queen::set_first_move_done(bool moved) {
+    m_first_move_done = moved;
 }

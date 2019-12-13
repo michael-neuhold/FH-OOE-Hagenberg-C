@@ -224,23 +224,21 @@ void chessboard::init_characters(int first_row, int second_row, color color) {
     m_chessboard[first_row][6 + calculate_offset(m_chessboard_size)] = new knight(color);
     m_chessboard[first_row][7 + calculate_offset(m_chessboard_size)] = new rook(color);
 
-    /*
+
     // second row
     for(int j = 0; j < m_chessboard_size; j++) {
         m_chessboard[second_row][j] =  new pawn(color);
     }
-     */
+
 
     /**
      *
      * Testing:
      *
      */
-
-
     if(color == color::black){
         //m_chessboard[5][2] = new queen(color::white);
-        m_chessboard[3][4] = new pawn(color::white);
+       //m_chessboard[4][3] = new pawn(color::black);
     }
 }
 
@@ -346,6 +344,10 @@ static void reset_check_board(check_board **cb, int size) {
 bool chessboard::move_character(pos target) {
 
     if(m_check_board[target.x][target.y].is_set && m_check_board[target.x][target.y].killable) {
+        if(m_chessboard[target.x][target.y] -> get_name() == "king") {
+            m_game_over = true;
+            return true;
+        }
         delete m_chessboard[target.x][target.y];
         m_chessboard[target.x][target.y] = m_activated_character;
         m_chessboard[activated_position.x][activated_position.y] = nullptr;
@@ -356,6 +358,9 @@ bool chessboard::move_character(pos target) {
     } else if (m_check_board[target.x][target.y].moveable){
         m_chessboard[target.x][target.y] = m_activated_character;
         m_chessboard[activated_position.x][activated_position.y] = nullptr;
+        if(m_activated_character -> get_name() == "pawn") {
+            m_activated_character -> set_first_move_done(true);
+        }
         m_activated_character = nullptr;
         reset_check_board(m_check_board, m_chessboard_size);
         // toggle current user
@@ -366,4 +371,10 @@ bool chessboard::move_character(pos target) {
         return false;
     }
     return true;
+}
+
+/*----------------------------------------------------------------------------*/
+
+bool chessboard::get_game_over() {
+    return m_game_over;
 }

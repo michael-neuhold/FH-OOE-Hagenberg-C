@@ -8,25 +8,37 @@
 #define WHITE_KING "\u2654"
 #define BLACK_KING "\u265A"
 
+/*----------------------------------------------------------------------------*/
+
 king::king(color color) :   m_color{color},
                             m_figure{(color == color::black ? BLACK_KING : WHITE_KING)} {
 }
+
+/*----------------------------------------------------------------------------*/
 
 king::~king() {
  // nothing to do here
 }
 
+/*----------------------------------------------------------------------------*/
+
 color king::get_color() const {
     return this -> m_color;
 }
+
+/*----------------------------------------------------------------------------*/
 
 std::string king::get_figure() const {
     return this -> m_figure;
 }
 
+/*----------------------------------------------------------------------------*/
+
 bool king::is_essential() const {
     return this -> m_essential;
 }
+
+/*----------------------------------------------------------------------------*/
 
 bool king::possible_move(pos origin, pos target, check_board **cb, int size) const {
 
@@ -36,6 +48,8 @@ bool king::possible_move(pos origin, pos target, check_board **cb, int size) con
 
     return true;
 }
+
+/*----------------------------------------------------------------------------*/
 
 void king::calc_all_possible_moves(pos origin, check_board **cb, int size) {
 
@@ -58,17 +72,28 @@ void king::calc_all_possible_moves(pos origin, check_board **cb, int size) {
             }
         }
     }
-
 }
+
+/*----------------------------------------------------------------------------*/
 
 bool king::get_is_valid() {
     return m_is_valid;
 }
 
+/*----------------------------------------------------------------------------*/
+
 void king::set_is_valid(bool is_valid) {
     m_is_valid = is_valid;
 }
 
+/*----------------------------------------------------------------------------*/
+
 std::string king::get_name() {
     return m_name;
+}
+
+/*----------------------------------------------------------------------------*/
+
+void king::set_first_move_done(bool moved) {
+    m_first_move_done = moved;
 }

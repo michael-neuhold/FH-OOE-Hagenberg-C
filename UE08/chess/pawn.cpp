@@ -5,29 +5,41 @@
 #include "pawn.h"
 
 
-// unicode kings
+// unicode pawn
 #define WHITE_PAWN "\u2659"
 #define BLACK_PAWN "\u265F"
+
+/*----------------------------------------------------------------------------*/
 
 pawn::pawn(color color) :   m_color{color},
                             m_figure{(color == color::black ? BLACK_PAWN : WHITE_PAWN)} {
 }
 
+/*----------------------------------------------------------------------------*/
+
 pawn::~pawn() {
     // nothing to do here
 }
+
+/*----------------------------------------------------------------------------*/
 
 color pawn::get_color() const {
     return this -> m_color;
 }
 
+/*----------------------------------------------------------------------------*/
+
 std::string pawn::get_figure() const {
     return this -> m_figure;
 }
 
+/*----------------------------------------------------------------------------*/
+
 bool pawn::is_essential() const {
     return this -> m_essential;
 }
+
+/*----------------------------------------------------------------------------*/
 
 bool pawn::possible_move(pos origin, pos target, check_board **cb, int size) const {
 
@@ -38,6 +50,8 @@ bool pawn::possible_move(pos origin, pos target, check_board **cb, int size) con
     return true;
 }
 
+/*----------------------------------------------------------------------------*/
+
 void pawn::calc_all_possible_moves(pos origin, check_board **cb, int size) {
 
     color target_color = (cb[origin.x][origin.y].color == color::white ? color::black : color::white);
@@ -46,7 +60,7 @@ void pawn::calc_all_possible_moves(pos origin, check_board **cb, int size) {
     int tmp_x;
     int tmp_y;
 
-    /* -------- */
+    /* ---- moves ---- */
 
     int coordinates_move_x[] = { origin.x + direction   , origin.x + 2 * direction  };
     int coordinates_move_y[] = { origin.y               , origin.y                  };
@@ -62,7 +76,7 @@ void pawn::calc_all_possible_moves(pos origin, check_board **cb, int size) {
         }
     }
 
-    /* -------- */
+    /* ---- kills ---- */
 
     int coordinates_kill_x[] = { origin.x + direction   , origin.x + direction  };
     int coordinates_kill_y[] = { origin.y - 1           , origin.y + 1          };
@@ -78,14 +92,26 @@ void pawn::calc_all_possible_moves(pos origin, check_board **cb, int size) {
     }
 }
 
+/*----------------------------------------------------------------------------*/
+
 bool pawn::get_is_valid() {
     return m_is_valid;
 }
+
+/*----------------------------------------------------------------------------*/
 
 void pawn::set_is_valid(bool is_valid) {
     m_is_valid = is_valid;
 }
 
+/*----------------------------------------------------------------------------*/
+
 std::string pawn::get_name() {
     return m_name;
+}
+
+/*----------------------------------------------------------------------------*/
+
+void pawn::set_first_move_done(bool moved) {
+    m_first_move_done = moved;
 }

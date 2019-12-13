@@ -43,6 +43,9 @@ public:
     // move character to position
     bool move_character(pos target);
 
+    // returns game_over
+    bool get_game_over();
+
 private:
     void init_characters(int first_row, int second_row, color color);
 
@@ -51,10 +54,11 @@ private:
                             {"Player B", color::white}
                           };
 
-    player m_current_player{"Player B", color::white};
+    player m_current_player{"Player A", color::black};
     int m_chessboard_size;
     chessman ***m_chessboard{nullptr};
     chessman *m_activated_character{nullptr};
     pos activated_position;
     check_board **m_check_board{nullptr};
+    bool m_game_over{false};
 };

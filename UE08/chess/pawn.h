@@ -23,6 +23,7 @@ public:
 
     virtual std::string get_name();
     void calc_all_possible_moves(pos origin, check_board **cb, int size);
+    void set_first_move_done(bool moved);
 
 private:
     color m_color;
@@ -30,9 +31,7 @@ private:
     std::string m_name{"pawn"};
     bool m_essential{false};
     bool m_is_valid{false};
-
     bool m_first_move_done{false};
-    possible_moves m_possible_moves;
 };
 
 

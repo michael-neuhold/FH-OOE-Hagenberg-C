@@ -14,7 +14,7 @@ int main() {
     /*----------------------------------------------------------------------------*/
 
     // INIT create new chessboard (default size = 8x8)
-    chessboard cb(8);
+    chessboard cb;
 
     /*----------------------------------------------------------------------------*/
 
@@ -35,9 +35,11 @@ int main() {
 
     std::string user_coordinates;
     bool valid;
-    int i = 10;
+    //pos user_pos("5,[1,d]");
+    //cb.activate_character(user_pos);
+    //cout << cb;
 
-    while (i > 0) {
+    while (!cb.get_game_over()) {
         do {
             cout << "HELP: " << endl;
             cout << "coordinateinput: x <int> , [ y <int> , yc <char> ]" << endl;
@@ -48,7 +50,9 @@ int main() {
             valid = cb.activate_character(user_pos);
         } while(!valid);
         cout << cb;
-        /*-------*/
+
+
+
         do {
             cout << "coordinateinput: x <int> , [ y <int> , yc <char> ]" << endl;
             cout << "move activated character of player: ";
@@ -58,7 +62,10 @@ int main() {
             pos user_pos_target(user_coordinates);
             valid = cb.move_character(user_pos_target);
         } while(!valid);
-        i--;
         cout << cb;
     }
+
+    cout << "Winner: ";
+    cb.get_current_player();
+
 }
