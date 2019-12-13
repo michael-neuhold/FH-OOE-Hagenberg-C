@@ -264,11 +264,11 @@ void chessboard::player_config(std::string player_a, std::string player_b) {
 
 /*----------------------------------------------------------------------------*/
 
-void chessboard::activate_character(pos position) {
+bool chessboard::activate_character(pos position) {
     // check if own character stands on this position
     if(m_chessboard[position.x][position.y] == nullptr) {
         std::cout << "Empty Field" << std::endl;
-        return;
+        return false;
     }
 
     if(m_current_player.get_color() == m_chessboard[position.x][position.y] -> get_color()) {
@@ -283,10 +283,6 @@ void chessboard::activate_character(pos position) {
                     m_check_board[i][j].character_name = m_chessboard[i][j] -> get_name();
                     m_check_board[i][j].color = m_chessboard[i][j] -> get_color();
                     m_check_board[i][j].is_set = true;
-                }  else {
-                    m_check_board[i][j].is_set = false;
-                    m_check_board[i][j].moveable = false;
-                    m_check_board[i][j].killable = false;
                 }
             }
         }
@@ -298,7 +294,9 @@ void chessboard::activate_character(pos position) {
 
     } else {
         std::cout << "thats not your character";
+        return false;
     }
+    return true;
 }
 
 /*----------------------------------------------------------------------------*/
@@ -345,17 +343,27 @@ static void reset_check_board(check_board **cb, int size) {
     }
 }
 
-void chessboard::move_character(pos target) {
-    if(m_check_board[target.x][target.y].is_set && m_check_board[target.x][target.x].killable) {
+bool chessboard::move_character(pos target) {
+
+    if(m_check_board[target.x][target.y].is_set && m_check_board[target.x][target.y].killable) {
         delete m_chessboard[target.x][target.y];
-        m_chessboard[target.x][target.y] = m_activated_character;
-        m_activated_character = nullptr;
-        reset_check_board(m_check_board, m_chessboard_size);
-    } else if (!m_check_board[target.x][target.y].is_set && m_check_board[target.x][target.y].moveable){
         m_chessboard[target.x][target.y] = m_activated_character;
         m_chessboard[activated_position.x][activated_position.y] = nullptr;
         m_activated_character = nullptr;
+        reset_check_board(m_check_board, m_chessboard_size);
+        // toggle current user
+        m_current_player = (m_current_player.get_color() == m_players[0].get_color() ? m_players[1] : m_players[0]);
+    } else if (m_check_board[target.x][target.y].moveable){
+        m_chessboard[target.x][target.y] = m_activated_character;
+        m_chessboard[activated_position.x][activated_position.y] = nullptr;
+        m_activated_character = nullptr;
+        reset_check_board(m_check_board, m_chessboard_size);
+        // toggle current user
+        m_current_player = (m_current_player.get_color() == m_players[0].get_color() ? m_players[1] : m_players[0]);
     } else {
+        std::cout << "target pos.x = " << target.x << " pos.y = " << target.y << std::endl;
         std::cout << "no valid position!";
+        return false;
     }
+    return true;
 }

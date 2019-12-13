@@ -26,7 +26,7 @@ public:
     void start_game();
 
     // activate character
-    void activate_character(pos position);
+    bool activate_character(pos position);
 
     // print character at position X
     void character_at_position(pos position);
@@ -41,7 +41,7 @@ public:
     void is_empty_field(pos position);
 
     // move character to position
-    void move_character(pos target);
+    bool move_character(pos target);
 
 private:
     void init_characters(int first_row, int second_row, color color);
