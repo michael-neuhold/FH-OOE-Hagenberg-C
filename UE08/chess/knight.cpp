@@ -30,8 +30,9 @@ bool knight::is_essential() const {
 
 bool knight::possible_move(pos origin, pos target, check_board **cb, int size) const {
 
-    // to do magic
-
+    /*
+     *  TODO possible_move knight
+     */
 
     return true;
 }
@@ -39,7 +40,7 @@ bool knight::possible_move(pos origin, pos target, check_board **cb, int size) c
 void knight::calc_all_possible_moves(pos origin, check_board **cb, int size) {
 
     int coordinate_change_x[] = { 2 , 1 , -1 , -2 , -2 , -1 , 1 , 2 };
-    int coordinate_change_y[] = { 1 , 2 , 2 ,1 , -1 , -2 , -2 , -1 };
+    int coordinate_change_y[] = { 1 , 2 , 2 , 1 , -1 , -2 , -2 , -1 };
 
     int tmp_x;
     int tmp_y;

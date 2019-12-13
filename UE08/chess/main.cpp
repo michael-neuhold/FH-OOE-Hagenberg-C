@@ -6,6 +6,8 @@
 
 
 using std::cout;
+using std::endl;
+using std::cin;
 
 int main() {
 
@@ -23,13 +25,34 @@ int main() {
 
     // pos position1(2,1,'a');
     // constructor of pos struct parses string to get coordinates
-    pos position1("7,[1,e]");
-    cb.activate_character(position1);
-    cb.player_config("Michael","Julian");
+    //pos position1("4,[1,e]");
+    //cb.activate_character(position1);
+    //cb.player_config("Michael","Julian");
     cout << cb;
 
     /*----------------------------------------------------------------------------*/
+    // game
 
+    std::string user_coordinates;
+    cout << "HELP: " << endl;
+    cout << "coordinateinput: x <int> , [ y <int> , yc <char> ]" << endl;
+    cout << "activate character of player: ";
+    cb.get_current_player();
+    cin >> user_coordinates;
+    pos user_pos(user_coordinates);
+    cb.activate_character(user_pos);
+    cout << cb;
+    /*-------*/
+    cout << "coordinateinput: x <int> , [ y <int> , yc <char> ]" << endl;
+    cout << "move activated character of player: ";
+    cb.get_current_player();
+    cout << " to position: " << endl;
+    cin >> user_coordinates;
+    pos user_pos_target(user_coordinates);
+    cb.move_character(user_pos_target);
+    cout << cb;
+
+    /*
     separator();
     pos position2(8,1,'a');
     cb.character_at_position(position2);
@@ -46,7 +69,7 @@ int main() {
     cb.is_empty_field(position3);
     cb.is_empty_field(position4);
 
-
+    */
     // Testcases for index translation
     /*
     pos position1 = convert_to_internal_pos({2,1,'a'});

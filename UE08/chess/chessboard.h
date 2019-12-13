@@ -40,6 +40,9 @@ public:
     // chessboard field is empty
     void is_empty_field(pos position);
 
+    // move character to position
+    void move_character(pos target);
+
 private:
     void init_characters(int first_row, int second_row, color color);
 

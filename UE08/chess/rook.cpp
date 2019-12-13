@@ -33,13 +33,9 @@ bool rook::is_essential() const {
 /*----------------------------------------------------------------------------*/
 bool rook::possible_move(pos origin, pos target, check_board **cb, int size) const {
 
-    // in alle richtungen gerade aus ist möglich
-
-    int tmp_origin_x = origin.x;
-    int tmp_origin_y = origin.y;
-
-    bool collision{false};
-
+    /*
+     *  TODO possible_move rook
+     */
 
     return true;
 }

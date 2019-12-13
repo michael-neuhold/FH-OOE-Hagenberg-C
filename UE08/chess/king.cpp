@@ -30,7 +30,9 @@ bool king::is_essential() const {
 
 bool king::possible_move(pos origin, pos target, check_board **cb, int size) const {
 
-    // to do magic
+    /*
+     *  TODO possible_move king
+     */
 
     return true;
 }

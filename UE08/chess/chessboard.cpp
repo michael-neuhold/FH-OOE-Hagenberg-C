@@ -10,6 +10,9 @@
 #include "rook.h"
 #include "pawn.h"
 #include "types.h"
+#include "io.h"
+
+#include <cstdlib>
 
 // reverse terminal colors
 #define RESET   "\033[0m"
@@ -63,6 +66,7 @@ static std::ostream & print_players(std::ostream& out, const player players[]) {
         out << "name: " << players[i].get_name() << ", color: " << (players[i].get_color() == color::black? "black" : "white" );
         out << std::endl;
     }
+    separator();
     return out;
 }
 
@@ -71,6 +75,7 @@ static std::ostream & print_players(std::ostream& out, const player players[]) {
 static std::ostream & print_current_player(std::ostream& out,const  player &player) {
     out  << "current player: " << player.get_name() << " ("
         << (player.get_color() == color::black ? "black" : "white") << ")" << std::endl;
+    separator();
     return out;
 }
 
@@ -135,6 +140,10 @@ static std::ostream & print_tmp_array(std::ostream& out, int check_board) {
 
 std::ostream& operator<<(std::ostream& os, const chessboard& cb) {
 
+    // clear screen
+    //os << "\033[1;1H";
+    system("clear");
+
     // print chess players
     print_players(os,cb.m_players);
 
@@ -156,7 +165,6 @@ std::ostream& operator<<(std::ostream& os, const chessboard& cb) {
             os << (is_black_field(i,j) ? "" : REVERSED); // if white field -> invert terminal colors
             if(cb.m_chessboard[i][j] != EMPTY_FIELD) {
                 // set color to green if current character is activated
-
                 if(cb.m_check_board[i][j].killable) {
                     os << RED;
                 }
@@ -166,7 +174,7 @@ std::ostream& operator<<(std::ostream& os, const chessboard& cb) {
                 }
                 os << SINGLE_SPACE << cb.m_chessboard[i][j] -> get_figure() << SINGLE_SPACE;
             } else {
-               if(cb.m_check_board[i][j].moveable) {
+               if(cb.m_activated_character != nullptr && cb.m_check_board[i][j].moveable) {
                     os << BOLDYELLOW;
                     os << " * ";
                 } else {
@@ -228,8 +236,11 @@ void chessboard::init_characters(int first_row, int second_row, color color) {
      * Testing:
      *
      */
-    if(color == color::white){
-        m_chessboard[6][4] = new knight(color::white);
+
+
+    if(color == color::black){
+        //m_chessboard[5][2] = new queen(color::white);
+        m_chessboard[3][4] = new pawn(color::white);
     }
 }
 
@@ -272,6 +283,10 @@ void chessboard::activate_character(pos position) {
                     m_check_board[i][j].character_name = m_chessboard[i][j] -> get_name();
                     m_check_board[i][j].color = m_chessboard[i][j] -> get_color();
                     m_check_board[i][j].is_set = true;
+                }  else {
+                    m_check_board[i][j].is_set = false;
+                    m_check_board[i][j].moveable = false;
+                    m_check_board[i][j].killable = false;
                 }
             }
         }
@@ -279,12 +294,7 @@ void chessboard::activate_character(pos position) {
         // check all valid moves
         m_activated_character -> calc_all_possible_moves(position, m_check_board, m_chessboard_size);
 
-        for(int i = 0; i < m_chessboard_size; i++) {
-            for (int j = 0; j < m_chessboard_size; j++) {
-                std::cout << m_check_board[i][j].moveable;
-            }
-            std::cout << std::endl;
-        }
+        // fill arrays with positions t
 
     } else {
         std::cout << "thats not your character";
@@ -313,8 +323,7 @@ void chessboard::get_chessboard_size() {
 /*----------------------------------------------------------------------------*/
 
 void chessboard::get_current_player() {
-    std::cout   << "current player: "
-                << m_current_player.get_name()
+    std::cout   << m_current_player.get_name()
                 << " (" << (m_current_player.get_color() == color::black ? "black" : "white") << ")" << std::endl;
 }
 
@@ -325,3 +334,28 @@ void chessboard::is_empty_field(pos position) {
 }
 
 /*----------------------------------------------------------------------------*/
+
+static void reset_check_board(check_board **cb, int size) {
+    for(int i = 0; i < size; i++) {
+        for(int j = 0; j < size; j++) {
+            cb[i][j].killable = false;
+            cb[i][j].moveable = false;
+            cb[i][j].is_set = false;
+        }
+    }
+}
+
+void chessboard::move_character(pos target) {
+    if(m_check_board[target.x][target.y].is_set && m_check_board[target.x][target.x].killable) {
+        delete m_chessboard[target.x][target.y];
+        m_chessboard[target.x][target.y] = m_activated_character;
+        m_activated_character = nullptr;
+        reset_check_board(m_check_board, m_chessboard_size);
+    } else if (!m_check_board[target.x][target.y].is_set && m_check_board[target.x][target.y].moveable){
+        m_chessboard[target.x][target.y] = m_activated_character;
+        m_chessboard[activated_position.x][activated_position.y] = nullptr;
+        m_activated_character = nullptr;
+    } else {
+        std::cout << "no valid position!";
+    }
+}

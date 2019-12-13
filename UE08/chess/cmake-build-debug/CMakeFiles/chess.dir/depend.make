@@ -13,6 +13,7 @@ CMakeFiles/chess.dir/chessboard.cpp.o: ../bishop.h
 CMakeFiles/chess.dir/chessboard.cpp.o: ../chessboard.cpp
 CMakeFiles/chess.dir/chessboard.cpp.o: ../chessboard.h
 CMakeFiles/chess.dir/chessboard.cpp.o: ../chessman.h
+CMakeFiles/chess.dir/chessboard.cpp.o: ../io.h
 CMakeFiles/chess.dir/chessboard.cpp.o: ../king.h
 CMakeFiles/chess.dir/chessboard.cpp.o: ../knight.h
 CMakeFiles/chess.dir/chessboard.cpp.o: ../pawn.h

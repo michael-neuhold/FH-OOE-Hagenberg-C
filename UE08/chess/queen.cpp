@@ -30,7 +30,9 @@ bool queen::is_essential() const {
 
 bool queen::possible_move(pos origin, pos target, check_board **cb, int size) const {
 
-    // to do magic
+    /*
+     *  TODO possible_move queen
+     */
 
     return true;
 }

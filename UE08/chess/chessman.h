@@ -11,6 +11,7 @@
 class chessman {
 
 public:
+    virtual ~chessman() = default;
     virtual color get_color() const = 0;
     virtual std::string get_figure() const = 0;
     virtual bool is_essential() const = 0;
