@@ -2,6 +2,7 @@
 // Created by Michael Neuhold on 05.12.19.
 //
 #include <iostream>
+#include <cstdlib>
 #include "chessboard.h"
 #include "king.h"
 #include "queen.h"
@@ -11,8 +12,6 @@
 #include "pawn.h"
 #include "characters.h"
 #include "io.h"
-
-#include <cstdlib>
 
 // reverse terminal colors
 #define RESET   "\033[0m"
@@ -44,6 +43,21 @@ chessboard::chessboard(const int size) : m_chessboard_size{size}{
             (m_chessboard[i])[j] = nullptr;
         }
     }
+}
+
+/*----------------------------------------------------------------------------*/
+
+chessboard::~chessboard() {
+    for(int i = 0; i < m_chessboard_size; i++) {
+        for(int j = 0; j < m_chessboard_size; j++) {
+            delete m_chessboard[i][j];
+        }
+    }
+    for(int i = 0; i < m_chessboard_size; i++) {
+        delete m_chessboard[i];
+        delete m_check_board[i];
+    }
+    delete [] m_chessboard;
 }
 
 /*----------------------------------------------------------------------------*/
@@ -160,13 +174,11 @@ std::ostream& operator<<(std::ostream& os, const chessboard& cb) {
         for(int j = 0; j < cb.m_chessboard_size; j++) {
             os << (is_black_field(i,j) ? "" : REVERSED); // if white field -> invert terminal colors
             if(cb.m_chessboard[i][j] != EMPTY_FIELD) {
-                // set color to green if current character is activated
                 if(cb.m_check_board[i][j].killable) {
                     os << RED;
                 }
-
                 if(cb.m_activated_character != nullptr) {
-                    os << (cb.m_chessboard[i][j] == cb.m_activated_character ? BOLDGREEN : ""); //
+                    os << (cb.m_chessboard[i][j] == cb.m_activated_character ? BOLDGREEN : "");
                 }
                 os << SINGLE_SPACE << cb.m_chessboard[i][j] -> get_figure() << SINGLE_SPACE;
             } else {
@@ -177,7 +189,7 @@ std::ostream& operator<<(std::ostream& os, const chessboard& cb) {
                     os << THREE_SPACING;
                 }
             }
-            os << RESET;   // if white field -> return to original colors
+            os << RESET; // reset colors
         }
         print_vertical_numbers_right(os,i);
         os << std::endl;

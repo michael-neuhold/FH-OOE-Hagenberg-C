@@ -15,9 +15,8 @@ class chessboard {
     friend std::ostream &operator<<(std::ostream &os, const chessboard &cb);
 
 public:
-
-    // constructor with default chessboard size of 8 x 8
     chessboard(const int size = 8);
+    ~chessboard();
     void player_config(std::string player_a, std::string player_b);
     void start_game();
     bool activate_character(pos position);
