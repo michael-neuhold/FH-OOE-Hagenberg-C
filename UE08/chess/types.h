@@ -60,8 +60,3 @@ struct check_board {
     bool moveable{false};
     bool killable{false};
 };
-
-struct possible_moves {
-    pos *move;
-    pos *kill;
-};

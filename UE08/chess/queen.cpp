@@ -3,10 +3,8 @@
 //
 
 #include "queen.h"
+#include "./characters.h"
 
-// unicode queen
-#define WHITE_QUEEN "\u2655"
-#define BLACK_QUEEN "\u265B"
 
 /*----------------------------------------------------------------------------*/
 
@@ -40,18 +38,19 @@ bool queen::is_essential() const {
 
 /*----------------------------------------------------------------------------*/
 
-bool queen::possible_move(pos origin, pos target, check_board **cb, int size) const {
-
-    /*
-     *  TODO possible_move queen
-     */
-
-    return true;
+std::string queen::get_name() const {
+    return m_name;
 }
 
 /*----------------------------------------------------------------------------*/
 
-void queen::calc_all_possible_moves(pos origin, check_board **cb, int size) {
+void queen::set_first_move_done(bool moved) {
+    m_first_move_done = moved;
+}
+
+/*----------------------------------------------------------------------------*/
+
+void queen::calc_all_possible_moves(pos origin, check_board **cb, const int size) {
     int tmp_x;
     int tmp_y;
 
@@ -88,28 +87,4 @@ void queen::calc_all_possible_moves(pos origin, check_board **cb, int size) {
             }
         }
     }
-}
-
-/*----------------------------------------------------------------------------*/
-
-bool queen::get_is_valid() {
-    return m_is_valid;
-}
-
-/*----------------------------------------------------------------------------*/
-
-void queen::set_is_valid(bool is_valid) {
-    m_is_valid = is_valid;
-}
-
-/*----------------------------------------------------------------------------*/
-
-std::string queen::get_name() {
-    return m_name;
-}
-
-/*----------------------------------------------------------------------------*/
-
-void queen::set_first_move_done(bool moved) {
-    m_first_move_done = moved;
 }

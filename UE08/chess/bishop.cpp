@@ -4,9 +4,7 @@
 
 #include "bishop.h"
 
-// unicode bishop
-#define WHITE_BISHOP "\u2657"
-#define BLACK_BISHOP "\u265D"
+#include "./characters.h"
 
 /*----------------------------------------------------------------------------*/
 
@@ -40,18 +38,19 @@ bool bishop::is_essential() const {
 
 /*----------------------------------------------------------------------------*/
 
-bool bishop::possible_move(pos origin, pos target, check_board **cb, int size) const {
-
-    /*
-     *  TODO possible_move bishop
-     */
-
-    return true;
+std::string bishop::get_name() const {
+    return m_name;
 }
 
 /*----------------------------------------------------------------------------*/
 
-void bishop::calc_all_possible_moves(pos origin, check_board **cb, int size) {
+void bishop::set_first_move_done(bool moved) {
+    m_first_move_done = moved;
+}
+
+/*----------------------------------------------------------------------------*/
+
+void bishop::calc_all_possible_moves(pos origin, check_board **cb, const int size) {
 
     int tmp_x;
     int tmp_y;
@@ -86,28 +85,4 @@ void bishop::calc_all_possible_moves(pos origin, check_board **cb, int size) {
         }
 
     }
-}
-
-/*----------------------------------------------------------------------------*/
-
-bool bishop::get_is_valid() {
-    return m_is_valid;
-}
-
-/*----------------------------------------------------------------------------*/
-
-void bishop::set_is_valid(bool is_valid) {
-    m_is_valid = is_valid;
-}
-
-/*----------------------------------------------------------------------------*/
-
-std::string bishop::get_name() {
-    return m_name;
-}
-
-/*----------------------------------------------------------------------------*/
-
-void bishop::set_first_move_done(bool moved) {
-    m_first_move_done = moved;
 }

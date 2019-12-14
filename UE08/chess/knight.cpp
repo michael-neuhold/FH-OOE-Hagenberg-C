@@ -3,10 +3,8 @@
 //
 
 #include "knight.h"
+#include "./characters.h"
 
-// unicode knight
-#define WHITE_BISHOP "\u2658"
-#define BLACK_BISHOP "\u265E"
 
 /*----------------------------------------------------------------------------*/
 
@@ -40,18 +38,19 @@ bool knight::is_essential() const {
 
 /*----------------------------------------------------------------------------*/
 
-bool knight::possible_move(pos origin, pos target, check_board **cb, int size) const {
-
-    /*
-     *  TODO possible_move knight
-     */
-
-    return true;
+std::string knight::get_name() const {
+    return m_name;
 }
 
 /*----------------------------------------------------------------------------*/
 
-void knight::calc_all_possible_moves(pos origin, check_board **cb, int size) {
+void knight::set_first_move_done(bool moved) {
+    m_first_move_done = moved;
+}
+
+/*----------------------------------------------------------------------------*/
+
+void knight::calc_all_possible_moves(pos origin, check_board **cb, const int size) {
 
     int coordinate_change_x[] = { 2 , 1 , -1 , -2 , -2 , -1 , 1 , 2 };
     int coordinate_change_y[] = { 1 , 2 , 2 , 1 , -1 , -2 , -2 , -1 };
@@ -72,28 +71,4 @@ void knight::calc_all_possible_moves(pos origin, check_board **cb, int size) {
             }
         }
     }
-}
-
-/*----------------------------------------------------------------------------*/
-
-bool knight::get_is_valid() {
-    return m_is_valid;
-}
-
-/*----------------------------------------------------------------------------*/
-
-void knight::set_is_valid(bool is_valid) {
-    m_is_valid = is_valid;
-}
-
-/*----------------------------------------------------------------------------*/
-
-std::string knight::get_name() {
-    return m_name;
-}
-
-/*----------------------------------------------------------------------------*/
-
-void knight::set_first_move_done(bool moved) {
-    m_first_move_done = moved;
 }

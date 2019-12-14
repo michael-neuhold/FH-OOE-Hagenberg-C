@@ -3,11 +3,8 @@
 //
 
 #include "pawn.h"
+#include "./characters.h"
 
-
-// unicode pawn
-#define WHITE_PAWN "\u2659"
-#define BLACK_PAWN "\u265F"
 
 /*----------------------------------------------------------------------------*/
 
@@ -41,18 +38,19 @@ bool pawn::is_essential() const {
 
 /*----------------------------------------------------------------------------*/
 
-bool pawn::possible_move(pos origin, pos target, check_board **cb, int size) const {
-
-    /*
-     *  TODO possible_move pawn
-     */
-
-    return true;
+std::string pawn::get_name() const {
+    return m_name;
 }
 
 /*----------------------------------------------------------------------------*/
 
-void pawn::calc_all_possible_moves(pos origin, check_board **cb, int size) {
+void pawn::set_first_move_done(bool moved) {
+    m_first_move_done = moved;
+}
+
+/*----------------------------------------------------------------------------*/
+
+void pawn::calc_all_possible_moves(pos origin, check_board **cb, const int size) {
 
     color target_color = (cb[origin.x][origin.y].color == color::white ? color::black : color::white);
 
@@ -92,26 +90,5 @@ void pawn::calc_all_possible_moves(pos origin, check_board **cb, int size) {
     }
 }
 
-/*----------------------------------------------------------------------------*/
 
-bool pawn::get_is_valid() {
-    return m_is_valid;
-}
 
-/*----------------------------------------------------------------------------*/
-
-void pawn::set_is_valid(bool is_valid) {
-    m_is_valid = is_valid;
-}
-
-/*----------------------------------------------------------------------------*/
-
-std::string pawn::get_name() {
-    return m_name;
-}
-
-/*----------------------------------------------------------------------------*/
-
-void pawn::set_first_move_done(bool moved) {
-    m_first_move_done = moved;
-}

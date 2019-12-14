@@ -9,7 +9,7 @@
 #include "knight.h"
 #include "rook.h"
 #include "pawn.h"
-#include "types.h"
+#include "characters.h"
 #include "io.h"
 
 #include <cstdlib>
@@ -21,11 +21,6 @@
 #define BOLDYELLOW  "\033[1m\033[33m"
 #define RED "\033[0;31m"
 
-// unicode characters
-#define PIPE_SYMBOL "\u2503"
-#define CROSS_SYMBOL "\u254B"
-#define BAR_SYMBOL "\u2501"
-
 // spacing
 #define THREE_SPACING "   "
 #define SINGLE_SPACE " "
@@ -35,6 +30,7 @@
 #define SUB_LINE_LENGTH 3
 #define SMALL_A 97
 #define EMPTY_FIELD nullptr
+//#define SIMULATION
 
 /*----------------------------------------------------------------------------*/
 
@@ -215,6 +211,7 @@ void chessboard::init_characters(int first_row, int second_row, color color) {
         }
     }
 
+    // traditional characters
     m_chessboard[first_row][0 + calculate_offset(m_chessboard_size)] = new rook(color);
     m_chessboard[first_row][1 + calculate_offset(m_chessboard_size)] = new knight(color);
     m_chessboard[first_row][2 + calculate_offset(m_chessboard_size)] = new bishop(color);
@@ -225,21 +222,13 @@ void chessboard::init_characters(int first_row, int second_row, color color) {
     m_chessboard[first_row][7 + calculate_offset(m_chessboard_size)] = new rook(color);
 
 
+#ifndef SIMULATION
     // second row
     for(int j = 0; j < m_chessboard_size; j++) {
         m_chessboard[second_row][j] =  new pawn(color);
     }
+#endif
 
-
-    /**
-     *
-     * Testing:
-     *
-     */
-    if(color == color::black){
-        //m_chessboard[5][2] = new queen(color::white);
-       //m_chessboard[4][3] = new pawn(color::black);
-    }
 }
 
 /*----------------------------------------------------------------------------*/
@@ -287,8 +276,6 @@ bool chessboard::activate_character(pos position) {
 
         // check all valid moves
         m_activated_character -> calc_all_possible_moves(position, m_check_board, m_chessboard_size);
-
-        // fill arrays with positions t
 
     } else {
         std::cout << "thats not your character";
@@ -352,24 +339,20 @@ bool chessboard::move_character(pos target) {
         m_chessboard[target.x][target.y] = m_activated_character;
         m_chessboard[activated_position.x][activated_position.y] = nullptr;
         m_activated_character = nullptr;
-        reset_check_board(m_check_board, m_chessboard_size);
-        // toggle current user
-        m_current_player = (m_current_player.get_color() == m_players[0].get_color() ? m_players[1] : m_players[0]);
     } else if (m_check_board[target.x][target.y].moveable){
         m_chessboard[target.x][target.y] = m_activated_character;
         m_chessboard[activated_position.x][activated_position.y] = nullptr;
-        if(m_activated_character -> get_name() == "pawn") {
-            m_activated_character -> set_first_move_done(true);
-        }
+        m_activated_character -> set_first_move_done(true);
         m_activated_character = nullptr;
-        reset_check_board(m_check_board, m_chessboard_size);
-        // toggle current user
-        m_current_player = (m_current_player.get_color() == m_players[0].get_color() ? m_players[1] : m_players[0]);
     } else {
         std::cout << "target pos.x = " << target.x << " pos.y = " << target.y << std::endl;
         std::cout << "no valid position!";
         return false;
     }
+    // reset tmp check board for next activated character
+    reset_check_board(m_check_board, m_chessboard_size);
+    // toggle current user
+    m_current_player = (m_current_player.get_color() == m_players[0].get_color() ? m_players[1] : m_players[0]);
     return true;
 }
 
@@ -377,4 +360,62 @@ bool chessboard::move_character(pos target) {
 
 bool chessboard::get_game_over() {
     return m_game_over;
+}
+
+/*----------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
+// not the best implementation for simulation ;)
+
+void chessboard::simulate() {
+
+    pos *current_color_characters = new pos[m_chessboard_size];
+    int current_color_characters_count = 0;
+
+    // store characters of current players
+    for(int i = 0; i < m_chessboard_size; i++) {
+        for(int j = 0; j < m_chessboard_size; j++) {
+            if(m_chessboard[i][j] != nullptr && m_chessboard[i][j]->get_color() == m_current_player.get_color()) {
+                pos current_pos(i,j);
+                current_color_characters[current_color_characters_count] = current_pos;
+                current_color_characters_count++;
+            }
+        }
+    }
+
+    // check for a random character all possible moves
+        // if no move is possible -> take the next random character
+    int current_moves_count;
+    do {
+        int random_index = std::rand() % (current_color_characters_count-1);
+        activate_character(current_color_characters[random_index]);
+        current_moves_count = 0;
+
+        for (int j = 0; j < m_chessboard_size; j++) {
+            for (int k = 0; k < m_chessboard_size; k++) {
+                if (m_check_board[j][k].moveable || m_check_board[j][k].killable) {
+                    current_moves_count++;
+                }
+            }
+        }
+    } while(current_moves_count > 0);
+
+    // store all possible positions
+    pos *current_moves = new pos[m_chessboard_size];
+    int current_moves_c = 0;
+    for (int j = 0; j < m_chessboard_size; j++) {
+        for (int k = 0; k < m_chessboard_size; k++) {
+            if (m_check_board[j][k].moveable || m_check_board[j][k].killable) {
+                pos current_move_target(j,k);
+                current_moves[current_moves_c] = current_move_target;
+                current_moves_c++;
+            }
+        }
+    }
+
+    // select random move
+    int random_index = std::rand() % (current_moves_c - 1);
+    move_character(current_moves[random_index]);
+
+    delete [] current_moves;
+    delete [] current_color_characters;
 }

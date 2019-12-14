@@ -86,6 +86,9 @@
 		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE08/chess/bishop.h">
 			<Option target="chess"/>
 		</Unit>
+		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE08/chess/characters.h">
+			<Option target="chess"/>
+		</Unit>
 		<Unit filename="/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE08/chess/chessboard.cpp">
 			<Option target="chess"/>
 		</Unit>

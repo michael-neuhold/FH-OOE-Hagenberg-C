@@ -3,11 +3,9 @@
 //
 
 #include "rook.h"
+#include "./characters.h"
 
 
-// unicode rook
-#define WHITE_BISHOP "\u2656"
-#define BLACK_BISHOP "\u265C"
 
 /*----------------------------------------------------------------------------*/
 
@@ -41,18 +39,19 @@ bool rook::is_essential() const {
 
 /*----------------------------------------------------------------------------*/
 
-bool rook::possible_move(pos origin, pos target, check_board **cb, int size) const {
-
-    /*
-     *  TODO possible_move rook
-     */
-
-    return true;
+std::string rook::get_name() const{
+    return m_name;
 }
 
 /*----------------------------------------------------------------------------*/
 
-void rook::calc_all_possible_moves(pos origin, check_board **cb, int size) {
+void rook::set_first_move_done(bool moved) {
+    m_first_move_done = moved;
+}
+
+/*----------------------------------------------------------------------------*/
+
+void rook::calc_all_possible_moves(pos origin, check_board **cb, const int size) {
 
     int tmp_x;
     int tmp_y;
@@ -86,28 +85,4 @@ void rook::calc_all_possible_moves(pos origin, check_board **cb, int size) {
             }
         }
     }
-}
-
-/*----------------------------------------------------------------------------*/
-
-bool rook::get_is_valid() {
-    return m_is_valid;
-}
-
-/*----------------------------------------------------------------------------*/
-
-void rook::set_is_valid(bool is_valid) {
-    m_is_valid = is_valid;
-}
-
-/*----------------------------------------------------------------------------*/
-
-std::string rook::get_name() {
-    return m_name;
-}
-
-/*----------------------------------------------------------------------------*/
-
-void rook::set_first_move_done(bool moved) {
-    m_first_move_done = moved;
 }
