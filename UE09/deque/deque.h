@@ -1,8 +1,19 @@
-//
-// Created by Michael Neuhold on 19.12.19.
-//
+//       $Id: deque.h 2360 2019-12-18 21:06:42Z p20068 $
+//      $URL: https://svn01.fh-hagenberg.at/se/sw/swo3/trunk/Aufgaben/WS19/VZ/deque/deque.h $
+// $Revision: 2360 $
+//     $Date: 2019-12-18 22:06:42 +0100 (Mi., 18 Dez 2019) $
+//   Creator: peter.kulczycki<AT>fh-hagenberg.at
+//  Creation: June 1, 2018
+//   $Author: p20068 $
+// Copyright: (c) 2019 Peter Kulczycki (peter.kulczycki<AT>fh-hagenberg.at)
+//            (c) 2019 Michael Hava (michael.hava<AT>fh-hagenberg.at)
+//   License: This document contains proprietary information belonging to
+//            University of Applied Sciences Upper Austria, Campus Hagenberg. It
+//            is distributed under the Boost Software License, Version 1.0 (see
+//            http://www.boost.org/LICENSE_1_0.txt).
 
 #pragma once
+#define SWO_DEQUE_H_INCLUDED
 
 #include <cstddef>
 #include <initializer_list>
@@ -10,7 +21,8 @@
 
 namespace swo {
 
-    template <typename T> class deque final {
+    template <typename T>
+    class deque final {
     public:
         using const_reference = T const &;
         using reference       = T &;
@@ -70,6 +82,9 @@ namespace swo {
 
             iterator & operator += (difference_type offset) noexcept;
             iterator & operator -= (difference_type offset) noexcept;
+
+        private:
+            value_type *m_pos{nullptr};
         };
 
         deque ();
@@ -116,9 +131,17 @@ namespace swo {
         void resize (size_type count, T const & value);
 
         void swap (deque & other) noexcept;
+
+
+    private:
+        // data component
+        value_type *m_data{nullptr};
+        size_type m_capacity;
+        size_type m_front;
+        size_type m_back;
+
     };
 
 }   // namespace swo
 
-
-
+#include "./deque.cpp"
