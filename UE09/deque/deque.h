@@ -133,12 +133,13 @@ namespace swo {
         void swap (deque & other) noexcept;
 
 
-    private:
+    //private:
         // data component
         value_type *m_data{nullptr};
         size_type m_capacity;
-        size_type m_front;
-        size_type m_back;
+        size_type m_front{0};
+        size_type m_back{0};
+        size_type m_empty{true};
 
     };
 

@@ -14,14 +14,6 @@ cassert
 deque.h
 /Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE09/deque/./deque.h
 
-/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE09/deque/deque.cpp
-iostream
--
-cassert
--
-deque.h
-/Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE09/deque/deque.h
-
 /Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE09/deque/deque.h
 cstddef
 -
