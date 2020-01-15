@@ -29,6 +29,8 @@ namespace swo {
         using size_type       = std::size_t;
         using value_type      = T;
 
+        friend std::ostream &print_queue(std::ostream &os, const deque &deq);
+
         friend bool operator == (deque const & lhs, deque const & rhs) noexcept { return false; }
         friend bool operator != (deque const & lhs, deque const & rhs) noexcept { return false; }
         friend bool operator <  (deque const & lhs, deque const & rhs) noexcept { return false; }
@@ -48,12 +50,29 @@ namespace swo {
             using reference         = T &;
             using value_type        = T;
 
-            friend bool operator == (iterator const & lhs, iterator const & rhs) noexcept { return false; }
-            friend bool operator != (iterator const & lhs, iterator const & rhs) noexcept { return false; }
-            friend bool operator <  (iterator const & lhs, iterator const & rhs) noexcept { return false; }
-            friend bool operator <= (iterator const & lhs, iterator const & rhs) noexcept { return false; }
-            friend bool operator >  (iterator const & lhs, iterator const & rhs) noexcept { return false; }
-            friend bool operator >= (iterator const & lhs, iterator const & rhs) noexcept { return false; }
+            friend bool operator == (iterator const & lhs, iterator const & rhs) noexcept {
+                return lhs.m_pos == rhs.m_pos;
+            }
+
+            friend bool operator != (iterator const & lhs, iterator const & rhs) noexcept {
+                return lhs.m_pos != rhs.m_pos;
+            }
+
+            friend bool operator <  (iterator const & lhs, iterator const & rhs) noexcept {
+                return lhs.m_pos < rhs.m_pos;
+            }
+
+            friend bool operator <= (iterator const & lhs, iterator const & rhs) noexcept {
+                return true;//lhs.m_pos <= rhs.m_pos;
+            }
+
+            friend bool operator >  (iterator const & lhs, iterator const & rhs) noexcept {
+                return true;//lhs.m_pos > rhs.m_pos;
+            }
+
+            friend bool operator >= (iterator const & lhs, iterator const & rhs) noexcept {
+                return lhs.m_pos >= rhs.m_pos;
+            }
 
             friend iterator operator + (iterator itor, difference_type offset) noexcept {
                 return itor += offset;
@@ -64,6 +83,7 @@ namespace swo {
             }
 
             iterator ();
+            iterator (value_type *pos, deque<T> *deq);
             iterator (iterator const & src);
 
             ~iterator ();
@@ -85,6 +105,7 @@ namespace swo {
 
         private:
             value_type *m_pos{nullptr};
+            deque *m_deq{nullptr};
         };
 
         deque ();
@@ -137,8 +158,8 @@ namespace swo {
         // data component
         value_type *m_data{nullptr};
         size_type m_capacity;
-        size_type m_front{0};
-        size_type m_back{0};
+        int m_front{0};
+        int m_back{0};
         size_type m_empty{true};
 
     };

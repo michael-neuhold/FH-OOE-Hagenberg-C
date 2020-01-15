@@ -1,9 +1,11 @@
 #include <iostream>
+#include <vector>
 #include "deque.h"
 
 void separator() {
     std::cout << "===========================================" << std::endl;
 }
+
 
 int main() {
 
@@ -80,6 +82,70 @@ int main() {
     separator();
 
     /* ================== ================== ================== ================== ================== */
+
+    // TEST push front combined with push back
+
+    swo::deque<int> q7;
+    q7.push_front(3);
+    q7.push_front(33);
+    q7.push_front(333);
+    q7.push_back(4);
+    q7.push_back(44);
+    q7.push_back(444);
+    q7.push_back(444);
+    q7.push_back(444);
+    q7.push_back(444);
+    q7.push_back(444);
+    q7.push_back(444);
+    q7.push_back(444);
+    q7.push_back(444);
+
+    for(int i = 0; i < 10; i++ ) {
+        std::cout << "value[" << i << "] = " << q7.m_data[i] << std::endl;
+    }
+    std::cout << "current front: " << q7.m_front << std::endl;
+    std::cout << "current back: " << q7.m_back << std::endl;
+
+    separator();
+
+    /* ================== ================== ================== ================== ================== */
+
+
+    swo::deque<int>::iterator begin = q7.begin();
+    swo::deque<int>::iterator end = q7.end();
+    /*std::cout << *begin << std::endl;
+    begin++;
+    if(begin == q6.end()) {
+        std::cout << *begin << std::endl;
+    }*/
+
+   // begin += 2;
+    std::cout << *begin << std::endl;
+
+    //end -= 2;
+    std::cout << *end << std::endl;
+
+
+    // print deque
+    std::cout << "deque: {";
+    for(swo::deque<int>::iterator p = q7.begin();p != q7.end();p++) {
+        std::cout << (p == q7.begin() ? "":",") << *p;
+    }
+    std::cout << "}" << std::endl;
+
+
+    std::cout << "deque: {";
+    for(swo::deque<int>::iterator p = q7.end();p != q7.begin();p--) {
+        std::cout << (p == q7.end() ? "":",") << *p;
+    }
+    std::cout << "}" << std::endl;
+
+    separator();
+
+    /* ================== ================== ================== ================== ================== */
+
+
+
 
 
 

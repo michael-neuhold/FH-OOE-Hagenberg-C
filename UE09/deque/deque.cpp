@@ -12,7 +12,7 @@
 //            is distributed under the Boost Software License, Version 1.0 (see
 //            http://www.boost.org/LICENSE_1_0.txt).
 
-#if defined SWO_DEQUE_H_INCLUDED
+//#if defined SWO_DEQUE_H_INCLUDED
 
 
 #include <iostream>
@@ -26,7 +26,17 @@
 
 namespace swo {
 
+
 template <typename T> deque <T>::iterator::iterator () {
+}
+
+// mew implemented iterator
+template <typename T> deque <T>::iterator::iterator(value_type *pos, deque<T> *deq)
+    :   m_pos{pos},
+        m_deq{deq} {
+
+    //std::cout << "m_capacity: " << deq->m_capacity;
+    //std::cout << "iterator constructor || value at pos: " << *m_pos << std::endl;
 }
 
 template <typename T> deque <T>::iterator::iterator (iterator const & src) {
@@ -48,41 +58,64 @@ template <typename T> typename deque <T>::iterator::pointer deque <T>::iterator:
 }
 
 template <typename T> typename deque <T>::iterator::reference deque <T>::iterator::operator [] (difference_type offset) {
-    // range check
-    // set m_pos = offset
-    // return *m_pos;
     return {};
 }
 
 template <typename T> typename deque <T>::iterator & deque <T>::iterator::operator ++ () noexcept {
-    ++m_pos;
+    if(m_pos + 1 < m_deq->m_data + m_deq->m_capacity) {
+        ++m_pos;
+    } else {
+        m_pos = m_deq->m_data;
+    }
     return *this;
 }
 
 template <typename T> typename deque <T>::iterator deque <T>::iterator::operator ++ (int) noexcept {
    iterator tmp{*this};
-    ++m_pos;
+    if(m_pos + 1 < m_deq->m_data + m_deq->m_capacity) {
+        ++m_pos;
+    } else {
+        m_pos = m_deq->m_data;
+    }
     return tmp;
 }
 
 template <typename T> typename deque <T>::iterator & deque <T>::iterator::operator -- () noexcept {
-    --m_pos;
+    if(m_pos - 1 >= m_deq->m_data) {
+        --m_pos;
+    } else  {
+        m_pos = m_deq->m_data + m_deq->m_capacity - 1;
+    }
     return *this;
 }
 
 template <typename T> typename deque <T>::iterator deque <T>::iterator::operator -- (int) noexcept {
     iterator tmp{*this};
-    --m_pos;
+    if(m_pos - 1 >= m_deq->m_data) {
+        --m_pos;
+    } else  {
+        m_pos = m_deq->m_data + m_deq->m_capacity - 1;
+    }
     return tmp;
 }
 
 template <typename T> typename deque <T>::iterator & deque <T>::iterator::operator += (difference_type offset) noexcept {
-    m_pos += offset;
+    if(m_pos + offset < m_deq->m_data + m_deq->m_capacity) {
+        m_pos += offset;
+    } else {
+        int diff = m_deq->m_data + m_deq->m_capacity - m_pos + offset;
+        m_pos = m_deq->m_data + diff;
+    }
     return *this;
 }
 
 template <typename T> typename deque <T>::iterator & deque <T>::iterator::operator -= (difference_type offset) noexcept {
-    m_pos += offset;
+    if(m_pos - offset >= m_deq->m_data) {
+        m_pos -= offset;
+    } else {
+        int diff = m_deq->m_data + offset - m_pos;
+        m_pos = (m_deq->m_data + m_deq->m_capacity) - diff;
+    }
     return *this;
 }
 
@@ -131,7 +164,7 @@ template <typename T> deque <T>::deque (deque && src) noexcept
         m_capacity{src.m_capacity},
         m_back{src.m_back},
         m_front{src.m_front},
-        m_empty{src.m_empty}{
+        m_empty{src.m_empty} {
 
     std::cout << "constructor move" << std::endl;
     //src.m_data = nullptr;
@@ -141,9 +174,7 @@ template <typename T> deque <T>::deque (deque && src) noexcept
 template <typename T> deque <T>::deque (std::initializer_list <T> init) : m_data{new T [init.size()]}, m_capacity{init.size()} {
     std::cout << "constructor with initializer list" << std::endl;
     for(size_type i = 0; i < init.size(); i++) {
-        //m_data[i] = init.begin()[i];
         push_back(init.begin()[i]);
-        //std::cout << "value: " << init.begin()[i] << std::endl;
     }
 }
 
@@ -222,16 +253,16 @@ template <typename T> typename deque <T>::reference deque <T>::front () {
 }
 
 template <typename T> typename deque <T>::iterator deque <T>::begin () noexcept {
-   return iterator(m_data);
+   return iterator(m_data + m_front, this);
 }
 
 template <typename T> typename deque <T>::iterator deque <T>::end () noexcept {
     // circular ??
-   return iterator(m_data);
+   return iterator(m_data + m_back, this);
 }
 
 template <typename T> bool deque <T>::empty () const noexcept {
-   return true;
+   return m_front == m_back;
 }
 
 template <typename T> typename deque <T>::size_type deque <T>::size () const noexcept {
@@ -241,7 +272,6 @@ template <typename T> typename deque <T>::size_type deque <T>::size () const noe
 template <typename T> void deque <T>::clear () noexcept {
     delete [] m_data;
     m_data = nullptr;
-    // set size diff between front and back to 0
 }
 
 template <typename T> void deque <T>::push_back (T const & value) {
@@ -254,9 +284,10 @@ template <typename T> void deque <T>::push_back (T const & value) {
         if(m_back + 1 < m_capacity) {
             m_back++;
             m_data[m_back] = value;
+        } else {
+            resize(m_capacity * 2, value);
         }
     }
-
 }
 
 template <typename T> void deque <T>::push_back (T && value) {
@@ -266,9 +297,12 @@ template <typename T> void deque <T>::push_back (T && value) {
         m_data[m_back] = value;
         m_empty = false;
     } else {
-        if(m_back + 1 < m_capacity) {
+        if(m_back + 1 < m_capacity && m_back + 1 != m_front) {
             m_back++;
             m_data[m_back] = value;
+        } else {
+            resize(m_capacity * 2, value);
+            //std::cout << "realloc?" << std::endl;
         }
     }
 }
@@ -278,13 +312,56 @@ template <typename T> void deque <T>::pop_back () {
 }
 
 template <typename T> void deque <T>::push_front (T const & value) {
+    if(m_empty) {
+        m_data[m_front] = value;
+        m_empty = false;
+    } else {
+        if((m_front - 1) < 0) {
+            size_type tmp_front = m_capacity - 1;
+            if(tmp_front != m_back) {
+                m_front = tmp_front;
+                m_data[m_front] = value;
+            } else {
+                std::cout << "resize?" << std::endl;
+                resize(m_capacity * 2, value);
+            }
+        } else {
+            m_front--;
+            m_data[m_front] = value;
+        }
+    }
 }
 
 template <typename T> void deque <T>::push_front (T && value) {
+    if(m_empty) {
+        m_data[m_front] = value;
+        m_empty = false;
+    } else {
+        if((m_front - 1) < 0) {
+            size_type tmp_front = m_capacity - 1;
+            if(tmp_front != m_back) {
+                m_front = tmp_front;
+                m_data[m_front] = value;
+            } else {
+                std::cout << "resize?" << std::endl;
+                resize(m_capacity * 2, value);
+            }
+        } else {
+            // TODO check if front = back
+            m_front--;
+            m_data[m_front] = value;
+        }
+    }
 }
 
 template <typename T> void deque <T>::pop_front () {
-    // delete element from front position
+    if(m_front + 1 < m_capacity && m_front + 1 != m_back) {
+        m_front++;
+    } else if(m_front + 1 >= m_capacity && m_back != 0) {
+        m_front = 0;
+    } else {
+        std::cout << "ERROR (reached m_back)" << std::endl;
+    }
 }
 
 template <typename T> void deque <T>::resize (size_type count) {
@@ -293,13 +370,15 @@ template <typename T> void deque <T>::resize (size_type count) {
     for(size_type i = 0; i < m_capacity; i++) {
         new_data[i] = std::move(m_data[i]);
     }
+    m_capacity = count;
+    std::cout << "back" << m_back << " front" << m_front;
     delete [] m_data;
     m_data = new_data;
 }
 
 template <typename T> void deque <T>::resize (size_type count, T const & value) {
     resize(count);
-    // push back(value);
+    push_back(value);
 }
 
 template <typename T> void deque <T>::swap (deque & other) noexcept {
