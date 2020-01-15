@@ -86,6 +86,8 @@ int main() {
     // TEST push front combined with push back
 
     swo::deque<int> q7;
+
+
     q7.push_front(3);
     q7.push_front(33);
     q7.push_front(333);
@@ -100,7 +102,8 @@ int main() {
     q7.push_back(444);
     q7.push_back(444);
 
-    for(int i = 0; i < 10; i++ ) {
+
+    for(int i = 0; i < 14; i++ ) {
         std::cout << "value[" << i << "] = " << q7.m_data[i] << std::endl;
     }
     std::cout << "current front: " << q7.m_front << std::endl;
@@ -109,6 +112,7 @@ int main() {
     separator();
 
     /* ================== ================== ================== ================== ================== */
+
 
 
     swo::deque<int>::iterator begin = q7.begin();
@@ -133,7 +137,7 @@ int main() {
     }
     std::cout << "}" << std::endl;
 
-
+/*
     std::cout << "deque: {";
     for(swo::deque<int>::iterator p = q7.end();p != q7.begin();p--) {
         std::cout << (p == q7.end() ? "":",") << *p;
@@ -141,7 +145,7 @@ int main() {
     std::cout << "}" << std::endl;
 
     separator();
-
+*/
     /* ================== ================== ================== ================== ================== */
 
 

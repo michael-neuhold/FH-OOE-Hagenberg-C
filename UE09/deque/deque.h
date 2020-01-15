@@ -83,7 +83,7 @@ namespace swo {
             }
 
             iterator ();
-            iterator (value_type *pos, deque<T> *deq);
+            iterator (value_type *pos, deque *deq);
             iterator (iterator const & src);
 
             ~iterator ();
@@ -160,7 +160,7 @@ namespace swo {
         size_type m_capacity;
         int m_front{0};
         int m_back{0};
-        size_type m_empty{true};
+        bool m_empty{true};
 
     };
 

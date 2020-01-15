@@ -17,6 +17,7 @@
 
 #include <iostream>
 #include <cassert>
+#include <exception>
 #include "deque.h"
 
 
@@ -26,12 +27,12 @@
 
 namespace swo {
 
-
+// = delete
 template <typename T> deque <T>::iterator::iterator () {
 }
 
 // mew implemented iterator
-template <typename T> deque <T>::iterator::iterator(value_type *pos, deque<T> *deq)
+template <typename T> deque <T>::iterator::iterator(value_type *pos, deque *deq)
     :   m_pos{pos},
         m_deq{deq} {
 
@@ -39,14 +40,18 @@ template <typename T> deque <T>::iterator::iterator(value_type *pos, deque<T> *d
     //std::cout << "iterator constructor || value at pos: " << *m_pos << std::endl;
 }
 
-template <typename T> deque <T>::iterator::iterator (iterator const & src) {
+template <typename T> deque <T>::iterator::iterator (iterator const & src)
+    :   m_pos{src.m_pos},
+        m_deq{src.m_deq} {
 }
 
 template <typename T> deque <T>::iterator::~iterator () {
 }
 
 template <typename T> typename deque <T>::iterator & deque <T>::iterator::operator = (iterator const & src) {
-   return *this;
+    m_pos = src.m_pos;
+    m_deq = src.m_deq;
+    return *this;
 }
 
 template <typename T> typename deque <T>::iterator::reference deque <T>::iterator::operator * () {
@@ -71,7 +76,7 @@ template <typename T> typename deque <T>::iterator & deque <T>::iterator::operat
 }
 
 template <typename T> typename deque <T>::iterator deque <T>::iterator::operator ++ (int) noexcept {
-   iterator tmp{*this};
+    iterator tmp{*this};
     if(m_pos + 1 < m_deq->m_data + m_deq->m_capacity) {
         ++m_pos;
     } else {
@@ -100,20 +105,30 @@ template <typename T> typename deque <T>::iterator deque <T>::iterator::operator
 }
 
 template <typename T> typename deque <T>::iterator & deque <T>::iterator::operator += (difference_type offset) noexcept {
+
+    if(offset >= m_deq->m_capacity) {
+        throw std::range_error("range error occured!");
+    }
+
     if(m_pos + offset < m_deq->m_data + m_deq->m_capacity) {
         m_pos += offset;
     } else {
-        int diff = m_deq->m_data + m_deq->m_capacity - m_pos + offset;
+        int diff = (m_pos + offset) - (m_deq->m_data + m_deq->m_capacity);
         m_pos = m_deq->m_data + diff;
     }
     return *this;
 }
 
 template <typename T> typename deque <T>::iterator & deque <T>::iterator::operator -= (difference_type offset) noexcept {
+
+    if(offset >= m_deq->m_capacity) {
+        throw std::range_error("range error occured!");
+    }
+
     if(m_pos - offset >= m_deq->m_data) {
         m_pos -= offset;
     } else {
-        int diff = m_deq->m_data + offset - m_pos;
+        int diff = m_deq->m_data - (m_pos - offset);
         m_pos = (m_deq->m_data + m_deq->m_capacity) - diff;
     }
     return *this;
@@ -127,52 +142,54 @@ namespace swo {
 
 // ---------------------------- CONSTRUCTOR -------------------------------------
 
-template <typename T> deque <T>::deque () : m_data{new T [INITIAL_SIZE]}, m_capacity{INITIAL_SIZE} {
-    std::cout << "constructor with 0 Parameters" << std::endl;
+template <typename T> deque <T>::deque ()
+    :   m_data{new T [INITIAL_SIZE]},
+        m_capacity{INITIAL_SIZE} {
+    std::cout << "deque constructor" << std::endl;
 }
 
-template <typename T> deque <T>::deque (size_type count) : m_data{new T [count]}, m_capacity{count} {
-    std::cout << "constructor with 1<int> Parameters" << std::endl;
+template <typename T> deque <T>::deque (size_type count)
+    :   m_data{new T [count]},
+        m_capacity{count} {
+    std::cout << "deque constructor with size" << std::endl;
 }
 
 template <typename T> deque <T>::deque (size_type count, T const & value)
     :   m_data{new T [count]},
         m_capacity{count} {
-
-    std::cout << "constructor with size<int> and one data element" << std::endl;
-
-    // init all elements with value
-    for(size_type i = 0; i < count; i++) {
-        push_back(value);
-    }
+    std::cout << "deque constructor with size, data element" << std::endl;
+    push_back(value);
 }
 
 template <typename T> deque <T>::deque (deque const & src)
     :   m_data{new T [src.size()]},
-        m_capacity{src.m_capacity},
-        m_back{src.m_back},
-        m_front{src.m_front} {
-
-    std::cout << "constructor copy" << std::endl;
-    for(size_type i = 0; i <= src.m_back; i++) {
+        m_capacity{src.size()},
+        m_back{src.m_back},         // getter
+        m_front{src.m_front},       // getter
+        m_empty{src.m_empty} {
+    std::cout << "deque constructor copy" << std::endl;
+    for(size_type i = 0; i < src.size(); i++) {
         m_data[i] = src.m_data[i];
     }
 }
 
 template <typename T> deque <T>::deque (deque && src) noexcept
     :   m_data{src.m_data},
-        m_capacity{src.m_capacity},
-        m_back{src.m_back},
-        m_front{src.m_front},
-        m_empty{src.m_empty} {
-
+        m_capacity{src.size()},
+        m_back{src.m_back},         // getter
+        m_front{src.m_front},       // getter
+        m_empty{src.m_empty} {      // getter
     std::cout << "constructor move" << std::endl;
-    //src.m_data = nullptr;
-    //src.m_capacity = 0;
+    src.m_data = nullptr;
+    src.m_capacity = 0;
+    src.m_back = 0;
+    src.m_front = 0;
 }
 
-template <typename T> deque <T>::deque (std::initializer_list <T> init) : m_data{new T [init.size()]}, m_capacity{init.size()} {
-    std::cout << "constructor with initializer list" << std::endl;
+template <typename T> deque <T>::deque (std::initializer_list <T> init)
+    :   m_data{new T [init.size()]},
+        m_capacity{init.size()} {
+    std::cout << "deque constructor initializer_list" << std::endl;
     for(size_type i = 0; i < init.size(); i++) {
         push_back(init.begin()[i]);
     }
@@ -183,72 +200,103 @@ template <typename T> deque <T>::~deque () {
 }
 
 template <typename T> deque <T> & deque <T>::operator = (deque const & src) {
-    assert(m_capacity >= src.m_capacity);
-    for(size_type i = 0; i < src.m_capacity; i++) {
-        m_data[i] = std::move(src.m_data[i]);
+    delete [] m_data;
+    m_capacity = src.m_capacity;
+    m_front = src.m_front;
+    m_back = src.m_back;
+    m_empty = src.m_empty;
+    m_data = new T [m_capacity];
+    for(size_type i = 0; i < src.size(); i++) {
+        m_data[i] = src.m_data[i];
     }
     return *this;
 }
 
 template <typename T> deque <T> & deque <T>::operator = (deque && src) noexcept {
-    // delete [] m_data;
-    m_data = src.m_data;
+    delete [] m_data;
     m_capacity = src.m_capacity;
-    src.m_data = nullptr;
-    src.m_capacity = 0;
+    m_front = src.m_front;
+    m_back = src.m_back;
+    m_data = src.m_data;
     return *this;
+    // return *src;
 }
 
 template <typename T> deque <T> & deque <T>::operator = (std::initializer_list <T> init) {
-    // delete [] m_data;
-    if(init.size() > m_capacity) {
-        resize(init.size());
-        m_capacity = init.size();
-    }
-    for(int i = 0; i < init.size(); i++) {
-        m_data[i] = init.begin()[i];
-        std::cout << "value: " << m_data[i] << std::endl;
+    delete [] m_data;
+    m_capacity = init.size();
+    m_data = new T [m_capacity];
+    for(size_type i = 0; i < init.size(); i++) {
+        push_back(init.begin()[i]);
     }
     return *this;
 }
 
 template <typename T> typename deque <T>::const_reference deque <T>::operator [] (size_type pos) const {
-    // range check
-    return m_data[pos];
+    iterator tmp_begin  = begin();
+    iterator tmp_end    = end();
+
+    tmp_begin += pos;
+
+    if(tmp_begin > tmp_end){
+        throw std::range_error("range error occured!");
+    }
+
+    return *tmp_begin;
 }
 
 template <typename T> typename deque <T>::reference deque <T>::operator [] (size_type pos) {
-    // range check
-    return m_data[pos];
+    iterator tmp_begin  = begin();
+    iterator tmp_end    = end();
+
+    tmp_begin += pos;
+
+    if(tmp_begin > tmp_end){
+        throw std::range_error("range error occured!");
+    }
+
+    return *tmp_begin;
 }
 
 template <typename T> typename deque <T>::const_reference deque <T>::at (size_type pos) const {
-    // range check
-    return m_data[pos];
+    iterator tmp_begin  = begin();
+    iterator tmp_end    = end();
+
+    tmp_begin += pos;
+
+    if(tmp_begin > tmp_end){
+        throw std::range_error("range error occured!");
+    }
+
+    return *tmp_begin;
 }
 
 template <typename T> typename deque <T>::reference deque <T>::at (size_type pos) {
-    // range check
-    return m_data[pos];
+    iterator tmp_begin  = begin();
+    iterator tmp_end    = end();
+
+    tmp_begin += pos;
+
+    if(tmp_begin > tmp_end){
+        throw std::range_error("range error occured!");
+    }
+
+    return *tmp_begin;
 }
 
 template <typename T> typename deque <T>::const_reference deque <T>::back () const {
-    // range check
     return m_data[m_back];
 }
 
 template <typename T> typename deque <T>::reference deque <T>::back () {
-    // range check
     return m_data[m_back];
 }
 
 template <typename T> typename deque <T>::const_reference deque <T>::front () const {
-    // range check
     return m_data[m_front];
 }
 
 template <typename T> typename deque <T>::reference deque <T>::front () {
-    // range check
     return m_data[m_front];
 }
 
@@ -257,53 +305,67 @@ template <typename T> typename deque <T>::iterator deque <T>::begin () noexcept 
 }
 
 template <typename T> typename deque <T>::iterator deque <T>::end () noexcept {
-    // circular ??
    return iterator(m_data + m_back, this);
 }
 
 template <typename T> bool deque <T>::empty () const noexcept {
-   return m_front == m_back;
+   return m_empty;
 }
 
 template <typename T> typename deque <T>::size_type deque <T>::size () const noexcept {
-   return m_capacity;
+    if(m_empty) return 0;
+    iterator tmp_begin  = begin();
+    iterator tmp_end    = end();
+    size_type count = 1;
+    while(tmp_begin != tmp_end) {
+        tmp_begin++;
+        count++;
+    }
+    return count;
 }
 
 template <typename T> void deque <T>::clear () noexcept {
-    delete [] m_data;
-    m_data = nullptr;
+    m_empty = true;
+    m_front = 0;
+    m_back = 0;
 }
 
 template <typename T> void deque <T>::push_back (T const & value) {
-    //std::cout << "current_back: " << m_back << std::endl;
-    //std::cout << "insert value: " << value << std::endl;
-    if(m_empty) {
-        m_data[m_back] = value;
-        m_empty = false;
-    } else {
-        if(m_back + 1 < m_capacity) {
-            m_back++;
-            m_data[m_back] = value;
-        } else {
-            resize(m_capacity * 2, value);
-        }
-    }
+    // same as below
 }
 
 template <typename T> void deque <T>::push_back (T && value) {
-    //std::cout << "current_back: " << m_back << std::endl;
-    //std::cout << "insert value: " << value << std::endl;
+    bool is_full{false};
     if(m_empty) {
         m_data[m_back] = value;
         m_empty = false;
     } else {
-        if(m_back + 1 < m_capacity && m_back + 1 != m_front) {
-            m_back++;
-            m_data[m_back] = value;
+        std::cout << "push_back";
+        if(m_back + 1 < m_capacity) {
+            if(m_back + 1 == m_front) {
+                std::cout << "got m_front" << std::endl;
+                is_full = true;
+                //return;
+            } else {
+                m_back++;
+                m_data[m_back] = value;
+            }
         } else {
-            resize(m_capacity * 2, value);
-            //std::cout << "realloc?" << std::endl;
+            int tmp_back = 0;
+            if(tmp_back == m_front) {
+                std::cout << "got m_front" << std::endl;
+                is_full = true;
+                //return;
+            } else {
+                m_back = tmp_back;
+                m_data[m_back] = value;
+            }
         }
+    }
+
+    if(is_full) {
+        std::cout << "please resize" << std::endl;
+        resize(m_capacity * 2, value);
     }
 }
 
@@ -312,24 +374,7 @@ template <typename T> void deque <T>::pop_back () {
 }
 
 template <typename T> void deque <T>::push_front (T const & value) {
-    if(m_empty) {
-        m_data[m_front] = value;
-        m_empty = false;
-    } else {
-        if((m_front - 1) < 0) {
-            size_type tmp_front = m_capacity - 1;
-            if(tmp_front != m_back) {
-                m_front = tmp_front;
-                m_data[m_front] = value;
-            } else {
-                std::cout << "resize?" << std::endl;
-                resize(m_capacity * 2, value);
-            }
-        } else {
-            m_front--;
-            m_data[m_front] = value;
-        }
-    }
+    // same as below
 }
 
 template <typename T> void deque <T>::push_front (T && value) {
@@ -346,10 +391,20 @@ template <typename T> void deque <T>::push_front (T && value) {
                 std::cout << "resize?" << std::endl;
                 resize(m_capacity * 2, value);
             }
-        } else {
+        } else if (m_front - 1 != m_back){
             // TODO check if front = back
             m_front--;
             m_data[m_front] = value;
+            /*size_type tmp_front = m_front;
+            if(tmp_front != m_back) {
+                m_front = tmp_front;
+                m_data[m_front] = value;
+            } else {
+                std::cout << "resize?" << std::endl;
+                resize(m_capacity * 2, value);
+            }*/
+        } else {
+            std::cout << "resize" << std::endl;
         }
     }
 }
@@ -365,14 +420,24 @@ template <typename T> void deque <T>::pop_front () {
 }
 
 template <typename T> void deque <T>::resize (size_type count) {
-    assert(count > m_capacity);
+
     T *new_data = new T [count];
-    for(size_type i = 0; i < m_capacity; i++) {
-        new_data[i] = std::move(m_data[i]);
+    int cnt = -1;
+
+    iterator tmp_begin = begin();
+    iterator end_limit = tmp_begin;
+
+    end_limit += (m_capacity > count ? count : m_capacity);
+
+    for(swo::deque<int>::iterator p = tmp_begin;p != end_limit;p++) {
+        new_data[cnt] = *p;
+        cnt++;
     }
-    m_capacity = count;
-    std::cout << "back" << m_back << " front" << m_front;
+
     delete [] m_data;
+    m_front = 0;
+    m_back = cnt;
+    m_capacity = count;
     m_data = new_data;
 }
 
@@ -382,6 +447,9 @@ template <typename T> void deque <T>::resize (size_type count, T const & value) 
 }
 
 template <typename T> void deque <T>::swap (deque & other) noexcept {
+    deque tmp(other);
+    other = *this;
+    *this = tmp;
 }
 
 }   // namespace swo
