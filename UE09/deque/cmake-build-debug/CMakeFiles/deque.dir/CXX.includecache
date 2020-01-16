@@ -11,6 +11,8 @@ iostream
 -
 cassert
 -
+exception
+-
 deque.h
 /Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE09/deque/./deque.h
 
@@ -18,6 +20,8 @@ deque.h
 iostream
 -
 cassert
+-
+exception
 -
 deque.h
 /Users/michaelneuhold/Documents/FH/Semester/03_Semester/02_SWO_UE/Uebungen/UE09/deque/deque.h

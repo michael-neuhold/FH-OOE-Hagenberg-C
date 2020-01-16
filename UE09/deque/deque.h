@@ -29,18 +29,61 @@ namespace swo {
         using size_type       = std::size_t;
         using value_type      = T;
 
-        friend std::ostream &print_queue(std::ostream &os, const deque &deq);
+        friend std::ostream &print_queue(std::ostream &os, const deque &deq) {
+            os << "deque: {";
 
-        friend bool operator == (deque const & lhs, deque const & rhs) noexcept { return false; }
-        friend bool operator != (deque const & lhs, deque const & rhs) noexcept { return false; }
-        friend bool operator <  (deque const & lhs, deque const & rhs) noexcept { return false; }
-        friend bool operator <= (deque const & lhs, deque const & rhs) noexcept { return false; }
-        friend bool operator >  (deque const & lhs, deque const & rhs) noexcept { return false; }
-        friend bool operator >= (deque const & lhs, deque const & rhs) noexcept { return false; }
+            for(auto p = const_cast<swo::deque<value_type>*>(&deq)->begin();p < const_cast<swo::deque<value_type>*>(&deq)->end();p++) {
+                os << (p == const_cast<swo::deque<value_type>*>(&deq)->begin() ? "":",") << *p;
+            }
+            os << "}" << std::endl;
+            return os;
+        }
+
+        friend bool operator == (deque const & lhs, deque const & rhs) noexcept {
+            if(lhs.size() != rhs.size()) return false;
+            iterator it_lhs = lhs.begin();
+            iterator it_rhs = rhs.begin();
+            for(int i = 0; i < lhs.size(); i++) {
+                if(it_lhs[i] != it_rhs[i]) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        friend bool operator != (deque const & lhs, deque const & rhs) noexcept {
+            return !(lhs == rhs);
+        }
+
+        friend bool operator <  (deque const & lhs, deque const & rhs) noexcept {
+            iterator it_lhs = lhs.begin();
+            iterator it_rhs = rhs.begin();
+            int limit = (lhs.size() <= rhs.size() ? lhs.size() : rhs.size());
+            for(int i = 0; i < limit; i++) {
+                if(it_lhs[i] != it_rhs[i]) {
+                    return it_lhs[i] < it_rhs[i];
+                }
+            }
+            return lhs.size() < rhs.size();
+        }
+
+        friend bool operator <= (deque const & lhs, deque const & rhs) noexcept {
+            return (lhs == rhs) || (lhs < rhs);
+        }
+
+        friend bool operator >  (deque const & lhs, deque const & rhs) noexcept {
+            return !(lhs <= rhs);
+        }
+
+        friend bool operator >= (deque const & lhs, deque const & rhs) noexcept {
+            return !(lhs < rhs);
+        }
 
         friend void swap (deque <T> & a, deque <T> & b) noexcept {
-            a.swap (b);
+            a.swap(b);
         }
+
+
 
         class iterator final {
         public:
@@ -55,23 +98,23 @@ namespace swo {
             }
 
             friend bool operator != (iterator const & lhs, iterator const & rhs) noexcept {
-                return lhs.m_pos != rhs.m_pos;
+                return !(lhs.m_pos == rhs.m_pos);
             }
 
             friend bool operator <  (iterator const & lhs, iterator const & rhs) noexcept {
-                return lhs.m_pos < rhs.m_pos;
+                return lhs.m_pos - lhs.m_deq->begin().m_pos < rhs.m_pos - rhs.m_deq->begin().m_pos;
             }
 
             friend bool operator <= (iterator const & lhs, iterator const & rhs) noexcept {
-                return true;//lhs.m_pos <= rhs.m_pos;
+                return lhs.m_pos - lhs.m_deq->begin().m_pos <= rhs.m_pos - rhs.m_deq->begin().m_pos;
             }
 
             friend bool operator >  (iterator const & lhs, iterator const & rhs) noexcept {
-                return true;//lhs.m_pos > rhs.m_pos;
+                return lhs.m_pos - lhs.m_deq->begin().m_pos > rhs.m_pos - rhs.m_deq->begin().m_pos;
             }
 
             friend bool operator >= (iterator const & lhs, iterator const & rhs) noexcept {
-                return lhs.m_pos >= rhs.m_pos;
+                return lhs.m_pos - lhs.m_deq->begin().m_pos >= rhs.m_pos - rhs.m_deq->begin().m_pos;
             }
 
             friend iterator operator + (iterator itor, difference_type offset) noexcept {
@@ -154,7 +197,7 @@ namespace swo {
         void swap (deque & other) noexcept;
 
 
-    //private:
+    private:
         // data component
         value_type *m_data{nullptr};
         size_type m_capacity;
