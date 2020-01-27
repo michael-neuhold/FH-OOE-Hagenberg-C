@@ -1,0 +1,2 @@
+@IF "%SWO3_LIBS_DIR%"=="" set SWO3_LIBS_DIR=\\Mac\Home\Documents\FH\Semester\03_Semester\02_SWO_UE\Uebungen\UE10
+cmake.exe -DVCPKG_TARGET_TRIPLET="x64-windows" -DCMAKE_TOOLCHAIN_FILE="\\Mac\Home\Documents\FH\Semester\03_Semester\02_SWO_UE\Uebungen\UE10\scripts\buildsystems\vcpkg.cmake" -G"Visual Studio 16 2019" ..
